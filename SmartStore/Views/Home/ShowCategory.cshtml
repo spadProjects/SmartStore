@@ -1,0 +1,105 @@
+﻿@using SmartStore.Models;
+@model IEnumerable<ProductGroupViewModel>
+
+@*<link type="text/css" rel="stylesheet" href="~/Content/MegaMenu/bootstrap.min.css" />*@
+<!-- Font Awesome Icon -->
+<link rel="stylesheet" href="~/Content/MegaMenu/font-awesome.min.css">
+<!-- Custom stlylesheet -->
+<link type="text/css" rel="stylesheet" href="~/Content/MegaMenu/style.css" />
+
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CMuli:400,700" rel="stylesheet">
+
+
+<li class="nav-item main-navbar__item dropdown megamenu has-dropdown">
+    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">SHOP BY CATEGORY</a>
+    <div class="dropdown-menu megamenu__list">
+        <div class="row no-gutters">
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xl-8 megamenu__list--content">
+                <div class="row" style="margin-left:10px;">
+                    <div class="dropdown">
+                        <input type="hidden" id="groupCount" value="@Model.Count()" />
+                        <div class="dropdown-body">
+                            <div class="row" style="min-width:800px;">
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xl-3" style="background-color:lightgray">
+                                    <ul class="dropdown-list">
+                                        @{var groupIndex = 1; }
+                                        @foreach (var item in Model)
+                                        {
+                                            var groupTabId = "#grpHeaderTab" + groupIndex;
+                                            var groupId = "grpHdr" + groupIndex;
+
+                                            if (groupIndex == 1)
+                                            {
+                                                <li id="@groupId" class="active" style="background-color:gray;"><a data-toggle="tab" href="@groupTabId" onclick="changeColor(@groupIndex)">@item.Title</a></li>
+                                            }
+                                            else
+                                            {
+                                                <li id="@groupId"><a data-toggle="tab" href="@groupTabId" onclick="changeColor(@groupIndex)">@item.Title</a></li>
+                                            }
+                                            groupIndex++;
+                                        }
+                                    </ul>
+                                </div>
+                                <div class="col-lg-9 col-md-9 col-sm-9 col-xl-9">
+                                    <div class="dropdown-body tab-content">
+                                        <!-- tab1 -->
+                                        @{groupIndex = 1; }
+                                        @foreach (var item in Model)
+                                        {
+                                            var CssStyle = groupIndex == 1 ? "tab-pane active" : "tab-pane";
+                                            var groupId = "grpHeaderTab" + groupIndex;
+
+                                            <div id="@groupId" class="@CssStyle">
+                                                <div class="row">
+                                                    @foreach (var subItem in item.SubGroups)
+                                                    {
+                                                        <!-- post -->
+                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xl-3">
+                                                            <h4 class="dropdown-heading">@subItem.Title</h4>
+                                                            <ul class="dropdown-list">
+                                                                @foreach (var subSubItem in subItem.SubGroups)
+                                                                {
+                                                                    <li><a href="/ProductList/Group/@subSubItem.GroupId">@subSubItem.Title</a></li>
+                                                                }
+                                                            </ul>
+                                                        </div>
+                                                    }
+                                                    <!-- /post -->
+                                                </div>
+                                            </div>
+                                            groupIndex++;
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</li>
+
+
+@*<script src="~/Scripts/MegaMenu/jquery.min.js"></script>*@
+<script src="~/Scripts/MegaMenu/bootstrap.min.js"></script>
+<script src="~/Scripts/MegaMenu/jquery.stellar.min.js"></script>
+<script src="~/Scripts/MegaMenu/main.js"></script>
+<script>
+    function changeColor(groupId) {
+        var groupCountVal = document.getElementById("groupCount").value;
+
+        for (var i = 1; i <= groupCountVal; i++) {
+            var groupCount = document.getElementById("grpHdr" + i);
+
+            if (groupCount != undefined && groupCount != null) {
+                if (i == groupId) {
+                    groupCount.style.backgroundColor = "gray";
+                }
+                else {
+                    groupCount.style.backgroundColor = "lightgray";
+                }
+            }
+        }
+    }
+</script>

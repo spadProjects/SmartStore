@@ -1,0 +1,27 @@
+﻿@model IEnumerable<SmartStore.Model.Entities.ContactUs>
+
+<div class="main-content pb-80">
+    <div class="container">
+        <!-- about wrapper -->
+        <div class="about-area mb-100">
+            @foreach (var item in Model)
+            {
+                <div class="row">
+                    <div class="col-lg-6">
+                        <img src="~/Images/AboutUs/@item.Image" alt="" class="w-100">
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="about-area__content">
+                            <h1>About us</h1>
+                            <p>
+                                @item.AboutUs
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+
+    </div>
+</div>

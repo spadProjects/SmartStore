@@ -1,0 +1,128 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from demo.minimalthemes.net/SmartStore/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 26 Aug 2020 08:16:05 GMT -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>WayBeste</title>
+    <!-- Favicon -->
+    <link rel="icon" href="~/Content/Home/images/favicon.ico" sizes="32x32">
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="~/Content/Home/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel='stylesheet' href='~/Content/Home/css/fontawesome.min.css'>
+    <!-- Animate -->
+    <link href="~/Content/Home/css/animate.css" rel="stylesheet">
+    <!-- Owl Carousel -->
+    <link rel="stylesheet" href="~/Content/Home/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/Content/Home/css/owl.theme.default.min.css">
+    <!-- light box -->
+    <link rel="stylesheet" href="~/Content/Home/css/lightbox.min.css">
+    <!-- jquery ui -->
+    <link rel="stylesheet" href="~/Content/Home/css/jquery-ui.min.css">
+    <!-- nice select -->
+    <link rel="stylesheet" href="~/Content/Home/css/nice-select.min.css">
+    <!-- Main Styles -->
+    <link rel="stylesheet" href="~/Content/Home/scss/main.css">
+
+</head>
+
+<body>
+
+    @Html.Action("HeaderNavbar", "Home")
+
+    @RenderBody()
+
+    <!-- footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__top-row">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 footer__content">
+                        <div class="footer-logo">
+                            <img src="~/Content/Home/images/logo.png" alt="">
+                        </div>
+                        @Html.Action("FooterAboutUs", "Home")
+                        @Html.Action("SocialNetWork", "Home")
+                    </div>
+                    @Html.Action("FooterList", "Home")
+                    @Html.Action("ContactUs", "Home")
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&#169; copyright 2019. Designed with Spad.co </p>
+            </div>
+        </div>
+    </footer>
+    <!-- end footer -->
+    <!-- scroll up btn -->
+    <a class="back-to-top-btn" id="back-to-top"></a>
+    <!-- end scroll up btn -->
+    <!-- loader -->
+    <div class="loader">
+        <div class="spinner">
+            <div class="cube1"></div>
+            <div class="cube2"></div>
+        </div>
+    </div>
+    <!-- end loader -->
+    <!-- All Jquery -->
+    <script type="text/javascript" src="~/Content/Home/js/jquery.min.js"></script>
+    <script type="text/javascript" src="~/Content/Home/js/popper.min.js"></script>
+    <script type="text/javascript" src="~/Content/Home/js/bootstrap.min.js"></script>
+    <!-- owl carousel js -->
+    <script type="text/javascript" src="~/Content/Home/js/owl.carousel.min.js"></script>
+    <!-- Jquery ui -->
+    <script type="text/javascript" src="~/Content/Home/js/jquery-ui.min.js"></script>
+    <!-- light box js -->
+    <script type="text/javascript" src="~/Content/Home/js/lightbox.min.js"></script>
+    <!-- typeahead js -->
+    <script type="text/javascript" src="~/Content/Home/js/typeahead.jquery.min.js"></script>
+    <!-- master zoom image js -->
+    <script type="text/javascript" src="~/Content/Home/js/jquery.zoom.min.js"></script>
+    <!-- countdown js -->
+    <script type="text/javascript" src="~/Content/Home/js/countdown.jquery.min.js"></script>
+    <!-- nice select js -->
+    <script type="text/javascript" src="~/Content/Home/js/nice-select.min.js"></script>
+    <!-- wow js -->
+    <script type="text/javascript" src="~/Content/Home/js/wow.min.js"></script>
+    <!-- custom js -->
+    <script type="text/javascript" src="~/Content/Home/js/custom.js"></script>
+
+    @RenderSection("Uploaders", false)
+
+    <script>
+        function AddToCart(id) {
+            $.ajax({
+                url: "/Shop/AddToCart/" + id,
+                type: "Get"
+            }).done(function (result) {
+                $("#shopcart").html(result);
+            });
+        }
+
+        $(function () {
+            $("#shopcart").load("/Shop/ShopCartCount");
+        });
+
+        function updateShopCart() {
+            $("#shopcart").load("/Shop/ShowCart").fadeOut(800).fadeIn(800);
+        }
+
+        function commandOrder(id, count) {
+            $.ajax({
+                url: "/Shop/CommandOrder/" + id,
+                type: "Get",
+                data: { count: count }
+            }).done(function (res) {
+                $("#showOrder").html(res);
+            });
+        }
+    </script>
+
+</body>
+
+<!-- Mirrored from demo.minimalthemes.net/SmartStore/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 26 Aug 2020 08:16:05 GMT -->
+</html>

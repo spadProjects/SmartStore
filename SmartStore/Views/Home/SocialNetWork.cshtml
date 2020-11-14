@@ -1,0 +1,13 @@
+﻿@model IEnumerable<SmartStore.Model.Entities.SocialNetWork>
+
+<ul class="social-media">
+    @{
+        foreach (var item in Model)
+        {
+
+            <li class="social-media__item">
+                <a href="@item.Link"><i class="@item.Icon"></i></a>
+            </li>
+        }
+    }
+</ul>

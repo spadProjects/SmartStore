@@ -1,0 +1,57 @@
+﻿@model IEnumerable<SmartStore.Model.Entities.Product>
+
+<div class="res-gallery res-gallery--bg mb-100">
+    <div class="container">
+        <div class="row">
+            <!-- gallery tabs -->
+            <div class="col-lg-3 res-gallery__tabs">
+                <h3 class="gallery-title">
+                    <span>2020 Lookbook</span>
+                    <span>Featured Collections</span>
+                </h3>
+                @{
+                    foreach (var item in Model)
+                    {
+
+                        <div class="nav nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+
+                            <a class="nav-link active" id="v-pills-cat01-tab"
+                               data-toggle="pill" href="#v-pills-cat01"
+                               role="tab"
+                               aria-controls="v-pills-cat01" aria-selected="true">@item.ProductGroup.GroupName</a>
+
+                        </div>
+                        <!-- gallery content -->
+                        <div class="col-lg-9">
+                            <div class="tab-content res-gallery__content" id="v-pills-tabContent">
+                                <div class="tab-pane fade show active" id="v-pills-cat01" role="tabpanel"
+                                     aria-labelledby="v-pills-cat01-tab">
+                                    <div class="row">
+                                        @{
+                                            foreach (var item2 in item.Galleries)
+                                            {
+
+                                                <div class="col-md-4 col-6 gallery-column">
+                                                    <div class="image-effect">
+                                                        <img src="~/Images/Gallery/@item2.Image" alt="">
+                                                        <div class="image-effect__content">
+                                                            <a href="#">
+                                                                <h3 class="link">
+                                                                    View more
+                                                                </h3>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,32 @@
+﻿@model IEnumerable<SmartStore.Model.Entities.Blog>
+
+<div class="row wow fadeIn">
+    @foreach (var item in Model)
+    {
+        <div class="col-lg-4 col-md-6">
+            <div class="blog-post blog-post--grid">
+                <div class="blog-post__img">
+                    <div class="blog-post__img--overlay"></div>
+                    <img src="~/Images/Blog/@item.BlogImage" alt="">
+                    <a href="/Home/BlogDetails/@item.Id/" class="btn blog-post__btn">
+                        Read more
+                    </a>
+                </div>
+                <div class="blog-post__inner">
+                    <div class="blog-post__inner--title">
+                        <a href="/Home/BlogDetails/@item.Id/"><h4>@item.BlogTitle</h4></a>
+                    </div>
+                    <div class="blog-post__inner--details">
+                        <span class="author">By Adam Smith,</span>
+                        <span class="date">@item.CreateDate</span>
+                    </div>
+                    <div class="blog-post__inner--des">
+                        <p>
+                            @item.BlogSubTitle
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

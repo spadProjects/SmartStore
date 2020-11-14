@@ -1,0 +1,22 @@
+﻿@model IEnumerable<SmartStore.Model.Entities.Blog>
+
+<ul class="media-list">
+    @foreach (var item in Model)
+    {
+        <li class="media-list__item">
+            <div class="media">
+                <a class="media-list__item--img" href="single-blog-post.html">
+                    <img src="~/Images/Blog/@item.BlogImage" alt="...">
+                </a>
+                <div class="media-body">
+                    <a href="/Home/BlogDetails/@item.Id/">
+                        <h5 class="media-list__item--title">@item.BlogTitle</h5>
+                    </a>
+                    <div class="media-list__item--details">
+                        <span>@item.CreateDate</span>
+                    </div>
+                </div>
+            </div>
+        </li>
+    }
+</ul>

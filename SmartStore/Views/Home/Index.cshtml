@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Home.cshtml";
+}
+
+<!-- main header navbar -->
+@*@Html.Action("HeaderNavbar","Home")*@
+<!-- end main header navbar -->
+<!-- main header slider -->
+@Html.Action("SliderHeader", "Home")
+<!-- end of main header -->
+@Html.Action("PopularCategories", "Home")
+@*@Html.Action("FeaturedCollection", "Home")*@
+<!-- main content -->
+<div class="main-content py-100">
+    <div class="container">
+        <!-- items slider light -->
+        @Html.Action("ProductSlider", "Home")
+        <!-- end items slider light -->
+    </div>
+    <!-- end items slider light blue -->
+    <!--  banner call to action  -->
+    <div class="banner banner-full mb-100 overflow-hidden"
+         style="background-image: url('../../Content/Home/images/banners/banner-bg-05.jpg');">
+        <div class="container">
+            <div class="banner-full__inner">
+                <a href="#">
+                    <h3>Do you have an idea?</h3>
+                    <h2>
+                        Well done!<br><span class="text-bg">
+                            Do you want to grow it?
+                        </span>
+                    </h2>
+                </a>
+                <a href="/ReceiveIdea/Index" class="btn">Let' Go</a>
+            </div>
+        </div>
+    </div>
+    <!--  end banner call to action  -->
+    <div class="container">
+        <!-- items slider light blue -->
+        @Html.Action("MainSlider", "Home")
+        <!-- end of items slider light blue -->
+        <!-- smart shop section -->
+        <!-- end smart shop section -->
+    </div>
+    <!-- gallery -->
+    @*@Html.Action("Gallery","Home")*@
+    <!-- end gallery -->
+    <!-- latest blog post -->
+    <div class="container">
+        <div class="row overflow-hidden">
+            <div class="col-12">
+                <h2 class="main-title wow fadeIn">The Latest Blog posts</h2>
+            </div>
+        </div>
+        @Html.Action("LatestBlog", "Home")
+    </div>
+    <!-- end latest blog post -->
+
+</div>
+<!-- end main content -->

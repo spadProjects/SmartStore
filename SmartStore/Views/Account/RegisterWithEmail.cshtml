@@ -1,0 +1,103 @@
+﻿@model SmartStore.Models.RegisterWithEmailViewModel
+
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Account.cshtml";
+}
+<div class="container header-mt">
+    <div class="row">
+        <div class="col-12">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb custom-breadcrumb">
+                    <li class="breadcrumb-item"><a href="/Home/Index">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Signup</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</div>
+<div class="container pt-3 pt-sm-4 pt-md-5">
+    <div class="row justify-content-center" style="margin-bottom: 50px;">
+        <div class="col-10 col-lg-6">
+            <div class="row LP_boxShadow pt-4 pb-2">
+                <h4 class="h3 ml-auto mr-auto text-danger">Signup</h4>
+            </div>
+
+            <div class="row mt-1">
+                <div class="col-12">
+                    @*<div class="row " id="tab-button">
+                        <div class="col-6 text-right active" for="Users">With Email</div>
+                        <div class="col-6 text-left" for="Experts">With Phone Number</div>
+                    </div>*@
+                    <div class="row pb-2" id="tab-content">
+
+                        <div class="col-12 active" id="Users">
+                            <div class="container-fluid mpZero">
+                                @using (Html.BeginForm("RegisterWithEmail", "Account", FormMethod.Post, new { @class = "", role = "form" }))
+                                {
+                                    <div class="row">
+                                        <div class="col-12 mt-5 mpZero">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-6  ml-auto mr-auto">
+                                                            @Html.ValidationMessageFor(model => model.UserEmail, "", new { @class = "err err-number" })
+                                                            <div class="input-group">
+                                                                @Html.TextBoxFor(m => m.UserEmail, new { @class = "RE_input pl-2 w-100 bg-light", @type = "Email", @placeholder = "UserEmail" })
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-6  mt-2 ml-auto mr-auto">
+                                                            @*@Html.ValidationMessageFor(model => model.UserPassword, "", new { @class = "err err-number" })*@
+                                                            <div class="input-group">
+                                                                @Html.TextBoxFor(m => m.UserPassword, new { @class = "RE_input pl-2 w-100 bg-light", @id = "password", @type = "password", @placeholder = "Password" })
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    @*<div class="row">
+                                                            <div class="col-6 mt-2 ml-auto mr-auto">
+                                                                <div class="checkbox">
+                                                                    <input type="checkbox" id="checkbox_23" name="Location">
+                                                                    <label for="checkbox_23">
+                                                                        <span class="box"></span>
+                                                                        Remember me
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>*@
+                                                    <div class="row">
+                                                        <div class="col-6 mt-2 ml-auto mr-auto">
+                                                            <input type="submit" class="btn all_bgColor text-white pr-4 pl-4 H_btn btn-block" value="Sign up" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                            <div class="row LP_boxShadow pt-4 pb-2 mt-3">
+                                @*<a href="" class="Text-Decoration C_pointer ml-auto mr-auto">
+                                        <p class="text-center text-danger">No account? Create one!</p>
+                                    </a>*@
+                            </div>
+                        </div>
+                        @Html.Action("RegisterWithPhoneNumber", "Account")
+                    </div>
+                </div>
+            </div>
+            <!--<div class="row LP_boxShadow pt-4 pb-2 mt-3">-->
+            <!--<a href="" class="Text-Decoration C_pointer ml-auto mr-auto">-->
+            <!--<p class="text-center text-danger">No account? Create one!</p>-->
+            <!--</a>-->
+            <!--</div>-->
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+

@@ -1,0 +1,100 @@
+﻿@model IEnumerable<SmartStore.Models.ShapCartViewModel>
+
+@{
+    ViewBag.Title = "Cart";
+    Layout = "~/Views/Shared/_Home.cshtml";
+}
+
+<div class="container header-mt">
+    <div class="row">
+        <div class="col-12">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb custom-breadcrumb">
+                    <li class="breadcrumb-item"><a href="/Home/Index">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Payment and Shipping</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</div>
+<!-- end breadcrumb -->
+<!-- main content -->
+<div class="main-content pb-80">
+    <div class="container">
+        <!-- product cart -->
+        <div class="row">
+            <!-- title -->
+            <div class="col-12">
+                <h1 class="main-title">Cart</h1>
+            </div>
+            <!-- cart items -->
+            <div class="col-12">
+                <div class="item-cart">
+                    @{
+                        foreach (var item in Model)
+                        {
+
+                            <div class="item-cart__row">
+                                <div class="item-cart__row--img">
+                                    <div class="delete-item">
+                                        <a href="/Shop/RemoveFromShoppingCart/@item.ProductId"><i class="icon-bin"></i></a>
+                                    </div>
+
+                                    <a href="#">
+                                        <img src="~/Images/Product/@item.ProductImg" alt="">
+                                        <span>@item.ProductName</span>
+                                    </a>
+                                </div>
+                                <div class="item-cart__row--details">
+                                    <span class="per-price">£@item.ProductPrice</span>
+                                    <div class="quantity">
+                                        @*<span class="quantity__minus"><i class="fas fa-minus"></i></span>
+                                            <input class="quantity__input" type="text" value="2" size="2">
+                                            <span class="quantity__plus"><i class="fas fa-plus"></i></span>*@
+                                        <p>
+                                            <input name="points" min="1" max="30" step="1" value="@item.Count" onchange="commandOrder(@item.ProductId,$(this).val())" type="number">
+                                        </p>
+                                    </div>
+                                    <span class="total-price"><strong>£@item.Sum</strong></span>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="row cart-info cart-info--row">
+            <!-- cart total info -->
+            <div class="col-lg-8 col-12">
+                <div class="total-info">
+                    <h2 class="total-info__title">Cart total</h2>
+                    <div class="total-info__subprice">
+                        <span>Subtotal</span>
+                        <span>£@Model.Sum(p => p.Sum)</span>
+                    </div>
+                    <div class="total-info__totalprice">
+                        <span>Total</span>
+                        <span>£@Model.Sum(p => p.Sum)</span>
+                    </div>
+                    <div class="total-info__btn">
+                        <a href="/Shop/SubmitFactor" type="button" class="btn">Checkout</a>
+                    </div>
+                </div>
+            </div>
+            <!-- coupon code -->
+            <div class="col-lg-4 col-md-6 col-12">
+                <div class="coupon">
+                    <form>
+                        <div class="input-group coupon__code coupon__code--mt ltr">
+                            <input type="text" class="form-control" placeholder="Enter coupon" aria-label="Enter coupon"
+                                   aria-describedby="button-addon2">
+                            <div class="input-group-append">
+                                <button class="btn" type="button" id="button-addon2">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

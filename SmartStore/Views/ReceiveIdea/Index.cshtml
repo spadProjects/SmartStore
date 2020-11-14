@@ -1,0 +1,274 @@
+﻿@model SmartStore.Model.Entities.Idea
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_HomeTemp.cshtml";
+}
+<link rel="stylesheet" href="~/Content/ReceiveIdea/css/style.css">
+<style type="text/css">
+    body {
+        font-family: Arial;
+        font-size: 10pt;
+    }
+
+    #dropSection {
+        background: #b5b5b5;
+        border: black dashed 1px;
+        height: 200px;
+        text-align: center;
+        color: #fff;
+    }
+
+    #btnUpload {
+        display: none;
+    }
+
+    .active {
+        background: #77bafa !important;
+        border: solid 2px blue !important;
+        opacity: .5;
+        color: black !important;
+    }
+</style>
+<div class="hero-header-slider">
+    <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+    <div class="banner banner-full mb-100 overflow-hidden"
+         style="margin-bottom:-60px;;background-image: url('../../Content/Home/images/banners/banner-bg-05.jpg');">
+        <div class="container">
+            <div class="banner-full__inner">
+                <a href="#">
+                    <h3>Do you have an idea?</h3>
+                    <h2>
+                        Well done!<br><span class="text-bg">
+                            Do you want to grow it?
+                        </span>
+                    </h2>
+                </a>
+                <a href="#idea" class="btn">Let' Go</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="THIS" id="idea">
+    @using (Html.BeginForm("Index", "ReceiveIdea", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        @Html.Action("IdeaHeader", "ReceiveIdea")
+        <div id="body" class="slds-form slds-card slds-has-top-magnet slds-has-bottom-magnet slds-p-horizontal--large slds-p-vertical--xx-small">
+
+            <div id="username-info-container">
+                <div class="slds-box section_header">
+                    Profile of the idea owner
+                </div>
+                <section id="username-info" class="slds-p-horizontal--xx-small">
+                    <section id="new-user-account">
+                        <div id="row-1-user-account" class="slds-grid slds-gutters">
+                            <div id="username-container" class="slds-form-element slds-col">
+                                @Html.LabelFor(model => model.AliasName, htmlAttributes: new { @class = "slds-required" })
+                                @Html.EditorFor(model => model.AliasName, new { htmlAttributes = new { @class = "slds-form-element__control slds-input" } })
+                                @Html.ValidationMessageFor(model => model.AliasName, "", new { @class = "text-danger" })
+                            </div>
+                            <div id="username-container" class="slds-form-element slds-col">
+                                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "slds-required" })
+                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "slds-form-element__control slds-input" } })
+                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+
+                            </div>
+                        </div>
+                    </section>
+                    <section id="new-user-account">
+                        <div id="row-1-user-account" class="slds-grid slds-gutters">
+                            <div id="username-container" class="slds-form-element slds-col">
+                                @Html.LabelFor(model => model.DateOfBirth, htmlAttributes: new { @class = "slds-required" })
+                                @Html.EditorFor(model => model.DateOfBirth, new { htmlAttributes = new { @class = "slds-form-element__control slds-input" } })
+                                @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "text-danger" })
+                            </div>
+                            <div id="username-container" class="slds-form-element slds-col">
+                                <div class="col-md-10">
+                                    <p class="slds-required" style="font-weight: 700;">
+                                        Please select your marital status:
+                                    </p>
+                                </div>
+                                <div class="col-md-5">
+                                    <input type="radio" id="male" name="gender" value="male">
+                                    <label for="male">Single</label><br>
+                                </div>
+                                <div class="col-md-5">
+                                    <input type="radio" id="female" name="gender" value="female">
+                                    <label for="female">Married</label><br>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </section>
+                    <section id="new-user-account">
+                        <div id="row-1-user-account" class="slds-grid slds-gutters">
+                            <div id="username-container" class="slds-form-element slds-col">
+                                @Html.LabelFor(model => model.Job, htmlAttributes: new { @class = "slds-required" })
+                                @Html.EditorFor(model => model.Job, new { htmlAttributes = new { @class = "slds-form-element__control slds-input" } })
+                                @Html.ValidationMessageFor(model => model.Job, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </section>
+                    <section id="new-user-account">
+                        <div id="row-1-user-account" class="slds-grid slds-gutters">
+                            <div id="username-container" class="slds-form-element slds-col">
+                                @Html.LabelFor(model => model.DegreeOfEducation, htmlAttributes: new { @class = "slds-required" })
+                                @Html.EditorFor(model => model.DegreeOfEducation, new { htmlAttributes = new { @class = "slds-form-element__control slds-input" } })
+                                @Html.ValidationMessageFor(model => model.DegreeOfEducation, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </section>
+                    <section id="new-user-account">
+                        <div id="row-1-user-account" class="slds-grid slds-gutters">
+                            <div id="username-container" class="slds-form-element slds-col">
+                                @Html.LabelFor(model => model.Skill, htmlAttributes: new { @class = "slds-required" })
+                                @Html.EditorFor(model => model.Skill, new { htmlAttributes = new { @class = "slds-form-element__control slds-input" } })
+                                @Html.ValidationMessageFor(model => model.Skill, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </section>
+                    <section id="new-user-account">
+                        <div id="row-1-user-account" class="slds-grid slds-gutters">
+                            <div id="username-container" class="slds-form-element slds-col">
+                                @Html.LabelFor(model => model.WorkExperience, htmlAttributes: new { @class = "slds-required" })
+                                @Html.EditorFor(model => model.WorkExperience, new { htmlAttributes = new { @class = "slds-form-element__control slds-input" } })
+                                @Html.ValidationMessageFor(model => model.WorkExperience, "", new { @class = "text-danger" })
+                            </div>
+
+                        </div>
+                    </section>
+                </section>
+            </div>
+            <div class="slds-box section_header">
+                Specifications of the idea
+            </div>
+            <section id="contact-address-info">
+                <section id="contact-street-section" class="slds-p-horizontal--xx-small">
+                    <div title="street" class="slds-form-element">
+                        @Html.LabelFor(model => model.IdeaTitle, htmlAttributes: new { @class = "slds-required" })
+                        @Html.EditorFor(model => model.IdeaTitle, new { htmlAttributes = new { @class = "slds-form-element__control slds-input" } })
+                        @Html.ValidationMessageFor(model => model.IdeaTitle, "", new { @class = "text-danger" })
+                    </div>
+                </section>
+                <br />
+                <section id="contact-description-section" class="slds-p-horizontal--xx-small">
+                    <div class="slds-form-element">
+                        @Html.LabelFor(model => model.AreaOfExpertise, htmlAttributes: new { @class = "slds-required" })
+                        @Html.EditorFor(model => model.AreaOf​Expertise, new { htmlAttributes = new { @class = "slds-form-element__control slds-input" } })
+                        @Html.ValidationMessageFor(model => model.AreaOfExpertise, "", new { @class = "text-danger" })
+                    </div>
+                </section>
+                <br />
+                <section id="contact-description-section" class="slds-p-horizontal--xx-small">
+                    <div class="slds-form-element">
+                        @Html.LabelFor(model => model.FeaturesOftheIdea, htmlAttributes: new { @class = "slds-required" })
+                        @Html.EditorFor(model => model.FeaturesOftheIdea, new { htmlAttributes = new { @class = "slds-form-element__control slds-input" } })
+                        @Html.ValidationMessageFor(model => model.FeaturesOftheIdea, "", new { @class = "text-danger" })
+                    </div>
+                </section>
+                <br />
+                <section id="contact-description-section" class="slds-p-horizontal--xx-small">
+                    <div class="slds-form-element">
+                        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "slds-required" })
+                        @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "slds-form-element__control slds-input" } })
+                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                    </div>
+                </section>
+                <br />
+                <section id="contact-description-section" class="slds-p-horizontal--xx-small">
+                    <div class="slds-form-element">
+                        @Html.LabelFor(model => model.BenefitsOftheIdea, htmlAttributes: new { @class = "slds-required" })
+                        @Html.EditorFor(model => model.BenefitsOftheIdea, new { htmlAttributes = new { @class = "slds-form-element__control slds-input" } })
+                        @Html.ValidationMessageFor(model => model.BenefitsOftheIdea, "", new { @class = "text-danger" })
+                    </div>
+                </section>
+                <br />
+                <section id="contact-description-section" class="slds-p-horizontal--xx-small">
+                    <div class="slds-form-element">
+                        @Html.LabelFor(model => model.ThePurposeOftheIdea, htmlAttributes: new { @class = "slds-required" })
+                        @Html.EditorFor(model => model.ThePurposeOftheIdea, new { htmlAttributes = new { @class = "slds-form-element__control slds-input" } })
+                        @Html.ValidationMessageFor(model => model.ThePurposeOftheIdea, "", new { @class = "text-danger" })
+                    </div>
+                </section>
+                <br />
+                <section id="contact-description-section" class="slds-p-horizontal--xx-small">
+                    <div class="slds-form-element">
+                        @Html.LabelFor(model => model.IdeaCosts, htmlAttributes: new { @class = "slds-required" })
+                        @Html.EditorFor(model => model.IdeaCosts, new { htmlAttributes = new { @class = "slds-form-element__control slds-input" } })
+                        @Html.ValidationMessageFor(model => model.IdeaCosts, "", new { @class = "text-danger" })
+                    </div>
+                </section>
+
+                <br />
+                <div id="dropSection">
+                    <div style="margin-top:85px">Drop Your files here</div>
+                </div>
+                <br />
+                Uploaded Files:
+                <hr />
+                <div id="uploadedFiles">
+                </div>
+                <input type="button" id="btnUpload" value="Upload" />
+            </section>
+
+        </div>
+
+
+        <div id="footer" class="slds-card has-top-border slds-has-top-magnet slds-p-around--small slds-grid slds-grid_align-end">
+            <input type="submit" value="Cancel" class="slds-button slds-button_neutral" data-dismiss="modal" />
+            <input type="submit" value="Send" class="slds-button slds-button_brand" style="background-color: #f7b926;border-color: #f7b926;" />
+        </div>
+    }
+</div>
+
+@*
+    <script type="text/javascript" src='https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.3.min.js'></script>*@
+<script src="~/Scripts/jquery.filedrop.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#dropSection").filedrop({
+            fallback_id: 'btnUpload',
+            fallback_dropzoneClick: true,
+            /**/
+            url: '@Url.Action("Upload")',
+    /**/
+    //allowedfiletypes: ['image/jpeg', 'image/png', 'image/gif', 'application/pdf', 'application/doc'],
+    allowedfileextensions: ['.doc', '.docx', '.pdf', '.jpg', '.jpeg', '.png', '.gif'],
+    paramname: 'fileData',
+    maxfiles: 5, //Maximum Number of Files allowed at a time.
+    maxfilesize: 2, //Maximum File Size in MB.
+    dragOver: function () {
+        $('#dropSection').addClass('active');
+    },
+    dragLeave: function () {
+        $('#dropSection').removeClass('active');
+    },
+    drop: function () {
+        $('#dropSection').removeClass('active');
+    },
+    uploadFinished: function (i, file, response, time) {
+        $('#uploadedFiles').append(file.name + '<br />')
+    },
+    afterAll: function (e) {
+        //To do some task after all uploads done.
+    }
+})
+})
+</script>
+<script src="~/Scripts/jquery-ui-1.12.1.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('input[type=datetime]').datepicker({
+            dateFormat: "dd/M/yy",
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "-60:+0"
+        });
+
+    });
+</script>

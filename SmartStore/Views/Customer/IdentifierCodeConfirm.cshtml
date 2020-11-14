@@ -1,0 +1,50 @@
+﻿@model SmartStore.Model.Entities.User
+
+<link href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<style>
+    .btn-danger {
+        color: #fff;
+        border-color: #28a745;
+        background-color: #28a745;
+        box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
+    }
+        .btn-danger:hover {
+            color: #fff;
+            border-color: #28a745;
+            background-color: #28a745;
+        }
+        .btn-danger:not(:disabled):not(.disabled):active, .btn-danger:not(:disabled):not(.disabled).active, .show > .btn-danger.dropdown-toggle {
+            color: #fff;
+            border-color: #28a745;
+            background-color: #28a745;
+        }
+</style>
+<div>
+    <div class="icon-box" style="width: 80px;
+    height: 80px;
+    margin: 100px auto;
+    border-radius: 50%;
+    z-index: 9;
+    text-align: center;
+    /*border: 3px solid #f15e5e;*/
+    color: #28a745;
+    font-size: 46px;
+    margin-top: -80px;">
+        <i class="material-icons" style="font-size: 70px;margin-top: 10px;">&#xE86C;</i>
+    </div>
+    <h3 style="text-align: center;margin-top: -85px;margin-bottom: 50px;">
+        Are you sure you want to Confirm this record?
+    </h3>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color" style="text-align:center">
+            <input type="submit" value="Yes" class="btn btn-danger" style="padding-right: 50px;padding-left: 50px;" />
+            <input type="submit" value="No" class="btn" style="padding-right: 50px;padding-left: 50px;background-color: #c1c1c1;" data-dismiss="modal" />
+        </div>
+    }
+</div>
+

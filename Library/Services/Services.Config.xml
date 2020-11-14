@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<objects xmlns="http://www.springframework.net"
+             xmlns:db="http://www.springframework.net/database">
+
+    <object id="CacheAspect" type="Exir.IrDoc.Framework.Common.CacheAspect, Exir.IrDoc.Framework.Common" />
+      <object id="AspNetCache" type="Spring.Caching.AspNetCache, Spring.Web">
+        <property name="SlidingExpiration" value="true" />
+        <property name="Priority" value="Low" />
+        <property name="TimeToLive" value="00:02:00" />
+      </object>
+      <object id="AttributeTransactionAttributeSource" type="Spring.Transaction.Interceptor.AttributesTransactionAttributeSource, Spring.Data"></object>
+      <object id="TxTransactionManager" type="Spring.Data.Core.TxScopeTransactionManager, Spring.Data">
+        <property name="NestedTransactionsAllowed" value="true" />
+      </object>
+      <object id="TransactionInterceptor" type="Spring.Transaction.Interceptor.TransactionInterceptor, Spring.Data">
+        <property name="TransactionAttributeSource" ref="AttributeTransactionAttributeSource" />
+        <property name="TransactionManager" ref="TxTransactionManager" />
+      </object>
+	   <object name="LoggingAdvice" type="Spring.Aspects.Logging.SimpleLoggingAdvice, Spring.Aop">
+        <property name="LogUniqueIdentifier" value="true" />
+        <property name="LogExecutionTime" value="true" />
+        <property name="LogMethodArguments" value="true" />
+        <property name="LogReturnValue" value="true" />
+        <property name="Separator" value=";" />
+        <property name="LogLevel" value="Debug" />
+        <property name="HideProxyTypeNames" value="true" />
+        <property name="UseDynamicLogger" value="true" />
+        <property name="LoggerName" value="Spring" />
+      </object>
+
+	  
+	    <object type="Spring.Aop.Framework.AutoProxy.ObjectNameAutoProxyCreator, Spring.Aop">
+        <property name="Optimize" value="true" />
+        <property name="ObjectNames">
+          <list>
+            <value>*Service</value>
+          </list>
+        </property>
+        <property name="InterceptorNames">
+          <list>
+            <value>LoggingAdvice</value> 
+                <!--   <value>TransactionInterceptor</value>-->
+             <!-- <value>CacheAspect</value>  -->
+  </list>
+        </property>
+      </object>
+  <object id="AccountCodeService"  type="Exir.IrDoc.Samples.Accounting.Services.AccountCodeService, Exir.IrDoc.Samples.Accounting"  singleton="false" scope="request" />
+  <object id="DetailCodeService"  type="Exir.IrDoc.Samples.Accounting.Services.DetailCodeService, Exir.IrDoc.Samples.Accounting"  singleton="false" scope="request" />
+  <object id="DocumentService"  type="Exir.IrDoc.Samples.Accounting.Services.DocumentService, Exir.IrDoc.Samples.Accounting"  singleton="false" scope="request" />
+  <object id="DocumentCategoryService"  type="Exir.IrDoc.Samples.Accounting.Services.DocumentCategoryService, Exir.IrDoc.Samples.Accounting"  singleton="false" scope="request" />
+  <object id="DocumentItemService"  type="Exir.IrDoc.Samples.Accounting.Services.DocumentItemService, Exir.IrDoc.Samples.Accounting"  singleton="false" scope="request" />
+ </objects>
+

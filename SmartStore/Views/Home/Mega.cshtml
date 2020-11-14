@@ -1,0 +1,56 @@
+﻿
+@model IEnumerable<SmartStore.Model.Entities.Group>
+@{
+    foreach (var item in Model)
+    {
+        <li class="nav-item main-navbar__item dropdown megamenu">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown">@item.GroupName</a>
+            <div class="dropdown-menu megamenu__list">
+                <div class="row no-gutters">
+                    <div class="col-lg-8 megamenu__list--content">
+                        <div class="row">
+                            @{
+                                foreach (var item2 in item.SubGroups)
+                                {
+                                    <div class="col-md-4">
+                                        <a class="dropdown-item" href="about.html">@item2.SubGroupName</a>
+                                    </div>
+                                }
+                            }
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="megamenu-service">
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <div class="megamenu-service__icon">
+                                                <i class="icon-delivery-truck icon"></i>
+                                                <h6>Free shipping</h6>
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="megamenu-service__icon">
+                                                <i class="icon-refund icon"></i>
+                                                <h6>1 month guarantee</h6>
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="megamenu-service__icon">
+
+                                                <i class="icon-support icon"></i>
+                                                <h6>24 hours services</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 megamenu__list--img">
+                        <img src="~/Content/Home/images/megamenu-thumb01.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </li>
+    }
+}

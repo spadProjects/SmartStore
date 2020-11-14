@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<objects xmlns="http://www.springframework.net"
+             xmlns:db="http://www.springframework.net/database">
+
+    <object id="CacheAspect" type="Exir.Framework.Common.CacheAspect, Exir.Framework.Common" />
+      <object id="AspNetCache" type="Spring.Caching.AspNetCache, Spring.Web">
+        <property name="SlidingExpiration" value="true" />
+        <property name="Priority" value="Low" />
+        <property name="TimeToLive" value="00:02:00" />
+      </object>
+
+	   <object name="LoggingAdvice" type="Spring.Aspects.Logging.SimpleLoggingAdvice, Spring.Aop">
+        <property name="LogUniqueIdentifier" value="true" />
+        <property name="LogExecutionTime" value="true" />
+        <property name="LogMethodArguments" value="true" />
+        <property name="LogReturnValue" value="true" />
+        <property name="Separator" value=";" />
+        <property name="LogLevel" value="Debug" />
+        <property name="HideProxyTypeNames" value="true" />
+        <property name="UseDynamicLogger" value="true" />
+        <property name="LoggerName" value="Spring" />
+      </object>
+
+	   <object id="transactionScopeIntercepter" type="Exir.Framework.Service.Transaction.TransactionScopeIntercepter, Exir.Framework.Service" singleton="false" scope="request" />
+
+      <object id="transactionScopeAdvisor1" type="Spring.Aop.Support.AttributeMatchMethodPointcutAdvisor, Spring.Aop">
+        <property name="Attribute" value="Exir.Framework.Service.Transaction.TransactionScopeAttribute, Exir.Framework.Service" />
+        <property name="Advice" ref="transactionScopeIntercepter"/>
+      </object>
+
+      <object id="transactionScopeAdvisor2" type="Spring.Aop.Support.AttributeMatchMethodPointcutAdvisor, Spring.Aop">
+        <property name="Attribute" value="Spring.Transaction.Interceptor.TransactionAttribute, Spring.Data" />
+        <property name="Advice" ref="transactionScopeIntercepter"/>
+      </object>
+
+	    <object type="Spring.Aop.Framework.AutoProxy.ObjectNameAutoProxyCreator, Spring.Aop">
+        <property name="Optimize" value="true" />
+        <property name="ObjectNames">
+          <list>
+            <value>*Service</value>
+          </list>
+        </property>
+        <property name="InterceptorNames">
+          <list>
+            <value>LoggingAdvice</value> 
+            <value>transactionScopeAdvisor1</value>
+            <value>transactionScopeAdvisor2</value>
+             <!-- <value>CacheAspect</value>  -->
+  </list>
+        </property>
+      </object>			
+
+<object id="ServiceFactoryObject" type="Castle.Services.ServiceFactoryObject, Castle.Services" singleton="false" scope="request" />
+																    
+  <object id="AgencyService"  type="Castle.Services.AgencyService, Castle.Services"  singleton="false" scope="request" />
+  <object id="AirLineService"  type="Castle.Services.AirLineService, Castle.Services"  singleton="false" scope="request" />
+  <object id="AirPortService"  type="Castle.Services.AirPortService, Castle.Services"  singleton="false" scope="request" />
+  <object id="AspNetUserService"  type="Castle.Services.AspNetUserService, Castle.Services"  singleton="false" scope="request" />
+  <object id="AttachmentService"  type="Castle.Services.AttachmentService, Castle.Services"  singleton="false" scope="request" />
+  <object id="BankService"  type="Castle.Services.BankService, Castle.Services"  singleton="false" scope="request" />
+  <object id="CashService"  type="Castle.Services.CashService, Castle.Services"  singleton="false" scope="request" />
+  <object id="CashierService"  type="Castle.Services.CashierService, Castle.Services"  singleton="false" scope="request" />
+  <object id="CastleServiceFilterLogService"  type="Castle.Services.CastleServiceFilterLogService, Castle.Services"  singleton="false" scope="request" />
+  <object id="CenterService"  type="Castle.Services.CenterService, Castle.Services"  singleton="false" scope="request" />
+  <object id="CenterRolService"  type="Castle.Services.CenterRolService, Castle.Services"  singleton="false" scope="request" />
+  <object id="CenterRootService"  type="Castle.Services.CenterRootService, Castle.Services"  singleton="false" scope="request" />
+  <object id="CombinedHotelService"  type="Castle.Services.CombinedHotelService, Castle.Services"  singleton="false" scope="request" />
+  <object id="CompanyService"  type="Castle.Services.CompanyService, Castle.Services"  singleton="false" scope="request" />
+  <object id="ContactInfoService"  type="Castle.Services.ContactInfoService, Castle.Services"  singleton="false" scope="request" />
+  <object id="ContactTypeService"  type="Castle.Services.ContactTypeService, Castle.Services"  singleton="false" scope="request" />
+  <object id="ContractService"  type="Castle.Services.ContractService, Castle.Services"  singleton="false" scope="request" />
+  <object id="ContractAttachmentService"  type="Castle.Services.ContractAttachmentService, Castle.Services"  singleton="false" scope="request" />
+  <object id="ContractDescriptionService"  type="Castle.Services.ContractDescriptionService, Castle.Services"  singleton="false" scope="request" />
+  <object id="ContractFavorService"  type="Castle.Services.ContractFavorService, Castle.Services"  singleton="false" scope="request" />
+  <object id="ContractFinancialTransactionService"  type="Castle.Services.ContractFinancialTransactionService, Castle.Services"  singleton="false" scope="request" />
+  <object id="ContractFlightFavorService"  type="Castle.Services.ContractFlightFavorService, Castle.Services"  singleton="false" scope="request" />
+  <object id="ContractHotelFacilityItemService"  type="Castle.Services.ContractHotelFacilityItemService, Castle.Services"  singleton="false" scope="request" />
+  <object id="ContractHotelFavorService"  type="Castle.Services.ContractHotelFavorService, Castle.Services"  singleton="false" scope="request" />
+  <object id="ContractHotelFavorItemService"  type="Castle.Services.ContractHotelFavorItemService, Castle.Services"  singleton="false" scope="request" />
+  <object id="ContractListService"  type="Castle.Services.ContractListService, Castle.Services"  singleton="false" scope="request" />
+  <object id="ContractOtherFavorService"  type="Castle.Services.ContractOtherFavorService, Castle.Services"  singleton="false" scope="request" />
+  <object id="ContractVisaFavorService"  type="Castle.Services.ContractVisaFavorService, Castle.Services"  singleton="false" scope="request" />
+  <object id="CouponService"  type="Castle.Services.CouponService, Castle.Services"  singleton="false" scope="request" />
+  <object id="CurrencyRateService"  type="Castle.Services.CurrencyRateService, Castle.Services"  singleton="false" scope="request" />
+  <object id="CustomerService"  type="Castle.Services.CustomerService, Castle.Services"  singleton="false" scope="request" />
+  <object id="DocService"  type="Castle.Services.DocService, Castle.Services"  singleton="false" scope="request" />
+  <object id="DocItemService"  type="Castle.Services.DocItemService, Castle.Services"  singleton="false" scope="request" />
+  <object id="DocTypeService"  type="Castle.Services.DocTypeService, Castle.Services"  singleton="false" scope="request" />
+  <object id="EmbassyService"  type="Castle.Services.EmbassyService, Castle.Services"  singleton="false" scope="request" />
+  <object id="FavorService"  type="Castle.Services.FavorService, Castle.Services"  singleton="false" scope="request" />
+  <object id="FavorConfigurationService"  type="Castle.Services.FavorConfigurationService, Castle.Services"  singleton="false" scope="request" />
+  <object id="FlightBalanceService"  type="Castle.Services.FlightBalanceService, Castle.Services"  singleton="false" scope="request" />
+  <object id="FlightFavorService"  type="Castle.Services.FlightFavorService, Castle.Services"  singleton="false" scope="request" />
+  <object id="FlightFavorItemService"  type="Castle.Services.FlightFavorItemService, Castle.Services"  singleton="false" scope="request" />
+  <object id="FlightPassengerFavorService"  type="Castle.Services.FlightPassengerFavorService, Castle.Services"  singleton="false" scope="request" />
+  <object id="FlightRestrictedService"  type="Castle.Services.FlightRestrictedService, Castle.Services"  singleton="false" scope="request" />
+  <object id="FlightRestrictedItemService"  type="Castle.Services.FlightRestrictedItemService, Castle.Services"  singleton="false" scope="request" />
+  <object id="GeoDivisionService"  type="Castle.Services.GeoDivisionService, Castle.Services"  singleton="false" scope="request" />
+  <object id="HotelService"  type="Castle.Services.HotelService, Castle.Services"  singleton="false" scope="request" />
+  <object id="HotelFacilityService"  type="Castle.Services.HotelFacilityService, Castle.Services"  singleton="false" scope="request" />
+  <object id="HotelFavorService"  type="Castle.Services.HotelFavorService, Castle.Services"  singleton="false" scope="request" />
+  <object id="HotelFavorFacilityItemService"  type="Castle.Services.HotelFavorFacilityItemService, Castle.Services"  singleton="false" scope="request" />
+  <object id="HotelFavorPackItemService"  type="Castle.Services.HotelFavorPackItemService, Castle.Services"  singleton="false" scope="request" />
+  <object id="HotelFavorRoomItemService"  type="Castle.Services.HotelFavorRoomItemService, Castle.Services"  singleton="false" scope="request" />
+  <object id="HotelPackFavorFacilityItemService"  type="Castle.Services.HotelPackFavorFacilityItemService, Castle.Services"  singleton="false" scope="request" />
+  <object id="HotelPassengerFavorService"  type="Castle.Services.HotelPassengerFavorService, Castle.Services"  singleton="false" scope="request" />
+  <object id="HotelPolicyService"  type="Castle.Services.HotelPolicyService, Castle.Services"  singleton="false" scope="request" />
+  <object id="HotelRestrictedService"  type="Castle.Services.HotelRestrictedService, Castle.Services"  singleton="false" scope="request" />
+  <object id="HotelRestrictedItemService"  type="Castle.Services.HotelRestrictedItemService, Castle.Services"  singleton="false" scope="request" />
+  <object id="HotelRoomService"  type="Castle.Services.HotelRoomService, Castle.Services"  singleton="false" scope="request" />
+  <object id="LeaveRequestService"  type="Castle.Services.LeaveRequestService, Castle.Services"  singleton="false" scope="request" />
+  <object id="LookupService"  type="Castle.Services.LookupService, Castle.Services"  singleton="false" scope="request" />
+  <object id="LookupTypeService"  type="Castle.Services.LookupTypeService, Castle.Services"  singleton="false" scope="request" />
+  <object id="OtherFavorService"  type="Castle.Services.OtherFavorService, Castle.Services"  singleton="false" scope="request" />
+  <object id="OtherPassengerFavorService"  type="Castle.Services.OtherPassengerFavorService, Castle.Services"  singleton="false" scope="request" />
+  <object id="PackageService"  type="Castle.Services.PackageService, Castle.Services"  singleton="false" scope="request" />
+  <object id="PassengerService"  type="Castle.Services.PassengerService, Castle.Services"  singleton="false" scope="request" />
+  <object id="PassengerFavorService"  type="Castle.Services.PassengerFavorService, Castle.Services"  singleton="false" scope="request" />
+  <object id="PassengerFavorStatusLogService"  type="Castle.Services.PassengerFavorStatusLogService, Castle.Services"  singleton="false" scope="request" />
+  <object id="PassengerHotelFacilityItemService"  type="Castle.Services.PassengerHotelFacilityItemService, Castle.Services"  singleton="false" scope="request" />
+  <object id="PassengerSamanInsuranceInfoService"  type="Castle.Services.PassengerSamanInsuranceInfoService, Castle.Services"  singleton="false" scope="request" />
+  <object id="PassengerTicketService"  type="Castle.Services.PassengerTicketService, Castle.Services"  singleton="false" scope="request" />
+  <object id="PayCashDocService"  type="Castle.Services.PayCashDocService, Castle.Services"  singleton="false" scope="request" />
+  <object id="PayChequeDocService"  type="Castle.Services.PayChequeDocService, Castle.Services"  singleton="false" scope="request" />
+  <object id="PayChequeDocItemService"  type="Castle.Services.PayChequeDocItemService, Castle.Services"  singleton="false" scope="request" />
+  <object id="PayDocService"  type="Castle.Services.PayDocService, Castle.Services"  singleton="false" scope="request" />
+  <object id="PayDocContractService"  type="Castle.Services.PayDocContractService, Castle.Services"  singleton="false" scope="request" />
+  <object id="PayDocTypeService"  type="Castle.Services.PayDocTypeService, Castle.Services"  singleton="false" scope="request" />
+  <object id="PaymentRequestService"  type="Castle.Services.PaymentRequestService, Castle.Services"  singleton="false" scope="request" />
+  <object id="PersonService"  type="Castle.Services.PersonService, Castle.Services"  singleton="false" scope="request" />
+  <object id="PersonelService"  type="Castle.Services.PersonelService, Castle.Services"  singleton="false" scope="request" />
+  <object id="PurchaiseAgentPermissionService"  type="Castle.Services.PurchaiseAgentPermissionService, Castle.Services"  singleton="false" scope="request" />
+  <object id="PurchaseAgentService"  type="Castle.Services.PurchaseAgentService, Castle.Services"  singleton="false" scope="request" />
+  <object id="QueueOperationService"  type="Castle.Services.QueueOperationService, Castle.Services"  singleton="false" scope="request" />
+  <object id="RequestService"  type="Castle.Services.RequestService, Castle.Services"  singleton="false" scope="request" />
+  <object id="SaleAgentService"  type="Castle.Services.SaleAgentService, Castle.Services"  singleton="false" scope="request" />
+  <object id="TicketStockService"  type="Castle.Services.TicketStockService, Castle.Services"  singleton="false" scope="request" />
+  <object id="TourLeaderService"  type="Castle.Services.TourLeaderService, Castle.Services"  singleton="false" scope="request" />
+  <object id="UserGroupService"  type="Castle.Services.UserGroupService, Castle.Services"  singleton="false" scope="request" />
+  <object id="VisaFavorService"  type="Castle.Services.VisaFavorService, Castle.Services"  singleton="false" scope="request" />
+  <object id="VisaFavorItemService"  type="Castle.Services.VisaFavorItemService, Castle.Services"  singleton="false" scope="request" />
+  <object id="VisaPassengerFavorService"  type="Castle.Services.VisaPassengerFavorService, Castle.Services"  singleton="false" scope="request" />
+ </objects>
+

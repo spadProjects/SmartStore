@@ -1,0 +1,64 @@
+﻿@model SmartStore.Model.Entities.Factor
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Factor</title>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css'>
+    @*<link rel="stylesheet" href="~/Content/Factor/style.css">*@
+    <link href="~/Content/Home/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <h3>Factor</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>FactorNumber</th>
+                    <th>CreationDate</th>
+                    <th>PayNumber</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => Model.FactorNumber)</td>
+                    <td>@Html.DisplayFor(modelItem => Model.CreationDate)</td>
+                    <td>@Html.DisplayFor(modelItem => Model.PayNumber)</td>
+                </tr>
+
+            </tbody>
+        </table>
+        @*<form action="/shop/checkout/@Model.Id" method="post" style="text-align:center">
+                <input type="hidden" name="action" value="checkout" />
+                <input type="hidden" name="posData" value="" />
+                <input type="hidden" name="data" value="8QeFoe7VzM5IvQsLhdY2R+jj6blCQVnP/lJPMLbOlr1Ov25BPJ07sVfwT8rJXAursKMd+Vs7pCtpHJpioo+augfUPq8IVwyO3osaMLMHguyveEYLwvISzb6luajOeAGRDMWdydGDnIPJyAhyWDar3Q==" />
+                <input type="image" src="https://bitpay.com/cdn/en_US/bp-btn-pay-currencies.svg" name="submit" style="width: 146px" alt="BitPay, the easy way to pay with bitcoins.">
+            </form>*@
+        <br />
+        <div class="row">
+            <div class="col-md-12" style="text-align:center">
+                <h3>Please send the payment price to this wallet</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12" style="text-align:center">
+                <img src="~/Images/QR Code/qr.jpg" style="width:200px;height:200px;" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-4" style="text-align:center">
+                <div>
+                    <a class="btn btn-warning bg-warning" href="/Home/Index" style="margin-top:30px">Back to Home Page</a>
+                </div>
+                <div class="col-md-4">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- partial -->
+    <script src="~/Content/Factor/script.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<objects xmlns="http://www.springframework.net"
+             xmlns:db="http://www.springframework.net/database">
+
+  <object id="HistoryExplorer" type="Exir.Workbox.Facad.HistoryExplorer, Exir.Workbox"/>
+
+  <object id="WorkflowDriver"
+            type="Exir.Workbox.FormFlow.WorkflowDriverAdvice, Exir.Workbox"/>
+
+  <object id="SaveMethodPointcut" type="Spring.Aop.Support.NameMatchMethodPointcut">
+    <property name="MappedName" value="Save" />
+  </object>
+
+  <object id="WorkflowDriverAdvisor" type="Spring.Aop.Support.DefaultPointcutAdvisor">
+    <property name="Pointcut" ref="SaveMethodPointcut" />
+    <property name="Advice" ref="WorkflowDriver" />
+  </object>
+
+  <object id="P2pWorkflowUpdater" type="Exir.Workbox.Services.P2pWorkflowUpdater, Exir.Workbox"/>
+  
+  <object id="WorkboxTxScopeTransaction" type="Spring.Data.Core.TxScopeTransactionManager, Spring.Data"/>
+
+  <object id="WorkboxTxScope" type="Spring.Transaction.Support.TransactionTemplate, Spring.Data">
+    <property name="TransactionIsolationLevel" value="ReadUncommitted"/>
+    <property name="TransactionTimeout" value="300"/>
+    <property name="PlatformTransactionManager" ref="WorkboxTxScopeTransaction"/>
+  </object>
+
+  <object id="WebServiceNegotiator" type="Exir.Workbox.Negotiator, Exir.Workbox" singleton="false" scope="request" />
+
+  <object id="WorkboxWebSrvAuthAdvice" type="Spring.Aop.Support.AttributeMatchMethodPointcutAdvisor, Spring.Aop">
+    <property name="advice">
+      <object type="Exir.Framework.Security.Authentication.WebServiceAuthenticaterAdvice, Exir.Framework.Security" />
+    </property>
+    <property name="attribute" value="Exir.Framework.Security.Authentication.WebServiceAuthenticateAttribute, Exir.Framework.Security" />
+  </object>
+
+  <object id="NegotiatorProxy" type="Spring.Aop.Framework.ProxyFactoryObject, Spring.Aop">
+    <property name="TargetName" value="WebServiceNegotiator" />
+    <property name="IsSingleton" value="true" />
+    <property name="InterceptorNames">
+      <list>
+        <value>WorkboxWebSrvAuthAdvice</value>
+      </list>
+    </property>
+  </object>
+
+  <object id="Negotiator" type="Spring.Web.Services.WebServiceExporter, Spring.Web">
+    <property name="TargetName" value="NegotiatorProxy" />
+    <property name="Namespace" value="http://localhost:1275/Exir/Workbox/Services/Negotiator.asmx" />
+    <property name="Description" value="My exported HelloWorld web service" />
+    <property name="Interfaces">
+      <list>
+        <value>Exir.Workbox.INegotiator, Exir.Workbox</value>
+      </list>
+    </property>
+  </object>
+
+ 
+</objects>

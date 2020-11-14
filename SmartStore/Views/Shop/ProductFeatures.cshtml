@@ -1,0 +1,22 @@
+﻿
+@*@model IEnumerable<SmartStore.Model.Entities.Feature>
+
+<div class="tab-pane fade" id="pills-size" role="tabpanel" aria-labelledby="pills-size-tab">
+
+    <ul class="product-info-list">
+        @{
+            foreach (var item in Model)
+            {
+                <li class="product-info-list__item">
+                    <span>@item.FeatureName</span>
+
+                    <span>@item.FeatureValue</span>
+
+
+                </li>
+            }
+        }
+
+
+    </ul>
+</div>*@

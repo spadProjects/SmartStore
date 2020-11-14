@@ -1,0 +1,10 @@
+server
+12345
+developer
+Castle_Test_workflow2
+D:\Majid's Libraries\Workspace\GhasreShirin\Source\Castle-BranchWorkflow\WebUI\fdls\custom
+Users
+UserGroups
+UserName
+Name
+Id

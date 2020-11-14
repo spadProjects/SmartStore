@@ -1,0 +1,732 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>XSerializer</name>
+    </assembly>
+    <members>
+        <member name="T:XSerializer.Encryption.ClearTextEncryptionMechanism">
+            <summary>
+            An implementation of <see cref="T:XSerializer.Encryption.IEncryptionMechanism"/> that does
+            nothing. The <see cref="M:XSerializer.Encryption.ClearTextEncryptionMechanism.Encrypt(System.String,System.Object,XSerializer.SerializationState)"/> and <see cref="M:XSerializer.Encryption.ClearTextEncryptionMechanism.Decrypt(System.String,System.Object,XSerializer.SerializationState)"/>
+            methods both return the value of their parameter.
+            </summary>
+        </member>
+        <member name="T:XSerializer.Encryption.IEncryptionMechanism">
+            <summary>
+            Defines an interface for encrypting and decrypting text.
+            </summary>
+        </member>
+        <member name="M:XSerializer.Encryption.IEncryptionMechanism.Encrypt(System.String,System.Object,XSerializer.SerializationState)">
+            <summary>
+            Encrypts the specified plain text.
+            </summary>
+            <param name="plainText">The plain text.</param>
+            <param name="encryptKey">
+            An object to used to look up invokation-specific encryption parameters.
+            </param>
+            <param name="serializationState">
+            An object that holds an arbitrary value that is passed to one or more
+            encrypt operations within a single serialization operation.
+            </param>
+            <returns>The encrypted text.</returns>
+            <remarks>
+            <para>
+            The <see cref="M:XSerializer.Encryption.IEncryptionMechanism.Encrypt(System.String,System.Object,XSerializer.SerializationState)"/> method should be implemented
+            in such a way that it treates the value of <see cref="!:encryptKey"/> as
+            if it were a key to a dictionary. The value of that dictionary should
+            contain encryption parameters specific to a particular invocation of the
+            <see cref="M:XSerializer.Encryption.IEncryptionMechanism.Encrypt(System.String,System.Object,XSerializer.SerializationState)"/> method. If the value of <paramref name="encryptKey"/>
+            is null or unknown, then a default set of encryption parameters should be
+            used.
+            </para>
+            <para>
+            Implementations of <see cref="T:XSerializer.Encryption.IEncryptionMechanism"/> may choose to ignore
+            the <paramref name="encryptKey"/> parameter altogether.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:XSerializer.Encryption.IEncryptionMechanism.Decrypt(System.String,System.Object,XSerializer.SerializationState)">
+            <summary>
+            Decrypts the specified cipher text.
+            </summary>
+            <param name="cipherText">The cipher text.</param>
+            <param name="encryptKey">
+            An object to used to look up invokation-specific encryption parameters.
+            </param>
+            <param name="serializationState">
+            An object that holds an arbitrary value that is passed to one or more
+            decrypt operations within a single serialization operation.
+            </param>
+            <returns>The decrypted text.</returns>
+            <remarks>
+            <para>
+            The <see cref="M:XSerializer.Encryption.IEncryptionMechanism.Decrypt(System.String,System.Object,XSerializer.SerializationState)"/> method should be implemented
+            in such a way that it treates the value of <see cref="!:encryptKey"/> as
+            if it were a key to a dictionary. The value of that dictionary should
+            contain encryption parameters specific to a particular invocation of the
+            <see cref="M:XSerializer.Encryption.IEncryptionMechanism.Decrypt(System.String,System.Object,XSerializer.SerializationState)"/> method. If the value of <paramref name="encryptKey"/>
+            is null or unknown, then a default set of encryption parameters should be
+            used.
+            </para>
+            <para>
+            Implementations of <see cref="T:XSerializer.Encryption.IEncryptionMechanism"/> may choose to ignore
+            the <paramref name="encryptKey"/> parameter altogether.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:XSerializer.Encryption.ClearTextEncryptionMechanism.Encrypt(System.String,System.Object,XSerializer.SerializationState)">
+            <summary>
+            Returns the value of <paramref name="text"/>.
+            </summary>
+            <param name="text">Some text.</param>
+            <param name="encryptKey">Ignored.</param>
+            <param name="serializationState">Ignored.</param>
+            <returns>The value of <paramref name="text"/>.</returns>
+        </member>
+        <member name="M:XSerializer.Encryption.ClearTextEncryptionMechanism.Decrypt(System.String,System.Object,XSerializer.SerializationState)">
+            <summary>
+            Returns the value of <paramref name="text"/>.
+            </summary>
+            <param name="text">Some text.</param>
+            <param name="encryptKey">Ignored.</param>
+            <param name="serializationState">Ignored.</param>
+            <returns>The value of <paramref name="text"/>.</returns>
+        </member>
+        <member name="T:XSerializer.Encryption.EncryptAttribute">
+            <summary>
+            Indicates that the value of a property should be encrypted or decrypted,
+            depending on whether the current serialization operation is configured
+            to do so.
+            </summary>
+        </member>
+        <member name="T:XSerializer.Encryption.EncryptionMechanism">
+            <summary>
+            Provides a means for an application to specify a default instance of
+            <see cref="T:XSerializer.Encryption.IEncryptionMechanism"/> to be used by XSerializer when encrypting
+            or decrypting data.
+            </summary>
+        </member>
+        <member name="M:XSerializer.Encryption.EncryptionMechanism.Encrypt(System.String)">
+            <summary>
+            Encrypts the specified plain text using the <see cref="T:XSerializer.Encryption.IEncryptionMechanism"/>
+            specified by the <see cref="P:XSerializer.Encryption.EncryptionMechanism.Current"/> property.
+            </summary>
+            <param name="plainText">The plain text.</param>
+            <returns>The encrypted text.</returns>
+        </member>
+        <member name="M:XSerializer.Encryption.EncryptionMechanism.Encrypt(System.String,System.Object)">
+            <summary>
+            Encrypts the specified plain text using the <see cref="T:XSerializer.Encryption.IEncryptionMechanism"/>
+            specified by the <see cref="P:XSerializer.Encryption.EncryptionMechanism.Current"/> property.
+            </summary>
+            <param name="plainText">The plain text.</param>
+            <param name="encryptKey">
+            An object to used to look up invokation-specific encryption parameters.
+            </param>
+            <returns>The encrypted text.</returns>
+        </member>
+        <member name="M:XSerializer.Encryption.EncryptionMechanism.Encrypt(System.String,System.Object,XSerializer.SerializationState)">
+            <summary>
+            Encrypts the specified plain text using the <see cref="T:XSerializer.Encryption.IEncryptionMechanism"/>
+            specified by the <see cref="P:XSerializer.Encryption.EncryptionMechanism.Current"/> property.
+            </summary>
+            <param name="plainText">The plain text.</param>
+            <param name="encryptKey">
+            An object to used to look up invokation-specific encryption parameters.
+            </param>
+            <param name="serializationState">
+            An object that holds an arbitrary value that is passed to one or more
+            encrypt operations within a single serialization operation.
+            </param>
+            <returns>The encrypted text.</returns>
+        </member>
+        <member name="M:XSerializer.Encryption.EncryptionMechanism.Decrypt(System.String)">
+            <summary>
+            Decrypts the specified cipher text using the <see cref="T:XSerializer.Encryption.IEncryptionMechanism"/>
+            specified by the <see cref="P:XSerializer.Encryption.EncryptionMechanism.Current"/> property.
+            </summary>
+            <param name="cipherText">The cipher text.</param>
+            <returns>The decrypted text.</returns>
+        </member>
+        <member name="M:XSerializer.Encryption.EncryptionMechanism.Decrypt(System.String,System.Object)">
+            <summary>
+            Decrypts the specified cipher text using the <see cref="T:XSerializer.Encryption.IEncryptionMechanism"/>
+            specified by the <see cref="P:XSerializer.Encryption.EncryptionMechanism.Current"/> property.
+            </summary>
+            <param name="cipherText">The cipher text.</param>
+            <param name="encryptKey">
+            An object to used to look up invokation-specific encryption parameters.
+            </param>
+            <returns>The decrypted text.</returns>
+        </member>
+        <member name="M:XSerializer.Encryption.EncryptionMechanism.Decrypt(System.String,System.Object,XSerializer.SerializationState)">
+            <summary>
+            Decrypts the specified cipher text using the <see cref="T:XSerializer.Encryption.IEncryptionMechanism"/>
+            specified by the <see cref="P:XSerializer.Encryption.EncryptionMechanism.Current"/> property.
+            </summary>
+            <param name="cipherText">The cipher text.</param>
+            <param name="encryptKey">
+            An object to used to look up invokation-specific encryption parameters.
+            </param>
+            <param name="serializationState">
+            An object that holds an arbitrary value that is passed to one or more
+            decrypt operations within a single serialization operation.
+            </param>
+            <returns>The decrypted text.</returns>
+        </member>
+        <member name="M:XSerializer.Encryption.EncryptionMechanism.GetEncryptionMechanism(XSerializer.ISerializeOptions)">
+            <summary>
+            Gets the <see cref="T:XSerializer.Encryption.IEncryptionMechanism"/> specified by the
+            <see cref="P:XSerializer.ISerializeOptions.EncryptionMechanism"/> property of the
+            <paramref name="options"/> parameter. If that value is null, then the value specified
+            by the static <see cref="P:XSerializer.Encryption.EncryptionMechanism.Current"/> property of the <see cref="T:XSerializer.Encryption.EncryptionMechanism"/>
+            class is returned.
+            </summary>
+        </member>
+        <member name="P:XSerializer.Encryption.EncryptionMechanism.Current">
+            <summary>
+            Get or sets the current instance of <see cref="T:XSerializer.Encryption.IEncryptionMechanism"/>.
+            This value is used by XSerializer when encrypting or decrypting data and 
+            an <see cref="T:XSerializer.Encryption.IEncryptionMechanism"/> is not otherwise specified. The
+            default value is an instance of <see cref="T:XSerializer.Encryption.ClearTextEncryptionMechanism"/>.
+            If set to null, an instance of <see cref="T:XSerializer.Encryption.ClearTextEncryptionMechanism"/>
+            is set instead.
+            </summary>
+            <remarks>
+            Do not change the value of this property while an application is running.
+            Set it once at the "beginning" of the application and never again.
+            </remarks>
+        </member>
+        <member name="T:XSerializer.Encryption.EncryptionMechanismAttribute">
+            <summary>
+            Indicates that a class should be used to set the value of
+            <see cref="P:XSerializer.Encryption.EncryptionMechanism.Current"/>. In order to be used,
+            a non-abstract class decorated by this attribute must implement either
+            <see cref="T:XSerializer.Encryption.IEncryptionMechanism"/> or <see cref="T:XSerializer.Encryption.IEncryptionMechanismFactory"/>
+            and provide either a public parameterless constructor or a constructor
+            whose parameters are all optional (have a default value).
+            </summary>
+        </member>
+        <member name="M:XSerializer.Encryption.EncryptionMechanismAttribute.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:XSerializer.Encryption.EncryptionMechanismAttribute"/> class
+            with its <see cref="P:XSerializer.Encryption.EncryptionMechanismAttribute.Priority"/> property set to zero and its <see cref="P:XSerializer.Encryption.EncryptionMechanismAttribute.Disabled"/>
+            property set to false.
+            </summary>
+        </member>
+        <member name="M:XSerializer.Encryption.EncryptionMechanismAttribute.#ctor(System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:XSerializer.Encryption.EncryptionMechanismAttribute"/> class
+            with its <see cref="P:XSerializer.Encryption.EncryptionMechanismAttribute.Priority"/> property set to the value of the 
+            <paramref name="priority"/> parameter and its <see cref="P:XSerializer.Encryption.EncryptionMechanismAttribute.Disabled"/> property set
+            to false.
+            </summary>
+            <param name="priority">A value that indicates the priority of a class. This value is used
+            when multiple implementations of <see cref="T:XSerializer.Encryption.IEncryptionMechanism"/> or
+            <see cref="T:XSerializer.Encryption.IEncryptionMechanismFactory"/> are discovered. The one with
+            the highest priority will be used.</param>
+        </member>
+        <member name="M:XSerializer.Encryption.EncryptionMechanismAttribute.#ctor(System.Int32,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:XSerializer.Encryption.EncryptionMechanismAttribute"/> class
+            with its <see cref="P:XSerializer.Encryption.EncryptionMechanismAttribute.Priority"/> property set to the value of the 
+            <paramref name="priority"/> parameter and its <see cref="P:XSerializer.Encryption.EncryptionMechanismAttribute.Disabled"/> property set
+            to the value of the <paramref name="disabled"/> parameter.
+            </summary>
+            <param name="priority">A value that indicates the priority of a class. This value is used
+            when multiple implementations of <see cref="T:XSerializer.Encryption.IEncryptionMechanism"/> or
+            <see cref="T:XSerializer.Encryption.IEncryptionMechanismFactory"/> are discovered. The one with
+            the highest priority will be used.</param>
+            <param name="disabled">
+            Whether the class that this attribute decorates should excluded from consideration for
+            an import operation.
+            </param>
+        </member>
+        <member name="P:XSerializer.Encryption.EncryptionMechanismAttribute.Priority">
+            <summary>
+            Gets a value that indicates the priority of a class. This value is used
+            when multiple implementations of <see cref="T:XSerializer.Encryption.IEncryptionMechanism"/> or
+            <see cref="T:XSerializer.Encryption.IEncryptionMechanismFactory"/> are discovered. The one with
+            the highest priority will be used.
+            </summary>
+        </member>
+        <member name="P:XSerializer.Encryption.EncryptionMechanismAttribute.Disabled">
+            <summary>
+            Gets a value indicating whether the class that this attribute decorates
+            should excluded from consideration for an import operation.
+            </summary>
+        </member>
+        <member name="T:XSerializer.Encryption.IEncryptionMechanismFactory">
+            <summary>
+            Provides a mechanism for obtaining an instance of <see cref="T:XSerializer.Encryption.IEncryptionMechanism"/>.
+            </summary>
+        </member>
+        <member name="M:XSerializer.Encryption.IEncryptionMechanismFactory.GetEncryptionMechanism">
+            <summary>
+            Gets an instance of <see cref="T:XSerializer.Encryption.IEncryptionMechanism"/>.
+            </summary>
+            <returns>An instance of <see cref="T:XSerializer.Encryption.IEncryptionMechanism"/>.</returns>
+        </member>
+        <member name="M:XSerializer.Rock.StaticDependencyInjection.CompositionRootBase.Bootstrap">
+            <summary>
+            Import the types for this library by calling one of the import methods:
+            <see cref="M:XSerializer.Rock.StaticDependencyInjection.CompositionRootBase.ImportSingle``1(System.Action{``0},System.String,XSerializer.Rock.StaticDependencyInjection.ImportOptions)"/>, <see cref="M:XSerializer.Rock.StaticDependencyInjection.CompositionRootBase.ImportSingle``2(System.Action{``0},System.Func{``1,``0},System.String,XSerializer.Rock.StaticDependencyInjection.ImportOptions)"/>,
+            <see cref="M:XSerializer.Rock.StaticDependencyInjection.CompositionRootBase.ImportFirst``1(System.Action{``0},System.String,XSerializer.Rock.StaticDependencyInjection.ImportOptions)"/>, <see cref="M:XSerializer.Rock.StaticDependencyInjection.CompositionRootBase.ImportFirst``2(System.Action{``0},System.Func{``1,``0},System.String,XSerializer.Rock.StaticDependencyInjection.ImportOptions)"/>,
+            <see cref="M:XSerializer.Rock.StaticDependencyInjection.CompositionRootBase.ImportMultiple``1(System.Action{System.Collections.Generic.IEnumerable{``0}},System.String,XSerializer.Rock.StaticDependencyInjection.ImportOptions)"/>, or <see cref="M:XSerializer.Rock.StaticDependencyInjection.CompositionRootBase.ImportMultiple``2(System.Action{System.Collections.Generic.IEnumerable{``0}},System.Func{``1,``0},System.String,XSerializer.Rock.StaticDependencyInjection.ImportOptions)"/>.
+            </summary>
+        </member>
+        <member name="M:XSerializer.Rock.StaticDependencyInjection.CompositionRootBase.GetExportInfos(System.Type)">
+            <summary>
+            Return a collection of metadata objects that describe the export operations for a type.
+            </summary>
+            <param name="type">The type to get export metadata.</param>
+            <returns>A collection of metadata objects that describe export operations.</returns>
+        </member>
+        <member name="M:XSerializer.Rock.StaticDependencyInjection.CompositionRootBase.GetDefaultImportOptions">
+            <summary>
+            Return an object that defines various options.
+            </summary>
+        </member>
+        <member name="M:XSerializer.Rock.StaticDependencyInjection.CompositionRootBase.ImportSingle``1(System.Action{``0},System.String,XSerializer.Rock.StaticDependencyInjection.ImportOptions)">
+            <summary>
+            Imports the type specified by <typeparamref name="TTargetType"/>. When a single
+            class with a public parameterless constructor is found that implements or
+            inherits from <typeparamref name="TTargetType"/>, then an instance of that class 
+            will be created and passed to the <paramref name="importAction"/> parameter callback.
+            </summary>
+            <typeparam name="TTargetType">
+            The type to import. An object of this type will be passed to the 
+            <paramref name="importAction"/> parameter callback.
+            </typeparam>
+            <param name="importAction">
+            A callback function to invoke when an implementation of
+             <typeparamref name="TTargetType"/> is created.
+            </param>
+            <param name="importName">
+            The name of this import operation. If not null, exported classes without 
+            a matching name are excluded.
+            </param>
+            <param name="options">
+            The import options to use. If null or not provided, the value returned by 
+            <see cref="M:XSerializer.Rock.StaticDependencyInjection.CompositionRootBase.GetDefaultImportOptions"/> is returned.
+            </param>
+        </member>
+        <member name="M:XSerializer.Rock.StaticDependencyInjection.CompositionRootBase.ImportSingle``2(System.Action{``0},System.Func{``1,``0},System.String,XSerializer.Rock.StaticDependencyInjection.ImportOptions)">
+            <summary>
+            Imports the type specified by <typeparamref name="TTargetType"/>. When a single
+            class with a public parameterless constructor is found that implements or
+            inherits from either <typeparamref name="TTargetType"/> or
+            <typeparamref name="TFactoryType"/>, then an instance of that class is created. 
+            If that instance is a <see cref="!:TTargetType"/>, than that instance will be
+            passed to the <paramref name="importAction"/> callback. If the instance is a
+            <typeparamref name="TFactoryType"/>, then an instance of
+            <typeparamref name="TTargetType"/> is obtained by using the 
+            <paramref name="getTarget"/> function and passed to the 
+            <paramref name="importAction"/> callback.
+            </summary>
+            <typeparam name="TTargetType">
+            The type to import. An object of this type will be passed to the 
+            <paramref name="importAction"/> parameter callback.
+            </typeparam>
+            <typeparam name="TFactoryType">
+            A type that exposes a method or property that can be invoked to obtain an instance 
+            of <typeparamref name="TTargetType"/>.
+            </typeparam>
+            <param name="importAction">
+            A callback function to invoke when an implementation of <typeparamref name="TTargetType"/> is created.
+            </param>
+            <param name="getTarget">
+            A function used to obtain an instance of <typeparamref name="TTargetType"/>
+            by using an instance of <typeparamref name="TFactoryType"/>.
+            </param>
+            <param name="importName">
+            The name of this import operation. If not null, exported classes without a matching name are excluded.
+            </param>
+            <param name="options">
+            The import options to use. If null or not provided, the value returned by 
+            <see cref="M:XSerializer.Rock.StaticDependencyInjection.CompositionRootBase.GetDefaultImportOptions"/> is returned.
+            </param>
+        </member>
+        <member name="M:XSerializer.Rock.StaticDependencyInjection.CompositionRootBase.ImportFirst``1(System.Action{``0},System.String,XSerializer.Rock.StaticDependencyInjection.ImportOptions)">
+            <summary>
+            Imports the type specified by <typeparamref name="TTargetType"/>. When any class
+            with a public parameterless constructor is found that implements or inherits from
+            <typeparamref name="TTargetType"/>, then the one with the highest priority will be
+            created and passed to the <paramref name="importAction"/> parameter callback.
+            </summary>
+            <typeparam name="TTargetType">
+            The type to import. An object of this type will be passed to the 
+            <paramref name="importAction"/> parameter callback.
+            </typeparam>
+            <param name="importAction">
+            A callback function to invoke when an implementation of <typeparamref name="TTargetType"/> is created.
+            </param>
+            <param name="importName">
+            The name of this import operation. If not null, exported classes without a matching name are excluded.
+            </param>
+            <param name="options">
+            The import options to use. If null or not provided, the value returned by 
+            <see cref="M:XSerializer.Rock.StaticDependencyInjection.CompositionRootBase.GetDefaultImportOptions"/> is returned.
+            </param>
+        </member>
+        <member name="M:XSerializer.Rock.StaticDependencyInjection.CompositionRootBase.ImportFirst``2(System.Action{``0},System.Func{``1,``0},System.String,XSerializer.Rock.StaticDependencyInjection.ImportOptions)">
+            <summary>
+            Imports the type specified by <typeparamref name="TTargetType"/>. When any
+            class with a public parameterless constructor is found that implements or
+            inherits from either <typeparamref name="TTargetType"/> or
+            <typeparamref name="TFactoryType"/>, then an instance of the highest priority
+            class is created. If that instance is a <see cref="!:TTargetType"/>, than that 
+            instance will be passed to the <paramref name="importAction"/> callback. If the 
+            instance is a <typeparamref name="TFactoryType"/>, then an instance of
+            <typeparamref name="TTargetType"/> is obtained by using the 
+            <paramref name="getTarget"/> function and passed to the 
+            <paramref name="importAction"/> callback.
+            </summary>
+            <typeparam name="TTargetType">
+            The type to import. An object of this type will be passed to the 
+            <paramref name="importAction"/> parameter callback.
+            </typeparam>
+            <typeparam name="TFactoryType">
+            A type that exposes a method or property that can be invoked to obtain an instance 
+            of <typeparamref name="TTargetType"/>.
+            </typeparam>
+            <param name="importAction">
+            A callback function to invoke when an implementation of <typeparamref name="TTargetType"/> is created.
+            </param>
+            <param name="getTarget">
+            A function used to obtain an instance of <typeparamref name="TTargetType"/>
+            by using an instance of <typeparamref name="TFactoryType"/>.
+            </param>
+            <param name="importName">
+            The name of this import operation. If not null, exported classes without a matching name are excluded.
+            </param>
+            <param name="options">
+            The import options to use. If null or not provided, the value returned by 
+            <see cref="M:XSerializer.Rock.StaticDependencyInjection.CompositionRootBase.GetDefaultImportOptions"/> is returned.
+            </param>
+        </member>
+        <member name="M:XSerializer.Rock.StaticDependencyInjection.CompositionRootBase.ImportMultiple``1(System.Action{System.Collections.Generic.IEnumerable{``0}},System.String,XSerializer.Rock.StaticDependencyInjection.ImportOptions)">
+            <summary>
+            Imports the type specified by <typeparamref name="TTargetType"/> for many
+            implementations. When zero to many classes with a public parameterless 
+            constructor are found that implements or inherits from 
+            <typeparamref name="TTargetType"/>, then an instances of those class will be 
+            created and passed to the <paramref name="importAction"/> parameter callback.
+            </summary>
+            <typeparam name="TTargetType">
+            The type to import. Objects of this type will be passed to the 
+            <paramref name="importAction"/> parameter callback.
+            </typeparam>
+            <param name="importAction">
+            A callback function to invoke when a implementations of 
+            <typeparamref name="TTargetType"/> are created.
+            </param>
+            <param name="importName">
+            The name of this import operation. If not null, exported classes without a matching name are excluded.
+            </param>
+            <param name="options">
+            The import options to use. If null or not provided, the value returned by 
+            <see cref="M:XSerializer.Rock.StaticDependencyInjection.CompositionRootBase.GetDefaultImportOptions"/> is returned.
+            </param>
+        </member>
+        <member name="M:XSerializer.Rock.StaticDependencyInjection.CompositionRootBase.ImportMultiple``2(System.Action{System.Collections.Generic.IEnumerable{``0}},System.Func{``1,``0},System.String,XSerializer.Rock.StaticDependencyInjection.ImportOptions)">
+            <summary>
+            Imports the type specified by <typeparamref name="TTargetType"/> for many 
+            implementations. When zero to many classes with a public parameterless 
+            constructor are found that implements or inherits from either 
+            <typeparamref name="TTargetType"/> or <typeparamref name="TFactoryType"/>, 
+            then instances of those classes are created. If an instance is a 
+            <see cref="!:TTargetType"/>, than that instance will be passed as part of a 
+            collection to the <paramref name="importAction"/> callback. If an instance is a
+            <typeparamref name="TFactoryType"/>, then an instance of
+            <typeparamref name="TTargetType"/> is obtained by using the 
+            <paramref name="getTarget"/> function and passed to the 
+            <paramref name="importAction"/> callback.
+            </summary>
+            <typeparam name="TTargetType">
+            The type to import. Objects of this type will be passed to the 
+            <paramref name="importAction"/> parameter callback.
+            </typeparam>
+            <typeparam name="TFactoryType">
+            A type that exposes a method or property that can be invoked to obtain an instance 
+            of <typeparamref name="TTargetType"/>.
+            </typeparam>
+            <param name="importAction">
+            A callback function to invoke when a implementations of 
+            <typeparamref name="TTargetType"/> are created.
+            </param>
+            <param name="getTarget">
+            A function used to obtain an instance of <typeparamref name="TTargetType"/>
+            by using an instance of <typeparamref name="TFactoryType"/>.
+            </param>
+            <param name="importName">
+            The name of this import operation. If not null, exported classes without a matching name are excluded.
+            </param>
+            <param name="options">
+            The import options to use. If null or not provided, the value returned by 
+            <see cref="M:XSerializer.Rock.StaticDependencyInjection.CompositionRootBase.GetDefaultImportOptions"/> is returned.
+            </param>
+        </member>
+        <member name="P:XSerializer.Rock.StaticDependencyInjection.CompositionRootBase.IsEnabled">
+            <summary>
+            Gets a value indicating whether static dependency injection is enabled.
+            </summary>
+        </member>
+        <member name="M:XSerializer.Rock.StaticDependencyInjection.CompositionRoot.GetExportInfos(System.Type)">
+            <summary>
+            Return a collection of metadata objects that describe the export operations for a type.
+            </summary>
+            <param name="type">The type to get export metadata.</param>
+            <returns>A collection of metadata objects that describe export operations.</returns>
+        </member>
+        <member name="P:XSerializer.Rock.StaticDependencyInjection.CompositionRoot.IsEnabled">
+            <summary>
+            Gets a value indicating whether static dependency injection is enabled.
+            </summary>
+        </member>
+        <member name="T:XSerializer.Rock.StaticDependencyInjection.Default`1">
+            <summary>
+            An internal helper class that makes it easier for your library to implement
+            the static default pattern that Rock.StaticDependencyInjection is meant to
+            support.
+            </summary>
+            <typeparam name="T">A type that requires a default instance.</typeparam>
+        </member>
+        <member name="M:XSerializer.Rock.StaticDependencyInjection.Default`1.#ctor(System.Func{`0})">
+            <summary>
+            Initializes a new instance of the <see cref="T:XSerializer.Rock.StaticDependencyInjection.Default`1"/> class.
+            </summary>
+            <param name="createDefaultInstance">
+            A function that describes how to create the the object returned by the
+            <see cref="P:XSerializer.Rock.StaticDependencyInjection.Default`1.DefaultInstance"/> property.
+            </param>
+        </member>
+        <member name="M:XSerializer.Rock.StaticDependencyInjection.Default`1.RestoreDefault">
+            <summary>
+            Restores the value of the <see cref="P:XSerializer.Rock.StaticDependencyInjection.Default`1.Current"/> property to the value of
+            the <see cref="P:XSerializer.Rock.StaticDependencyInjection.Default`1.DefaultInstance"/> property.
+            </summary>
+        </member>
+        <member name="M:XSerializer.Rock.StaticDependencyInjection.Default`1.SetCurrent(System.Func{`0})">
+            <summary>
+            Sets the value of the <see cref="P:XSerializer.Rock.StaticDependencyInjection.Default`1.Current"/> property. If the
+            <paramref name="getInstance"/> parameter is null, sets the value of the
+            <see cref="P:XSerializer.Rock.StaticDependencyInjection.Default`1.Current"/> to the value of the <see cref="P:XSerializer.Rock.StaticDependencyInjection.Default`1.DefaultInstance"/>
+            property.
+            </summary>
+            <param name="getInstance">
+            A function that returns the value for the <see cref="P:XSerializer.Rock.StaticDependencyInjection.Default`1.Current"/> property.
+            </param>
+        </member>
+        <member name="M:XSerializer.Rock.StaticDependencyInjection.Default`1.SetCurrent(`0)">
+            <summary>
+            Sets the value of the <see cref="P:XSerializer.Rock.StaticDependencyInjection.Default`1.Current"/> property. If the
+            <paramref name="instance"/> parameter is null, sets the value of the
+            <see cref="P:XSerializer.Rock.StaticDependencyInjection.Default`1.Current"/> to the value of the <see cref="P:XSerializer.Rock.StaticDependencyInjection.Default`1.DefaultInstance"/>
+            property.
+            </summary>
+            <param name="instance">
+            The value for the <see cref="P:XSerializer.Rock.StaticDependencyInjection.Default`1.Current"/> property.
+            </param>
+        </member>
+        <member name="P:XSerializer.Rock.StaticDependencyInjection.Default`1.DefaultInstance">
+            <summary>
+            Gets the default instance of <typeparamref name="T"/>. This value is 
+            returned by the <see cref="P:XSerializer.Rock.StaticDependencyInjection.Default`1.Current"/> property when neither the
+            <see cref="M:XSerializer.Rock.StaticDependencyInjection.Default`1.SetCurrent(System.Func{`0})"/> nor <see cref="M:XSerializer.Rock.StaticDependencyInjection.Default`1.SetCurrent(`0)"/>
+            has been called.
+            </summary>
+        </member>
+        <member name="P:XSerializer.Rock.StaticDependencyInjection.Default`1.Current">
+            <summary>
+            Gets the current value for an instance of type <typeparamref name="T"/>.
+            </summary>
+        </member>
+        <member name="T:XSerializer.Rock.StaticDependencyInjection.ExportInfo">
+            <summary>
+            Provides information about an export.
+            </summary>
+        </member>
+        <member name="F:XSerializer.Rock.StaticDependencyInjection.ExportInfo.DefaultPriority">
+            <summary>
+            The default priority for an instance of <see cref="T:XSerializer.Rock.StaticDependencyInjection.ExportInfo"/> if not specified.
+            </summary>
+        </member>
+        <member name="M:XSerializer.Rock.StaticDependencyInjection.ExportInfo.#ctor(System.Type)">
+            <summary>
+            Initializes a new instance of the <see cref="T:XSerializer.Rock.StaticDependencyInjection.ExportInfo"/> class with
+            a priority with the value of <see cref="F:XSerializer.Rock.StaticDependencyInjection.ExportInfo.DefaultPriority"/>.
+            </summary>
+            <param name="targetClass">The class to be exported.</param>
+        </member>
+        <member name="M:XSerializer.Rock.StaticDependencyInjection.ExportInfo.#ctor(System.Type,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:XSerializer.Rock.StaticDependencyInjection.ExportInfo"/> class.
+            </summary>
+            <param name="targetClass">The class to be exported.</param>
+            <param name="priority">
+            The priority of the export, relative to the priority of other exports.
+            </param>
+        </member>
+        <member name="P:XSerializer.Rock.StaticDependencyInjection.ExportInfo.TargetClass">
+            <summary>
+            Gets the class to be exported.
+            </summary>
+        </member>
+        <member name="P:XSerializer.Rock.StaticDependencyInjection.ExportInfo.Priority">
+            <summary>
+            Gets the priority of the export, relative to the priority of other exports.
+            The default value, if not specified in the constructor is negative one.
+            This value is used during import operations to sort the discovered classes.
+            </summary>
+        </member>
+        <member name="P:XSerializer.Rock.StaticDependencyInjection.ExportInfo.Name">
+            <summary>
+            Gets or sets the name of the export. This value is compared against the
+            name parameter in various import operations.
+            </summary>
+        </member>
+        <member name="P:XSerializer.Rock.StaticDependencyInjection.ExportInfo.Disabled">
+            <summary>
+            Gets or sets a value indicating whether the type indicated by
+            <see cref="P:XSerializer.Rock.StaticDependencyInjection.ExportInfo.TargetClass"/> should be excluded from consideration during an
+            import operation.
+            </summary>
+        </member>
+        <member name="T:XSerializer.Rock.StaticDependencyInjection.ImportOptions">
+            <summary>
+            Defines various options for an import operation.
+            </summary>
+        </member>
+        <member name="M:XSerializer.Rock.StaticDependencyInjection.ImportOptions.GetDefaultDirectoryPaths">
+            <summary>
+            Returns an array containing a single element: the value returned by
+            AppDomain.CurrentDomain.BaseDirectory.
+            </summary>
+        </member>
+        <member name="M:XSerializer.Rock.StaticDependencyInjection.ImportOptions.GetDefaultExportComparer">
+            <summary>
+            Gets a new instance of <see cref="T:XSerializer.Rock.StaticDependencyInjection.ImportOptions.TargetClassAssemblyQualifiedNameComparer"/>.
+            </summary>
+        </member>
+        <member name="P:XSerializer.Rock.StaticDependencyInjection.ImportOptions.AllowNonPublicClasses">
+            <summary>
+            Gets or sets a value indicating whether to allow non-public classes to be imported.
+            Default value is false, indicating that only public classes will be included in an
+            import operation.
+            </summary>
+        </member>
+        <member name="P:XSerializer.Rock.StaticDependencyInjection.ImportOptions.IncludeNamedExportsFromUnnamedImports">
+            <summary>
+            Gets or sets a value indicating whether a named export will be included from an
+            unnamed import operation. Default value is false, indicating that named exports
+            will not be used given an unnamed import.
+            </summary>
+        </member>
+        <member name="P:XSerializer.Rock.StaticDependencyInjection.ImportOptions.PreferTTargetType">
+            <summary>
+            Gets or sets a value indicating whether, given equal priorities, an implementation
+            of TTargetType will be chosen over an implementation of TFactoryType. Default
+            value is false, indicating that TFactoryType will be preferred.
+            </summary>
+        </member>
+        <member name="P:XSerializer.Rock.StaticDependencyInjection.ImportOptions.IncludeTypesFromThisAssembly">
+            <summary>
+            Gets or sets a value indicating whether types that are defined in this assembly
+            should be considered from an import operation. Default value is false, indicating
+            that types defined in this assembly will be excluded.
+            </summary>
+        </member>
+        <member name="P:XSerializer.Rock.StaticDependencyInjection.ImportOptions.DirectoryPaths">
+            <summary>
+            Gets or sets the directory paths that are searched for an import operation. 
+            If not set, or set to null, the value returned will contain a single element:
+            the value returned by AppDomain.CurrentDomain.BaseDirectory.
+            </summary>
+        </member>
+        <member name="P:XSerializer.Rock.StaticDependencyInjection.ImportOptions.ExportComparer">
+            <summary>
+            Gets or sets a comparer to be used to differentiate between multiple
+            exports with the same priority. If not set, or set to null, the value
+            returned will be a comparer that sorts based on the assembly qualified
+            name of the target class.
+            </summary>
+        </member>
+        <member name="T:XSerializer.SerializationState">
+            <summary>
+            An object that holds an arbitrary value, to be used by one or more encrypt/decrypt
+            operations within a single serialization operation.
+            </summary>
+        </member>
+        <member name="M:XSerializer.SerializationState.Get``1(System.Func{``0})">
+            <summary>
+            Gets the value.
+            </summary>
+            <typeparam name="T">The type of the value.</typeparam>
+            <param name="getValue">A function that produces the value. This function will only be executed if this method has never been called before.</param>
+            <returns>The value</returns>
+        </member>
+        <member name="M:XSerializer.RedactAttribute.Redact(System.String,System.Boolean)">
+            <summary>
+            Redacts the clear-text.
+            </summary>
+            <param name="clearText">Some clear-text.</param>
+            <param name="redactEnabled">Whether redaction is currently enabled.</param>
+            <returns>The redacted text.</returns>
+        </member>
+        <member name="M:XSerializer.RedactAttribute.Redact(System.Nullable{System.Boolean},System.Boolean)">
+            <summary>
+            Redacts the string representation of <paramref name="booleanValue"/>.
+            </summary>
+            <param name="booleanValue">A <see cref="T:System.Boolean"/>.</param>
+            <param name="redactEnabled">Whether redaction is currently enabled.</param>
+            <returns>The redacted text.</returns>
+        </member>
+        <member name="M:XSerializer.RedactAttribute.Redact(System.Nullable{System.DateTime},System.Boolean)">
+            <summary>
+            Redacts the string representation of <paramref name="dateTimeValue"/>.
+            </summary>
+            <param name="dateTimeValue">A <see cref="T:System.DateTime"/>.</param>
+            <param name="redactEnabled">Whether redaction is currently enabled.</param>
+            <returns>The redacted text.</returns>
+        </member>
+        <member name="M:XSerializer.RedactAttribute.Redact(System.Nullable{System.DateTimeOffset},System.Boolean)">
+            <summary>
+            Redacts the string representation of <paramref name="dateTimeOffsetValue"/>.
+            </summary>
+            <param name="dateTimeOffsetValue">A <see cref="T:System.DateTimeOffset"/>.</param>
+            <param name="redactEnabled">Whether redaction is currently enabled.</param>
+            <returns>The redacted text.</returns>
+        </member>
+        <member name="M:XSerializer.RedactAttribute.Redact(System.Nullable{System.TimeSpan},System.Boolean)">
+            <summary>
+            Redacts the string representation of <paramref name="timeSpanValue"/>.
+            </summary>
+            <param name="timeSpanValue">A <see cref="T:System.TimeSpan"/>.</param>
+            <param name="redactEnabled">Whether redaction is currently enabled.</param>
+            <returns>The redacted text.</returns>
+        </member>
+        <member name="M:XSerializer.RedactAttribute.Redact(System.Object,System.Boolean)">
+            <summary>
+            Redacts the string representation of <paramref name="value"/>.
+            </summary>
+            <param name="value">An object.</param>
+            <param name="redactEnabled">Whether redaction is currently enabled.</param>
+            <returns>The redacted text.</returns>
+        </member>
+        <member name="M:XSerializer.SerializationExtensions.MaybeSetIsEncryptionEnabledToTrue(XSerializer.XSerializerXmlTextWriter,XSerializer.Encryption.EncryptAttribute,XSerializer.ISerializeOptions)">
+            <summary>
+            Maybe sets the <see cref="P:XSerializer.XSerializerXmlTextWriter.IsEncryptionEnabled"/> property of 
+            <paramref name="writer"/> to true. Returns true if the value was changed to true, false 
+            if it was not changed to true.
+            </summary>
+        </member>
+        <member name="M:XSerializer.SerializationExtensions.MaybeSetIsDecryptionEnabledToTrue(XSerializer.XSerializerXmlReader,XSerializer.Encryption.EncryptAttribute,XSerializer.ISerializeOptions)">
+            <summary>
+            Maybe sets the <see cref="P:XSerializer.XSerializerXmlTextWriter.IsEncryptionEnabled"/> property of 
+            <paramref name="reader"/> to true. Returns true if the value was changed to true, false 
+            if it was not changed to true.
+            </summary>
+        </member>
+    </members>
+</doc>

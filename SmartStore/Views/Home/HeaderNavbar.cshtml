@@ -1,0 +1,119 @@
+﻿@model IEnumerable<SmartStore.Model.Entities.User>
+
+@{
+    SmartStore.DataAccess.Context.SmartStoreContext db = new SmartStore.DataAccess.Context.SmartStoreContext();
+    var user = db.Users.FirstOrDefault(u => u.UserEmail == User.Identity.Name);
+}
+
+<nav class="navbar navbar-expand-lg navbar-light custom-navbar" id="mainMenu">
+    <div class="container">
+        <a class="navbar-brand" href="/Home/Index">
+            <img src="~/Content/Home/images/logo.png" alt="">
+        </a>
+        <!--  navbar actions -->
+        <div class="main-navbar-action">
+            <!-- navbar search box -->
+            <div class="search-wrapper">
+                <div class="search-wrapper__btn">
+                    <i class="icon-search"></i>
+                </div>
+                <div class="search-wrapper__box">
+                    <div class="search-box" id="the-basics">
+                        <form>
+                            <div class="form-group form-input form-input--search">
+                                <input type="text" class="form-control typeahead" id="search" name="search" value=""
+                                       placeholder="Search...">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- end of navbar search box -->
+            <div id="mainNavbarDropdown">
+                <!-- navbar user account dropdown -->
+                <div class="dropdown-wrapper" id="usermenu" data-collapse="false">
+                    <div class="account-wrapper">
+                        <!-- login form wrapper -->
+                        <div class="account-wrapper__heading">
+                            <span>Login</span>
+                            <span class="account-wrapper__heading--link">
+                                Dont you have an account? <a href="/Account/RegisterWithEmail">Sign up</a>
+                            </span>
+                        </div>
+                        @Html.Action("Login", "Account")
+                        <!-- account links when user is logged in-->
+                        <!--                    <a class="dropdown-item" href="account.html#v-pills-profile-tab"><span><i-->
+                        <!--                            class="icon-user-profile"></i></span>Profile</a>-->
+                        <!--                    <a class="dropdown-item" href="account.html#v-pills-order-tab"><span><i-->
+                        <!--                            class="icon-shopping-basket"></i></span>Orders</a>-->
+                        <!--                    <a class="dropdown-item" href="account.html#v-pills-address-tab"><span><i-->
+                        <!--                            class="icon-sign"></i></span>Addresses</a>-->
+                        <!--                    <a class="dropdown-item" href="account.html#v-pills-wishlist-tab"><span><i-->
+                        <!--                            class="icon-wish-list"></i></span>wishlist</a>-->
+                        <!--                    <a class="dropdown-item" href="#"><span><i class="icon-log-out"></i></span>Log out</a>-->
+
+                    </div>
+                </div>
+                <!-- navbar cart dropdown -->
+                @Html.Action("ShowCart", "Shop")
+            </div>
+            <!-- navbar user account dropdown -->
+            <div class="main-navbar-action__btn nav-dropdown">
+                <a class="dropdown-link" data-target="usermenu">
+                    <i class="icon-user"></i>
+                </a>
+            </div>
+            <!-- navbar cart dropdown -->
+            @Html.Action("ShoppingCount", "Shop")
+            <!-- navbar actions content -->
+        </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNavbar"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNavbar">
+            <ul class="navbar-nav main-navbar">
+
+                @Html.Action("ShowCategory", "Home")
+
+                <li class="nav-item main-navbar__item">
+                    <a class="nav-link" href="/Home/PageAboutUs">AboutUs</a>
+                </li>
+
+                <li class="nav-item main-navbar__item">
+                    <a class="nav-link" href="/Home/Blog" style="color:#f7b926">Blogs</a>
+                </li>
+                <li class="nav-item main-navbar__item">
+                    <a class="nav-link" href="/ReceiveIdea/Index" style="color:forestgreen">Receive Ideas</a>
+                </li>
+
+                @{
+                    if (User.Identity.IsAuthenticated)
+                    {
+                        if (user?.IsActive == true)
+                        {
+                            if (user.Role.RoleName == "Admin")
+                            {
+                                <li class="nav-item main-navbar__item">
+                                    <a class="nav-link" href="/Admin/Dashboard/Index" style="color:red">Admin Panel</a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="nav-item main-navbar__item">
+                                    <a class="nav-link" href="/Customer/Index" style="color:red">User Panel</a>
+                                </li>
+                            }
+                        }
+                    }
+                    else
+                    {
+                        <li class="nav-item main-navbar__item">
+                            <a class="nav-link" href="/Account/RegisterWithEmail" style="color:red">Register</a>
+                        </li>
+                    }
+                }
+            </ul>
+        </div>
+    </div>
+</nav>

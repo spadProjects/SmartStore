@@ -1,0 +1,207 @@
+﻿@model SmartStore.Model.Entities.Product
+
+<div class="product-details my-100">
+    <ul class="nav nav-pills nav-fill nav-justified product-details__tabs" id="pills-tab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="pills-desc-tab" data-toggle="pill" href="#pills-desc" role="tab"
+               aria-controls="pills-desc" aria-selected="true">Product More</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="pills-size-tab" data-toggle="pill" href="#pills-size" role="tab"
+               aria-controls="pills-size" aria-selected="false">Other Features</a>
+        </li>
+        @*<li class="nav-item">
+            <a class="nav-link" id="pills-material-tab" data-toggle="pill" href="#pills-material" role="tab"
+               aria-controls="pills-material" aria-selected="false">Product Type</a>
+        </li>*@
+        <li class="nav-item">
+            <a class="nav-link" id="pills-review-tab" data-toggle="pill" href="#pills-review" role="tab"
+               aria-controls="pills-review" aria-selected="false">Comments</a>
+        </li>
+    </ul>
+    <div class="tab-content product-details__content" id="pills-tabContent">
+        <!-- product description tab -->
+        <div class="tab-pane fade product-details__content--desc show active" id="pills-desc" role="tabpanel"
+             aria-labelledby="pills-desc-tab">
+            <p class="collapse-text" id="readmoreText">
+                @Model.ProductDescription
+            </p>
+        </div>
+        <!-- product size tab -->
+        @*@Html.Action("ProductFeatures", "Shop")*@
+        <!-- product materials tab -->
+        <div class="tab-pane fade" id="pills-material" role="tabpanel" aria-labelledby="pills-material-tab">
+            <div class="row materials">
+                @*<div class="col-md-6 materials__list">
+                        <h5 class="materials__list--title">اسپاد</h5>
+                        <ul>
+                            <li>سبد خرید</li>
+                            <li>شما می توانید به راحتی خرید کنید</li>
+                            <li>گارانتی</li>
+                            <li>100% دارای گارانتی</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6 materials__list">
+                        <h5 class="materials__list--title">Chair cushion</h5>
+                        <ul>
+                            <li>Total composition:</li>
+                            <li>55% cotton, 25% polyester, 20% linen</li>
+                            <li>Seat/Back:</li>
+                            <li>Polyurethane foam 2.2 lb/cu.ft,</li>
+                            <li>100% polypropylene</li>
+                        </ul>
+                    </div>*@
+            </div>
+        </div>
+        <!-- product review tab -->
+        <div class="tab-pane fade" id="pills-review" role="tabpanel" aria-labelledby="pills-review-tab">
+            <div class="comments">
+                <div class="row">
+                    <div class="col-12">
+                            <h4 class="comments__title">Comments</h4>
+                              comments list
+                            <div class="comments__list">
+                                <ul class="media-list">
+                                    @*<li class="media-list__item">
+                                        <div class="media">
+                                            <img src="images/profile-02.jpg" class="media-list__item--img"
+                                                 alt="...">
+                                            <div class="media-body">
+                                                <div class="media-list__item--content">
+                                                    <div class="comment-details">
+                                                        <span class="author">امیر رضایی</span>
+                                                        <span class="date">2 روز پیش</span>
+                                                    </div>
+                                                    <p>اسپاد بهترین سایت برای طراحی سایت های مختلف است ، اسپاد بهترین سایت برای طراحی سایت های مختلف است ، اسپاد بهترین سایت برای طراحی سایت های مختلف است ، اسپاد بهترین سایت برای طراحی سایت های مختلف است ، </p>
+                                                </div>
+                                                <a class="media-list__item--icon" href="#">
+                                                    <i class="fas fa-reply"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </li>*@
+                                    <li class="media-list__item media-list__item--nested">
+                                        <div class="media">
+                                            <img src="images/profile-03.jpg" class="media-list__item--img"
+                                                 alt="...">
+                                            <div class="media-body">
+                                                <div class="media-list__item--content">
+                                                    <div class="comment-details">
+                                                        <span class="author">Mark Green</span>
+                                                        <span class="date">2 Days ago</span>
+                                                    </div>
+                                                    <p>
+                                                        Lorem ipsum dolor sit amet,
+                                                        consectetur
+                                                        adipisicing elit. Accusamus assumenda, dolorum enim
+                                                        excepturi
+                                                        inventore
+                                                        iure
+                                                        minus nemo pariatur quae velit.
+                                                    </p>
+                                                </div>
+                                                <a class="media-list__item--icon" href="#">
+                                                    <i class="fas fa-reply"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="media-list__item">
+                                        <div class="media">
+                                            <img src="images/profile-01.jpg" class="media-list__item--img"
+                                                 alt="...">
+                                            <div class="media-body">
+                                                <div class="media-list__item--content">
+                                                    <div class="comment-details">
+                                                        <span class="author">Mark Green</span>
+                                                        <span class="date">2 Days ago</span>
+                                                    </div>
+                                                    <p>
+                                                        Lorem ipsum dolor sit amet,
+                                                        consectetur
+                                                        adipisicing elit. Accusamus assumenda, dolorum enim
+                                                        excepturi
+                                                        inventore
+                                                        iure
+                                                        minus nemo pariatur quae velit.
+                                                    </p>
+                                                </div>
+                                                <a class="media-list__item--icon" href="#">
+                                                    <i class="fas fa-reply"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    <!--  end  comments list -->
+                    <!-- comments summery -->
+                    @*<div class="col-md-6 comments__summery">
+                        <div class="comments__summery--box">
+                            <div class="rating">
+                                <div class="rating__row">
+                                    <span class="label">نمودار قیمت ها</span>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: 75%"
+                                             aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+                                            75%
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="rating__row">
+                                    <span class="label">کیفیت کالا ها</span>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: 50%"
+                                             aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+                                            50%
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="rating__row">
+                                    <span class="label">تجربه کاربری</span>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: 90%"
+                                             aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
+                                            90%
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="rating__row">
+                                    <span class="label">سابقه کاری</span>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: 100%"
+                                             aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                                            100%
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>*@
+                    <!-- end comments summery -->
+                    <!-- comments form -->
+                    @*<div class="col-md-6">
+                        <form class="comments__form">
+                                <h5>ارسال نظرات</h5>
+                                <div class="form-group">
+                                    <label for="inputName">نام</label>
+                                    <input type="text" class="form-control comments__form--input" id="inputName"
+                                           placeholder="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="InputTextarea">پبام</label>
+                                    <textarea class="form-control comments__form--input" id="InputTextarea"
+                                              rows="5"></textarea>
+                                </div>
+                                <div class="comments__form--btn text-left">
+                                    <button type="submit" class="btn">ارسال</button>
+                                </div>
+                            </form>
+                    </div>*@
+                    <!-- end comments form -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

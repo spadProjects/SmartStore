@@ -1,0 +1,75 @@
+﻿@model SmartStore.Model.Entities.Brand
+
+<h4 style="text-align: center;margin-top: -60px;">Edit Brand : @Model.BrandName</h4>
+
+@using (Html.BeginForm("Edit", "Brands", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.BrandImg)
+        <div class="form-group">
+            @Html.LabelFor(model => model.BrandName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BrandName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.BrandName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @if (Model.BrandImg != null)
+        {
+            <div class="form-group">
+                @Html.LabelFor(model => model.BrandImg, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type="file" name="file" />
+                    <br />
+                    <br />
+                    <img src="~/Images/Brand/@Model.BrandImg" alt="" width="100" height="100" />
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="form-group">
+                @Html.LabelFor(model => model.BrandImg, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type="file" name="file" />
+                    <br />
+                    <br />
+                    <img src="~/Content/Customer/img/User.jpg" alt="" width="100" height="100" />
+                </div>
+            </div>
+        }
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BrandOrder, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BrandOrder, new { htmlAttributes = new { @class = "form-control", @Value = 0, min = 0 } })
+                @Html.ValidationMessageFor(model => model.BrandOrder, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BrandNotShow, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.BrandNotShow)
+                    @Html.ValidationMessageFor(model => model.BrandNotShow, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10" style="margin-bottom: -20px;">
+                <input type="submit" value="Add" class="btn btn-primary" />
+                <input type="submit" value="Cancel" class="btn btn-default" data-dismiss="modal" />
+            </div>
+        </div>
+    </div>
+}
+
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

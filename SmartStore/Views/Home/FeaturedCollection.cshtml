@@ -1,0 +1,126 @@
+﻿@model IEnumerable<SmartStore.Model.Entities.ProductGroup>
+
+<div class="res-gallery res-gallery--bg mb-100">
+    <div class="container">
+        <div class="row">
+            <!-- gallery tabs -->
+
+            <div class="col-lg-3 res-gallery__tabs">
+                <h3 class="gallery-title">
+                    <span>2020 Lookbook</span>
+                    <span>Featured Collections</span>
+                </h3>
+                <div class="nav nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                    @{
+                        int x = 0;
+                        foreach (var item in Model)
+                        {
+
+                            if (x == 0)
+                            {
+
+
+
+                                <a class="nav-link active show" id="v-pills-@item.Id-tab"
+                                   data-toggle="pill" href="#v-pills-@item.Id-tab"
+                                   role="tab"
+                                   aria-controls="v-pills-@item.Id" aria-selected="true">@item.GroupName</a>
+
+
+
+
+                                x = 1;
+                            }
+                            else
+                            {
+
+
+
+                                <a class="nav-link" id="v-pills-@item.Id-tab"
+                                   data-toggle="pill" href="#v-pills-@item.Id-tab"
+                                   role="tab"
+                                   aria-controls="v-pills-@item.Id" aria-selected="false">@item.GroupName</a>
+
+
+
+
+                            }
+
+                        }
+
+                    }
+                </div>
+            </div>
+
+            <!-- gallery content -->
+
+
+            <div class="col-lg-9">
+                <div class="tab-content res-gallery__content" id="v-pills-tabContent">
+                    @{ x = 0;
+
+                        foreach (var item in Model)
+                        {
+
+                            if (x == 0)
+                            {
+
+                                <div class="tab-pane active show fade" id="v-pills-@item.Id" role="tabpanel"
+                                     aria-labelledby="v-pills-@item.Id-tab">
+                                    <div class="row">
+                                        @foreach (var item2 in item.ProductGroup1)
+                                        {
+                                            <div class="col-md-4 col-6 gallery-column">
+                                                <div class="image-effect">
+                                                    <img src="~/Images/ProductGroup/@item2.GroupImage" alt="" style="width:200px;height:200px;">
+                                                    <div class="image-effect__content">
+                                                        <a href="/ProductList/Group/@item2.Id">
+                                                            <h3 class="link">
+                                                                See All
+                                                            </h3>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+
+                                    </div>
+                                </div>
+
+                                x = 1;
+                            }
+                            else
+                            {
+
+
+                                <div class="tab-pane fade" id="v-pills-@item.Id" role="tabpanel"
+                                     aria-labelledby="v-pills-@item.Id-tab">
+                                    <div class="row">
+                                        @foreach (var item2 in item.ProductGroup1)
+                                        {
+                                            <div class="col-md-4 col-6 gallery-column">
+                                                <div class="image-effect">
+                                                    <img src="~/Images/ProductGroup/@item2.GroupImage" alt="" style="width:200px;height:200px;">
+                                                    <div class="image-effect__content">
+                                                        <a href="/ProductList/Group/@item2.Id">
+                                                            <h3 class="link">
+                                                                See All
+                                                            </h3>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+
+                                    </div>
+                                </div>
+
+                            }
+
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

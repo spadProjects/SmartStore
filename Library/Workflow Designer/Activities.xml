@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ToolBoxForXml xmlns:yaxlib="http://www.derayatgostar.com/xml/">
+  <Activities>
+
+    <ToolboxItemForXML yaxlib:realtype="Exir.IrDoc.Workflow.Designer.Wpf.ToolboxItemForXML, Exir.IrDoc.Workflow.Designer.Wpf"
+      ItemTypeName="Exir.IrDoc.Workflow.Designer.Wpf.StartActivity, Exir.IrDoc.Workflow.Designer.Wpf"
+      DesignerTypeName="Exir.IrDoc.Workflow.Designer.Wpf.StartActivityDesigner, Exir.IrDoc.Workflow.Designer.Wpf"/>
+
+    <ToolboxItemForXML yaxlib:realtype="Exir.IrDoc.Workflow.Designer.Wpf.ToolboxItemForXML, Exir.IrDoc.Workflow.Designer.Wpf"
+      ItemTypeName="Exir.IrDoc.Workflow.Designer.Wpf.SendFormActivity, Exir.IrDoc.Workflow.Designer.Wpf"
+      DesignerTypeName="Exir.IrDoc.Workflow.Designer.Wpf.SendFormActivityDesigner, Exir.IrDoc.Workflow.Designer.Wpf"/>
+
+    <ToolboxItemForXML yaxlib:realtype="Exir.IrDoc.Workflow.Designer.Wpf.ToolboxItemForXML, Exir.IrDoc.Workflow.Designer.Wpf"
+      ItemTypeName="Exir.IrDoc.Workflow.Designer.Wpf.SyncActivity, Exir.IrDoc.Workflow.Designer.Wpf"
+      DesignerTypeName="Exir.IrDoc.Workflow.Designer.Wpf.SyncActivityDesigner, Exir.IrDoc.Workflow.Designer.Wpf"/>
+
+    <ToolboxItemForXML yaxlib:realtype="Exir.IrDoc.Workflow.Designer.Wpf.ToolboxItemForXML, Exir.IrDoc.Workflow.Designer.Wpf"
+      ItemTypeName="Exir.IrDoc.Workflow.Designer.Wpf.SendMessageActivity, Exir.IrDoc.Workflow.Designer.Wpf"
+      DesignerTypeName="Exir.IrDoc.Workflow.Designer.Wpf.SendSimpleMailDesigner, Exir.IrDoc.Workflow.Designer.Wpf"/>
+
+    <ToolboxItemForXML yaxlib:realtype="Exir.IrDoc.Workflow.Designer.Wpf.ToolboxItemForXML, Exir.IrDoc.Workflow.Designer.Wpf"
+      ItemTypeName="Exir.IrDoc.Workflow.Designer.Wpf.DeleteActivity, Exir.IrDoc.Workflow.Designer.Wpf"
+      DesignerTypeName="Exir.IrDoc.Workflow.Designer.Wpf.DeleteActivityDesigner, Exir.IrDoc.Workflow.Designer.Wpf"/>
+
+    <ToolboxItemForXML yaxlib:realtype="Exir.IrDoc.Workflow.Designer.Wpf.ToolboxItemForXML, Exir.IrDoc.Workflow.Designer.Wpf"
+  ItemTypeName="Exir.IrDoc.Workflow.Designer.Wpf.TerminateActivity, Exir.IrDoc.Workflow.Designer.Wpf"
+  DesignerTypeName="Exir.IrDoc.Workflow.Designer.Wpf.TerminateActivityDesigner, Exir.IrDoc.Workflow.Designer.Wpf"/>
+
+    <ToolboxItemForXML yaxlib:realtype="Exir.IrDoc.Workflow.Designer.Wpf.ToolboxItemForXML, Exir.IrDoc.Workflow.Designer.Wpf"
+  ItemTypeName="Exir.IrDoc.Workflow.Designer.Wpf.RefererActivity, Exir.IrDoc.Workflow.Designer.Wpf"
+  DesignerTypeName="Exir.IrDoc.Workflow.Designer.Wpf.RefererActivityDesigner, Exir.IrDoc.Workflow.Designer.Wpf"/>
+
+  </Activities>
+
+
+  <Branches>
+       <ToolboxItemForXML yaxlib:realtype="Exir.IrDoc.Workflow.Designer.Wpf.ToolboxItemForXML, Exir.IrDoc.Workflow.Designer.Wpf"
+      ItemTypeName="Exir.IrDoc.Workflow.Designer.Wpf.CommandBranch, Exir.IrDoc.Workflow.Designer.Wpf"
+            DesignerTypeName="Exir.IrDoc.Workflow.Designer.Wpf.CommandBranchDesigner,Exir.IrDoc.Workflow.Designer.Wpf"/>
+
+ <ToolboxItemForXML yaxlib:realtype="Exir.IrDoc.Workflow.Designer.Wpf.ToolboxItemForXML, Exir.IrDoc.Workflow.Designer.Wpf"
+      ItemTypeName="Exir.IrDoc.Workflow.Designer.Wpf.RightBranch, Exir.IrDoc.Workflow.Designer.Wpf"
+            DesignerTypeName="Exir.IrDoc.Workflow.Designer.Wpf.RightBranchDesigner,Exir.IrDoc.Workflow.Designer.Wpf"/>
+
+    <ToolboxItemForXML yaxlib:realtype="Exir.IrDoc.Workflow.Designer.Wpf.ToolboxItemForXML, Exir.IrDoc.Workflow.Designer.Wpf"
+      ItemTypeName="Exir.IrDoc.Workflow.Designer.Wpf.ConditionalBranch, Exir.IrDoc.Workflow.Designer.Wpf"
+        DesignerTypeName="Exir.IrDoc.Workflow.Designer.Wpf.ConditionalBranchDesigner,Exir.IrDoc.Workflow.Designer.Wpf"/>
+
+    <ToolboxItemForXML yaxlib:realtype="Exir.IrDoc.Workflow.Designer.Wpf.ToolboxItemForXML, Exir.IrDoc.Workflow.Designer.Wpf"
+      ItemTypeName="Exir.IrDoc.Workflow.Designer.Wpf.ExceptionBranch, Exir.IrDoc.Workflow.Designer.Wpf"
+        DesignerTypeName="Exir.IrDoc.Workflow.Designer.Wpf.ExceptionBranchDesigner, Exir.IrDoc.Workflow.Designer.Wpf"/>
+
+
+  </Branches>
+
+
+</ToolBoxForXml>
+
