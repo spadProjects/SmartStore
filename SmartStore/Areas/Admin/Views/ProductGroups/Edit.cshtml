@@ -1,59 +1,216 @@
-﻿@model SmartStore.Model.Entities.ProductGroup
-
-<h4 style="text-align: center;margin-top: -60px;">Edit Group : @Model.GroupName</h4>
-
-@using (Html.BeginForm("Edit", "ProductGroups", FormMethod.Post, new { enctype = "multipart/form-data" }))
+﻿@using SmartStore.Infrastructure.Utility
+@using SmartStore.Model.Entities
+@model SmartStore.Model.Entities.ProductGroup
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    var Features = ViewBag.Features as List<Feature>;
+    var Brands = ViewBag.Brands as List<Brand>;
+    var ProductGroups = ViewBag.ProductGroups as List<ProductGroup>;
+}
+<link href="/Content/jstree/jstree.bundle.css" rel="stylesheet" type="text/css" />
+<link href="/Content/Plugins/plugins.bundle.css" rel="stylesheet" type="text/css" />
+@using (Html.BeginForm("Edit", "ProductGroups", FormMethod.Post, new { id = "form", enctype = "multipart/form-data" }))
 {
-    @Html.AntiForgeryToken()
-    <div class="form-horizontal">
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Id)
-        @Html.HiddenFor(model => model.GroupImage)
+    <div style="background: #ffffff center; padding: 50px; margin-left: 50px; margin-right: 50px">
+        <h4 style="text-align: center;font-weight: bold;">Add Group</h4>
+        <div class="form-horizontal">
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.Id)
+            @Html.HiddenFor(model => model.GroupImage)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.GroupImage, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <input type="file" name="file" />
-                <br />
-                <img src="~/Images/ProductGroup/@Model.GroupImage" alt="@Model.GroupName" width="150" height="100" />
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.GroupName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.GroupName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.GroupName, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.GroupOrder, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.GroupOrder, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.GroupOrder, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.GroupNotShow, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.GroupNotShow)
-                    @Html.ValidationMessageFor(model => model.GroupNotShow, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.GroupImage, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type="file" name="file" id="file" />
+                    <br />
+                    <img src="~/Images/ProductGroup/@Model.GroupImage" alt="@Model.GroupName" width="150" height="100" />
                 </div>
             </div>
-        </div>
-        <hr />
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10" style="margin-bottom: -20px;">
-                <input type="submit" value="Save" class="btn btn-primary" />
-                <input type="submit" value="Cancel" class="btn btn-default" data-dismiss="modal" />
+            <div class="form-group">
+                @Html.LabelFor(model => model.GroupName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.GroupName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.GroupName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            @*<div class="form-group">
+                    @Html.LabelFor(model => model.GroupOrder, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.GroupOrder, new { htmlAttributes = new { @class = "form-control", @Value = 0, min = 0 } })
+                        @Html.ValidationMessageFor(model => model.GroupOrder, "", new { @class = "text-danger" })
+                    </div>
+                </div>*@
+
+            @*<div class="form-group">
+                    @Html.LabelFor(model => model.GroupNotShow, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <div class="checkbox">
+                            @Html.EditorFor(model => model.GroupNotShow)
+                            @Html.ValidationMessageFor(model => model.GroupNotShow, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>*@
+            <div class="form-group">
+                <label class="">Brands</label>
+                <div class="col-md-10">
+                    <select style="width: 100%" class="select2" id="Brands" name="Brands" multiple="multiple">
+                        @foreach (var brand in Brands)
+                        {
+                            <option @(Model.ProductGroupBrands.Where(p => p.BrandId == brand.Id).Any() ? "selected=''selected'" : "") value="@brand.Id">@brand.BrandName</option>
+                        }
+                    </select>
+                </div>
+                <span class="text-danger" style="display: none" id="validate_brand">Please at least choose one brand</span>
+            </div>
+            <div class="form-group">
+                <label class="">Select the parent group</label>
+                <div class="col-lg-4 col-md-9 col-sm-12">
+                    <div id="ParentGroupId" class="tree-demo">
+                        <ul>
+                            <li id="pg_0">Main group</li>
+                            @foreach (var group in ProductGroups.Where(p => p.ParentId == null))
+                            {
+                                var result = HierarchyLoop.GetProductGroupHierarchy(group, Model.ParentId, Model.Id);
+                                @Html.Raw(result)
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Group Features</label>
+                <select id="ProductGroupFeatures" name="ProductGroupFeatures" class="dual-listbox" multiple
+                        data-available-title="Available Features"
+                        data-selected-title="Chosen Features"
+                        data-add="<i class='flaticon2-next'></i>"
+                        data-remove="<i class='flaticon2-back'></i>"
+                        data-add-all="<i class='flaticon2-fast-next'></i>"
+                        data-remove-all="<i class='flaticon2-fast-back'></i>">
+                    @foreach (var feature in Features)
+                    {
+                        <option @(Model.ProductGroupFeatures.Any(f=>f.FeatureId == feature.Id)?"selected='selected'":"") value="@feature.Id">@feature.FeatureTitle</option>
+                    }
+                </select>
+                <div class="checkbox-list col-lg-12">
+                    <div class="row">
+                        <span class="text-danger" style="display: none" id="validate_feature">Please at least choose one of the features</span>
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10" style="margin-bottom: -20px;">
+                    <input type="submit" value="Add" class="btn btn-primary" />
+                    <input type="submit" value="Cancel" class="btn btn-default" data-dismiss="modal" />
+                </div>
             </div>
         </div>
     </div>
 }
+@section Scripts
+{
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="/Content/Plugins/plugins.bundle.js"></script>
+    <script src="/Content/jstree/jstree.bundle.js"></script>
+    <script src="/Content/jstree/treeview.js"></script>
+    <script>
+        $('#Brands').select2({
+            placeholder: "Please choose this group's brands",
+        });
+        $("#ParentGroupId").jstree({
+            "core": {
+                "themes": {
+                    "responsive": false
+                }
+            },
+            "types": {
+                "default": {
+                    "icon": "fa fa-box"
+                }
+            },
+            "plugins": ["types"]
+        });
+        var listBox = $("#ProductGroupFeatures");
+        // get titles
+        var availableTitle = (listBox.attr("data-available-title") != null) ? listBox.attr("data-available-title") : "Available Features";
+        var selectedTitle = (listBox.attr("data-selected-title") != null) ? listBox.attr("data-selected-title") : "Chosen Features";
 
-
-<script src="~/Scripts/jquery-1.10.2.min.js"></script>
-<script src="~/Scripts/jquery.validate.min.js"></script>
-<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+        // get button labels
+        var addLabel = (listBox.attr("data-add") != null) ? listBox.attr("data-add") : "Add";
+        var removeLabel = (listBox.attr("data-remove") != null) ? listBox.attr("data-remove") : "Remove";
+        var addAllLabel = (listBox.attr("data-add-all") != null) ? listBox.attr("data-add-all") : "Add All";
+        var removeAllLabel = (listBox.attr("data-remove-all") != null) ? listBox.attr("data-remove-all") : "Remove All";
+        var box = new DualListbox(listBox.get(0), {
+            availableTitle: availableTitle,
+            selectedTitle: selectedTitle,
+            addButtonText: addLabel,
+            removeButtonText: removeLabel,
+            addAllButtonText: addAllLabel,
+            removeAllButtonText: removeAllLabel
+        });
+    </script>
+    <script>
+        $("#form").submit(function (e) {
+            e.preventDefault();
+            var GroupName = $("#GroupName").val();
+            var BrandIds = [];
+            $('#Brands').select2('data').map(function (i) { BrandIds.push(parseInt(i.id)) });
+            var ParentGroupId = 0;
+            var selectedGroup = $("#ParentGroupId").jstree().get_selected()[0]; // ["pg_id"]
+            if (selectedGroup != null || selectedGroup != undefined) {
+                var selectedGroupArr = selectedGroup.split('_'); // ["pg","id"]
+                var ParentGroupId = parseInt(selectedGroupArr[1]); // id
+            }
+            var ProductGroupFeatureIds = [];
+            box.selected.map(function (item) {
+                ProductGroupFeatureIds.push(parseInt($(item).data("id")));
+            });
+            $("#validate_brand").hide();
+            $("#validate_brand").hide();
+            if (BrandIds.length <= 0 || ProductGroupFeatureIds.length <= 0) {
+                if (BrandIds.length <= 0) {
+                    $("#validate_brand").show();
+                }
+                if (ProductGroupFeatureIds.length <= 0) {
+                    $("#validate_feature").show();
+                }
+            }
+            else {
+                $("#validate_brand").hide();
+                $("#validate_feature").hide();
+                var GroupImage = $('#file').get(0).files[0];
+                var productGroup = {
+                    GroupName: GroupName,
+                    BrandIds: BrandIds,
+                    ParentGroupId: ParentGroupId,
+                    ProductGroupFeatureIds: ProductGroupFeatureIds
+                }
+                $.post($("#form").attr('action'),
+                    productGroup,
+                    function (id) {
+                        var formData = new FormData();
+                        formData.append('File', GroupImage);
+                        $.ajax({
+                            type: 'POST',
+                            url: "/ProductGroups/UploadImage/" + id,
+                            data: formData,
+                            processData: false,
+                            contentType: false,
+                            success: function (data) {
+                                console.log("success");
+                                location.href = "/Admin/ProductGroups";
+                            },
+                            error: function (data) {
+                                console.log("error");
+                                console.log(data);
+                            }
+                        });
+                    });
+            };
+        });
+    </script>
+}

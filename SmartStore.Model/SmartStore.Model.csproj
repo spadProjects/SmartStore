@@ -76,11 +76,16 @@
     <Compile Include="Entities\Message.cs" />
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Entities\ProductFeature.cs" />
+    <Compile Include="Entities\ProductFeatureValue.cs" />
     <Compile Include="Entities\ProductGroup.cs" />
+    <Compile Include="Entities\ProductGroupBrand.cs" />
+    <Compile Include="Entities\ProductGroupFeature.cs" />
+    <Compile Include="Entities\ProductMainFeature.cs" />
     <Compile Include="Entities\Role.cs" />
     <Compile Include="Entities\ShopCartItem.cs" />
     <Compile Include="Entities\SliderHeader.cs" />
     <Compile Include="Entities\SocialNetWork.cs" />
+    <Compile Include="Entities\SubFeature.cs" />
     <Compile Include="Entities\SystemParameter.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Interfaces\ISearchObject.cs" />

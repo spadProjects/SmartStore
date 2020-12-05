@@ -34,4 +34,26 @@ namespace SmartStore.Models
 
 
     }
+    public class NewProductViewModel
+    {
+        public int? ProductId { get; set; }
+        public string ProductName { get; set; }
+        public string ProductShortDescription { get; set; }
+        public string ProductDescription { get; set; }
+        public int Brand { get; set; }
+        public int ProductGroup { get; set; }
+        public List<ProductFeaturesViewModel> ProductFeatures { get; set; }
+
+    }
+
+    public class ProductFeaturesViewModel
+    {
+        public int? ProductId { get; set; }
+        public int FeatureId { get; set; }
+        public int? SubFeatureId { get; set; }
+        public string Value { get; set; }
+        public bool IsMain { get; set; }
+        public int? Quantity { get; set; }
+        public long? Price { get; set; }
+    }
 }

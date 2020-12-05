@@ -62,6 +62,11 @@ namespace SmartStore.DataAccess.Context
         public DbSet<IdeaHeader> IdeaHeaders { get; set; }
         public DbSet<ProductGroup> ProductGroups { get; set; }
         public DbSet<Feature> Features { get; set; }
+        public DbSet<ProductFeatureValue> ProductFeatureValues { get; set; }
+        public DbSet<ProductGroupBrand> ProductGroupBrands { get; set; }
+        public DbSet<ProductGroupFeature> ProductGroupFeatures { get; set; }
+        public DbSet<ProductMainFeature> ProductMainFeatures { get; set; }
+        public DbSet<SubFeature> SubFeatures { get; set; }
         public DbSet<ProductFeature> ProductFeatures { get; set; }
 
     }

@@ -202,7 +202,7 @@ namespace SmartStore.Controllers
                 var subGroup = db.ProductGroups.Where(w => w.ParentId == item.Id).ToList();
                 subGroup.ForEach(sub =>
                 {
-                    item.ProductGroup1.Add(sub);
+                    item.Children.Add(sub);
                 });
             });
 

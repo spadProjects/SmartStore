@@ -61,13 +61,17 @@
     <Compile Include="Common\Navigations.cs" />
     <Compile Include="Context\SmartStoreContext.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
-    <Compile Include="Migrations\202010310835204_chngD123.cs" />
-    <Compile Include="Migrations\202010310835204_chngD123.designer.cs">
-      <DependentUpon>202010310835204_chngD123.cs</DependentUpon>
+    <Compile Include="Migrations\202012050830273_init.cs" />
+    <Compile Include="Migrations\202012050830273_init.designer.cs">
+      <DependentUpon>202012050830273_init.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202010310852132_chngD1213.cs" />
-    <Compile Include="Migrations\202010310852132_chngD1213.designer.cs">
-      <DependentUpon>202010310852132_chngD1213.cs</DependentUpon>
+    <Compile Include="Migrations\202012050904353_updated-features.cs" />
+    <Compile Include="Migrations\202012050904353_updated-features.designer.cs">
+      <DependentUpon>202012050904353_updated-features.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012051004189_fixed-product-group-parent-relation.cs" />
+    <Compile Include="Migrations\202012051004189_fixed-product-group-parent-relation.designer.cs">
+      <DependentUpon>202012051004189_fixed-product-group-parent-relation.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -85,11 +89,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202010310835204_chngD123.resx">
-      <DependentUpon>202010310835204_chngD123.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202012050830273_init.resx">
+      <DependentUpon>202012050830273_init.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202010310852132_chngD1213.resx">
-      <DependentUpon>202010310852132_chngD1213.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202012050904353_updated-features.resx">
+      <DependentUpon>202012050904353_updated-features.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012051004189_fixed-product-group-parent-relation.resx">
+      <DependentUpon>202012051004189_fixed-product-group-parent-relation.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

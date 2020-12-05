@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -41,41 +42,54 @@ namespace SmartStore.Areas.Admin.Controllers
         // GET: Admin/Products/Create
         public ActionResult Create()
         {
-            ViewBag.BrandId = new SelectList(db.Brands.OrderBy(b => b.BrandOrder), "Id", "BrandName");
-            var ProductGroups = db.ProductGroups.Where(pg => pg.ParentId == null).ToList();
-            //ViewBag.ProductSubGroupId = new SelectList(db.ProductGroups.Where(g => g.ParentId != null), "GroupId", "GroupName");
-
-            var model = new ProductViewModel
-            {
-                ProductGroupList = ProductGroups
-
-            };
-
-            return View(model);
+            ViewBag.ProductGroups = db.ProductGroups.ToList();
+            return View();
         }
 
         // POST: Admin/Products/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateInput(false)]
-        public ActionResult Create(Product entity)
+        public int? Create(NewProductViewModel entity)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid) return null;
+            var prod = new Product();
+            prod.ProductName = entity.ProductName;
+            prod.ProductShortDescription = entity.ProductShortDescription;
+            prod.ProductDescription = entity.ProductDescription;
+            prod.BrandId = entity.Brand;
+            prod.ProductGroupId = entity.ProductGroup;
+            var addProduct = db.Products.Add(prod);
+            db.SaveChanges();
+            #region Adding Product Features
+
+            foreach (var feature in entity.ProductFeatures)
             {
-
-                //product.ProductGroupId = 2;
-                entity.InsertUser = "admin";
-                entity.InsertDate = DateTime.Now;
-                //entity.BrandId = 1;
-                db.Products.Add(entity);
-                db.SaveChanges();
-
-                return Json(entity, JsonRequestBehavior.AllowGet); //message
+                if (feature.IsMain)
+                {
+                    var model = new ProductMainFeature();
+                    model.ProductId = addProduct.Id;
+                    model.FeatureId = feature.FeatureId;
+                    model.SubFeatureId = feature.SubFeatureId;
+                    model.Value = feature.Value;
+                    model.Quantity = feature.Quantity ?? 0;
+                    model.Price = feature.Price ?? 0;
+                    db.ProductMainFeatures.Add(model);
+                    db.SaveChanges();
+                }
+                else
+                {
+                    var model = new ProductFeatureValue();
+                    model.ProductId = addProduct.Id;
+                    model.FeatureId = feature.FeatureId;
+                    model.SubFeatureId = feature.SubFeatureId;
+                    model.Value = feature.Value;
+                    db.ProductFeatureValues.Add(model);
+                    db.SaveChanges();
+                }
             }
-            //ViewBag.BrandId = new SelectList(db.Brands, "Id", "BrandName", product.BrandId);
-            //ViewBag.ProductGroupId = new SelectList(db.ProductGroups, "GroupId", "GroupName", product.ProductGroup);
-            return Json("false", JsonRequestBehavior.AllowGet); //message
+            #endregion
+            return addProduct.Id;
         }
 
 
@@ -144,8 +158,7 @@ namespace SmartStore.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.BrandId = new SelectList(db.Brands, "Id", "BrandName", product.BrandId);
-            ViewBag.ProductGroupId = new SelectList(db.ProductGroups, "Id", "GroupName", product.ProductGroupId);
+            ViewBag.ProductGroups = db.ProductGroups.ToList();
             return View(product);
         }
 
@@ -154,7 +167,7 @@ namespace SmartStore.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,ProductGroupId,BrandId,ProductName,ProductImg,ProductPrice,ProductDiscountPercent,ProductDescription,ProductOrder,ProductNotShow")] Product product, HttpPostedFileBase file)
+        public ActionResult Edit(Product product, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
@@ -214,7 +227,78 @@ namespace SmartStore.Areas.Admin.Controllers
             }
             return View(product);
         }
+        [HttpPost]
+        public bool UploadImage(int id, HttpPostedFileBase File)
+        {
+            #region Upload Image
+            if (File != null)
+            {
+                var product = db.Products.Find(id);
+                if (product.ProductImg != null)
+                {
+                    if (System.IO.File.Exists(Server.MapPath("/Images/Product/" + product.ProductImg)))
+                        System.IO.File.Delete(Server.MapPath("/Images/Product/" + product.ProductImg));
+                }
+                // Saving Image
+                var newFileName = Guid.NewGuid() + Path.GetExtension(File.FileName);
+                File.SaveAs(Server.MapPath("/Images/Product/" + newFileName));
 
+                product.ProductImg = newFileName;
+                db.Entry(product).State = EntityState.Modified;
+                db.SaveChanges();
+                return true;
+
+            }
+            #endregion
+
+            return false;
+        }
+        public JsonResult GetProductGroupFeatures(int id)
+        {
+            var pgFeatures = db.ProductGroupFeatures.Where(f=>f.ProductGroupId == id).ToList();
+            var features = pgFeatures.Select(item => db.Features.FirstOrDefault(f => f.Id == item.FeatureId)).ToList();
+            var obj = features.Select(item => new FeaturesObjViewModel() { Id = item.Id, Title = item.FeatureTitle }).ToList();
+            return Json(obj, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult GetProductFeatures(int id)
+        {
+            var mainFeatures = db.ProductMainFeatures.Where(f=>f.ProductId == id).ToList();
+            var features = db.ProductFeatureValues.Where(f => f.ProductId == id).ToList();
+            var obj = mainFeatures.Select(mainFeature => new ProductFeaturesViewModel()
+            {
+                ProductId = mainFeature.ProductId,
+                FeatureId = mainFeature.FeatureId.Value,
+                SubFeatureId = mainFeature.SubFeatureId,
+                IsMain = true,
+                Value = mainFeature.Value,
+                Quantity = mainFeature.Quantity,
+                Price = mainFeature.Price
+            })
+                .ToList();
+            obj.AddRange(features.Select(feature => new ProductFeaturesViewModel()
+            {
+                ProductId = feature.ProductId,
+                FeatureId = feature.FeatureId.Value,
+                Value = feature.Value,
+                IsMain = false,
+                SubFeatureId = feature.SubFeatureId
+            }));
+
+            return Json(obj.GroupBy(a => a.FeatureId), JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult GetProductGroupBrands(int id)
+        {
+            var pgBrands = db.ProductGroupBrands.Where(f => f.ProductGroupId == id).ToList();
+            var brands = pgBrands.Select(item => db.Brands.FirstOrDefault(f => f.Id == item.BrandId)).ToList();
+            var obj = brands.Select(item => new BrandsObjViewModel() { Id = item.Id, Name = item.BrandName }).ToList();
+            return Json(obj, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult GetFeatureSubFeatures(int id)
+        {
+            var subFeatures = db.SubFeatures.Where(s=>s.FeatureId == id).ToList();
+            var obj = subFeatures.Select(item => new SubFeaturesObjViewModel() { Id = item.Id, Value = item.Value }).ToList();
+            return Json(obj, JsonRequestBehavior.AllowGet);
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

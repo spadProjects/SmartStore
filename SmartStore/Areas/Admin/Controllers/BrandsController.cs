@@ -60,12 +60,12 @@ namespace SmartStore.Areas.Admin.Controllers
                     file.SaveAs(HttpContext.Server.MapPath("~/Images/Brand/") + imgcode.ToString() + "-" + file.FileName);
                     brand.BrandImg = imgcode.ToString() + "-" + file.FileName;
                 }
-                brand.InsertUser = "Admin";
-                brand.InsertDate = DateTime.Now;
-                brand.UpdateUser = "Admin";
-                brand.UpdateDate = DateTime.Now;
-                brand.IsArchived = false;
-                brand.IsDeleted = false;
+                //brand.InsertUser = "Admin";
+                //brand.InsertDate = DateTime.Now;
+                //brand.UpdateUser = "Admin";
+                //brand.UpdateDate = DateTime.Now;
+                //brand.IsArchived = false;
+                //brand.IsDeleted = false;
                 db.Brands.Add(brand);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -104,12 +104,12 @@ namespace SmartStore.Areas.Admin.Controllers
                 file.SaveAs(HttpContext.Server.MapPath("~/Images/Brand/") + imgcode.ToString() + "-" + file.FileName);
                 brand.BrandImg = imgcode.ToString() + "-" + file.FileName;
             }
-            brand.InsertUser = "Admin";
-            brand.InsertDate = DateTime.Now;
-            brand.UpdateUser = "Admin";
-            brand.UpdateDate = DateTime.Now;
-            brand.IsArchived = false;
-            brand.IsDeleted = false;
+            //brand.InsertUser = "Admin";
+            //brand.InsertDate = DateTime.Now;
+            //brand.UpdateUser = "Admin";
+            //brand.UpdateDate = DateTime.Now;
+            //brand.IsArchived = false;
+            //brand.IsDeleted = false;
             db.Entry(brand).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index");

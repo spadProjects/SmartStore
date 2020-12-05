@@ -3841,6 +3841,12 @@
     <Content Include="Content\Home\js\typeahead.jquery.min.js" />
     <Content Include="Content\Home\js\wow.min.js" />
     <Content Include="Content\Home\scss\main.css" />
+    <Content Include="Content\jstree\32px.png" />
+    <Content Include="Content\jstree\jstree.bundle.css" />
+    <Content Include="Content\jstree\jstree.bundle.js" />
+    <Content Include="Content\jstree\jstree.bundle.rtl.css" />
+    <Content Include="Content\jstree\throbber.gif" />
+    <Content Include="Content\jstree\treeview.js" />
     <Content Include="Content\MegaMenu\bootstrap.min.css" />
     <Content Include="Content\MegaMenu\font-awesome.min.css" />
     <Content Include="Content\MegaMenu\Fonts\fontawesome-webfont.svg" />
@@ -3850,6 +3856,22 @@
     <Content Include="Content\Modal\jquery.min.js" />
     <Content Include="Content\Modal\style.css" />
     <Content Include="Content\PagedList.css" />
+    <Content Include="Content\Plugins\fonts\%40fortawesome\fa-brands-400.svg" />
+    <Content Include="Content\Plugins\fonts\%40fortawesome\fa-regular-400.svg" />
+    <Content Include="Content\Plugins\fonts\%40fortawesome\fa-solid-900.svg" />
+    <Content Include="Content\Plugins\fonts\flaticon2\Flaticon2.svg" />
+    <Content Include="Content\Plugins\fonts\flaticon\Flaticon.svg" />
+    <Content Include="Content\Plugins\fonts\keenthemes-icons\ki.css" />
+    <Content Include="Content\Plugins\fonts\keenthemes-icons\ki.min.rtl.css" />
+    <Content Include="Content\Plugins\fonts\keenthemes-icons\ki.rtl.css" />
+    <Content Include="Content\Plugins\fonts\keenthemes-icons\Ki.svg" />
+    <Content Include="Content\Plugins\fonts\line-awesome\la-brands-400.svg" />
+    <Content Include="Content\Plugins\fonts\line-awesome\la-regular-400.svg" />
+    <Content Include="Content\Plugins\fonts\line-awesome\la-solid-900.svg" />
+    <Content Include="Content\Plugins\fonts\socicon\socicon.svg" />
+    <Content Include="Content\Plugins\plugins.bundle.css" />
+    <Content Include="Content\Plugins\plugins.bundle.js" />
+    <Content Include="Content\Plugins\plugins.bundle.rtl.css" />
     <Content Include="Content\ReceiveIdea\css\style.css" />
     <Content Include="Content\ReceiveIdea\js\index.js" />
     <Content Include="Content\Table\Table.css" />
@@ -4496,6 +4518,52 @@
     <Content Include="Content\MegaMenu\Fonts\fontawesome-webfont.woff" />
     <Content Include="Content\MegaMenu\Fonts\fontawesome-webfont.woff2" />
     <Content Include="Content\MegaMenu\Fonts\FontAwesome.otf" />
+    <Content Include="Areas\Admin\Views\SubFeatures\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\SubFeatures\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\SubFeatures\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\SubFeatures\Delete.cshtml" />
+    <Content Include="Content\Plugins\fonts\%40fortawesome\fa-brands-400.eot" />
+    <Content Include="Content\Plugins\fonts\%40fortawesome\fa-brands-400.ttf" />
+    <Content Include="Content\Plugins\fonts\%40fortawesome\fa-brands-400.woff" />
+    <Content Include="Content\Plugins\fonts\%40fortawesome\fa-brands-400.woff2" />
+    <Content Include="Content\Plugins\fonts\%40fortawesome\fa-regular-400.eot" />
+    <Content Include="Content\Plugins\fonts\%40fortawesome\fa-regular-400.ttf" />
+    <Content Include="Content\Plugins\fonts\%40fortawesome\fa-regular-400.woff" />
+    <Content Include="Content\Plugins\fonts\%40fortawesome\fa-regular-400.woff2" />
+    <Content Include="Content\Plugins\fonts\%40fortawesome\fa-solid-900.eot" />
+    <Content Include="Content\Plugins\fonts\%40fortawesome\fa-solid-900.ttf" />
+    <Content Include="Content\Plugins\fonts\%40fortawesome\fa-solid-900.woff" />
+    <Content Include="Content\Plugins\fonts\%40fortawesome\fa-solid-900.woff2" />
+    <Content Include="Content\Plugins\fonts\flaticon2\Flaticon2.eot" />
+    <Content Include="Content\Plugins\fonts\flaticon2\Flaticon2.ttf" />
+    <Content Include="Content\Plugins\fonts\flaticon2\Flaticon2.woff" />
+    <Content Include="Content\Plugins\fonts\flaticon2\Flaticon2.woff2" />
+    <Content Include="Content\Plugins\fonts\flaticon\Flaticon.eot" />
+    <Content Include="Content\Plugins\fonts\flaticon\Flaticon.ttf" />
+    <Content Include="Content\Plugins\fonts\flaticon\Flaticon.woff" />
+    <Content Include="Content\Plugins\fonts\keenthemes-icons\Ki.eot" />
+    <Content Include="Content\Plugins\fonts\keenthemes-icons\Ki.ttf" />
+    <Content Include="Content\Plugins\fonts\keenthemes-icons\Ki.woff" />
+    <Content Include="Content\Plugins\fonts\keenthemes-icons\Ki.woff2" />
+    <Content Include="Content\Plugins\fonts\line-awesome\la-brands-400.eot" />
+    <Content Include="Content\Plugins\fonts\line-awesome\la-brands-400.ttf" />
+    <Content Include="Content\Plugins\fonts\line-awesome\la-brands-400.woff" />
+    <Content Include="Content\Plugins\fonts\line-awesome\la-brands-400.woff2" />
+    <Content Include="Content\Plugins\fonts\line-awesome\la-regular-400.eot" />
+    <Content Include="Content\Plugins\fonts\line-awesome\la-regular-400.ttf" />
+    <Content Include="Content\Plugins\fonts\line-awesome\la-regular-400.woff" />
+    <Content Include="Content\Plugins\fonts\line-awesome\la-regular-400.woff2" />
+    <Content Include="Content\Plugins\fonts\line-awesome\la-solid-900.eot" />
+    <Content Include="Content\Plugins\fonts\line-awesome\la-solid-900.ttf" />
+    <Content Include="Content\Plugins\fonts\line-awesome\la-solid-900.woff" />
+    <Content Include="Content\Plugins\fonts\line-awesome\la-solid-900.woff2" />
+    <Content Include="Content\Plugins\fonts\socicon\socicon.eot" />
+    <Content Include="Content\Plugins\fonts\socicon\socicon.ttf" />
+    <Content Include="Content\Plugins\fonts\socicon\socicon.woff" />
+    <Content Include="Content\Plugins\fonts\summernote\summernote.eot" />
+    <Content Include="Content\Plugins\fonts\summernote\summernote.ttf" />
+    <Content Include="Content\Plugins\fonts\summernote\summernote.woff" />
+    <Content Include="Content\Plugins\fonts\summernote\summernote.woff2" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -5228,6 +5296,10 @@
     <Content Include="Views\Home\ShowCategory.cshtml" />
     <Content Include="Views\Home\PageAboutUs.cshtml" />
     <Content Include="Views\Shared\_HomeTemp.cshtml" />
+    <Content Include="Areas\Admin\Views\Features\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Features\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Features\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Features\Delete.cshtml" />
     <None Include="Web References\ShopSmsService\SendReceive.disco" />
     <Content Include="Web.config" />
     <Content Include="Views\Shared\_Home.cshtml" />
@@ -5248,12 +5320,14 @@
     <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
     <Compile Include="Areas\Admin\Controllers\SliderHeadersController.cs" />
     <Compile Include="Areas\Admin\Controllers\SocialNetWorksController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SubFeaturesController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Classes\SendEmail.cs" />
     <Compile Include="Classes\ShopProvider.cs" />
     <Compile Include="Classes\SmsService.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
+    <Compile Include="Areas\Admin\Controllers\FeaturesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ReceiveIdeaController.cs" />
     <Compile Include="Controllers\ShopController.cs" />
@@ -5262,6 +5336,7 @@
     </Compile>
     <Compile Include="Models\AccountViewModel.cs" />
     <Compile Include="Models\ProductGroupViewModel.cs" />
+    <Compile Include="Models\ProductGroupViewModels.cs" />
     <Compile Include="Models\ProductViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -5338,6 +5413,10 @@
     <ProjectReference Include="..\SmartStore.DataAccess\SmartStore.DataAccess.csproj">
       <Project>{301CCF4C-6360-4386-B71F-4846058DA0CB}</Project>
       <Name>SmartStore.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SmartStore.Infrastructure\SmartStore.Infrastructure.csproj">
+      <Project>{070E64AC-9F93-4CD0-84BB-31DD9829E9F6}</Project>
+      <Name>SmartStore.Infrastructure</Name>
     </ProjectReference>
     <ProjectReference Include="..\SmartStore.Model\SmartStore.Model.csproj">
       <Project>{478DD29B-263F-46E1-8A98-D3D55ADFECA4}</Project>

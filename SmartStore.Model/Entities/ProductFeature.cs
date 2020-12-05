@@ -27,8 +27,8 @@ namespace SmartStore.Model.Entities
         //[ForeignKey("ProductId")]
         //public virtual Product Product { get; set; }
 
-        [ForeignKey("FeatureId")]
-        public virtual Feature Feature { get; set; }
+        //[ForeignKey("FeatureId")]
+        //public virtual Feature Feature { get; set; }
 
 
     }

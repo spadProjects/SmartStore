@@ -13,10 +13,10 @@ namespace SmartStore.Models.Basement
         public TPrimaryKey Id { get; set; }
         public int? ParentHistoryId { get; set; }
         public string InsertUser { get; set; }
-        public DateTime InsertDate { get; set; }
+        public DateTime? InsertDate { get; set; }
         public string UpdateUser { get; set; }
         public DateTime? UpdateDate { get; set; }
-        public bool IsArchived { get; set; }
-        public bool IsDeleted { get; set; }
+        public bool? IsArchived { get; set; }
+        public bool? IsDeleted { get; set; }
     }
 }

@@ -25,16 +25,11 @@ namespace SmartStore.Model.Entities
 
         [Display(Name = "ParentId")]
         public int? ParentId { get; set; }
-
-        public ProductGroup()
-        {
-            this.ProductGroup1 = new HashSet<ProductGroup>();
-        }
-
-        public virtual ICollection<ProductGroup> ProductGroup1 { get; set; }
-        public virtual ProductGroup ProductGroup2 { get; set; }
-
-        //public virtual ICollection<Brand> Brands { get; set; }
+        public virtual ProductGroup Parent { get; set; }
+        public virtual ICollection<ProductGroup> Children { get; set; }
+        public ICollection<Product> Products { get; set; }
+        public ICollection<ProductGroupFeature> ProductGroupFeatures { get; set; }
+        public ICollection<ProductGroupBrand> ProductGroupBrands { get; set; }
 
     }
 }

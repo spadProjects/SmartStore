@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using SmartStore.DataAccess.Context;
 using SmartStore.Model.Entities;
+using SmartStore.Models;
 
 namespace SmartStore.Areas.Admin.Controllers
 {
@@ -19,7 +21,7 @@ namespace SmartStore.Areas.Admin.Controllers
         public ActionResult Index(int? id = null)
         {
             Session.Add("GroupId", id);
-            var productgroups = db.ProductGroups.Where(g => g.ParentId == id);
+            var productgroups = db.ProductGroups.ToList();
             return View(productgroups.ToList());
         }
 
@@ -39,51 +41,61 @@ namespace SmartStore.Areas.Admin.Controllers
         }
 
         // GET: Admin/ProductGroups/Create
-        public ActionResult Create(int? id)
+        public ActionResult Create()
         {
+            ViewBag.Features = db.Features.ToList();
+            ViewBag.Brands = db.Brands.ToList();
+            ViewBag.ProductGroups = db.ProductGroups.Include(p=>p.Children).ToList();
             //ViewBag.GroupId = new SelectList(db.ProductGroups.OrderBy(pg => pg.GroupOrder), "GroupId", "GroupName");
-            return PartialView(new ProductGroup()
-            {
-                ParentId = id
-            });
+            return View();
         }
 
         // POST: Admin/ProductGroups/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "GroupId,GroupImage,GroupName,GroupOrder,GroupNotShow,ParentId")] ProductGroup productGroup, HttpPostedFileBase file)
+        public int? Create(NewProductGroupViewModel newProductGroup)
         {
             if (ModelState.IsValid)
             {
-                if (file != null)
-                {
-                    Random randomm = new Random();
-                    string imgcode = randomm.Next(100000, 999999).ToString();
+                var productGroup = new ProductGroup();
 
-                    file.SaveAs(HttpContext.Server.MapPath("~/Images/ProductGroup/") + imgcode.ToString() + "-" + file.FileName);
-                    productGroup.GroupImage = imgcode.ToString() + "-" + file.FileName;
-                }
-                var sessionParentId = HttpContext.Session["GroupId"]?.ToString();
-
-
-                if (!string.IsNullOrEmpty(sessionParentId))
-                    productGroup.ParentId = Convert.ToInt32(sessionParentId);
-                productGroup.InsertUser = "Admin";
-                productGroup.InsertDate = DateTime.Now;
-                productGroup.UpdateUser = "Admin";
-                productGroup.UpdateDate = DateTime.Now;
-                productGroup.IsArchived = false;
-                productGroup.IsDeleted = false;
+                #region Adding Product Group
+                productGroup.GroupName = newProductGroup.GroupName;
+                if (newProductGroup.ParentGroupId != 0)
+                    productGroup.ParentId = newProductGroup.ParentGroupId;
                 db.ProductGroups.Add(productGroup);
                 db.SaveChanges();
-                return RedirectToAction("Index", new { Id = productGroup.ParentId });
+                #endregion
+
+                #region Adding Product Group Brands
+
+                foreach (var brandId in newProductGroup.BrandIds)
+                {
+                    var productGroupBrand = new ProductGroupBrand();
+                    productGroupBrand.ProductGroupId = productGroup.Id;
+                    productGroupBrand.BrandId = brandId;
+                    db.ProductGroupBrands.Add(productGroupBrand);
+                }
+                db.SaveChanges();
+
+                #endregion
+                #region Adding product Group Features
+                foreach (var featureId in newProductGroup.ProductGroupFeatureIds)
+                {
+                    var productGroupFeature = new ProductGroupFeature();
+                    productGroupFeature.ProductGroupId = productGroup.Id;
+                    productGroupFeature.FeatureId = featureId;
+                    db.ProductGroupFeatures.Add(productGroupFeature);
+                }
+
+                db.SaveChanges();
+                #endregion
+                return productGroup.Id;
             }
 
-            return View(productGroup);
+            return null;
         }
-
         // GET: Admin/ProductGroups/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -91,49 +103,107 @@ namespace SmartStore.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ProductGroup productGroup = db.ProductGroups.Find(id);
+            ProductGroup productGroup = db.ProductGroups.Include(p=>p.ProductGroupBrands).Include(p=>p.ProductGroupFeatures).FirstOrDefault(p=>p.Id == id);
             if (productGroup == null)
             {
                 return HttpNotFound();
             }
+            ViewBag.Features = db.Features.ToList();
+            ViewBag.Brands = db.Brands.ToList();
+            ViewBag.ProductGroups = db.ProductGroups.Include(p => p.Children).ToList();
             return PartialView(productGroup);
         }
 
         // POST: Admin/ProductGroups/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,GroupImage,GroupName,GroupOrder,GroupNotShow,ParentId")] ProductGroup productGroup, HttpPostedFileBase file)
+        public int? Edit(UpdateProductGroupViewModel newProductGroup)
         {
             if (ModelState.IsValid)
             {
-                if (file != null)
-                {
-                    Random randomm = new Random();
-                    string imgcode = randomm.Next(100000, 999999).ToString();
+                var productGroup = db.ProductGroups.Find(newProductGroup.Id);
+                #region Adding Product Group
+                productGroup.GroupName = newProductGroup.GroupName;
+                if (newProductGroup.ParentGroupId != 0)
+                    productGroup.ParentId = newProductGroup.ParentGroupId;
+                else
+                    productGroup.ParentId = null;
 
-                    file.SaveAs(HttpContext.Server.MapPath("~/Images/ProductGroup/") + imgcode.ToString() + "-" + file.FileName);
-                    productGroup.GroupImage = imgcode.ToString() + "-" + file.FileName;
-                }
-                var sessionParentId = HttpContext.Session["GroupId"]?.ToString();
-
-
-                if (!string.IsNullOrEmpty(sessionParentId))
-                    productGroup.ParentId = Convert.ToInt32(sessionParentId);
-                productGroup.InsertUser = "Admin";
-                productGroup.InsertDate = DateTime.Now;
-                productGroup.UpdateUser = "Admin";
-                productGroup.UpdateDate = DateTime.Now;
-                productGroup.IsArchived = false;
-                productGroup.IsDeleted = false;
                 db.Entry(productGroup).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index", new { Id = productGroup.ParentId });
+                #endregion
+
+                #region Product Group Brands
+
+                // Removing Previous Group Brands
+                var productGroupBrands = db.ProductGroupBrands
+                    .Where(b =>b.ProductGroupId == productGroup.Id).ToList();
+                foreach (var item in productGroupBrands)
+                    db.ProductGroupBrands.Remove(item);
+
+                db.SaveChanges();
+                // Adding new Group Brands
+                foreach (var brandId in newProductGroup.BrandIds)
+                {
+                    var productGroupBrand = new ProductGroupBrand();
+                    productGroupBrand.ProductGroupId = productGroup.Id;
+                    productGroupBrand.BrandId = brandId;
+                    db.ProductGroupBrands.Add(productGroupBrand);
+                }
+                db.SaveChanges();
+
+                #endregion
+                #region product Group Features
+                var productGroupFeatures = db.ProductGroupFeatures
+                    .Where(b => b.ProductGroupId == productGroup.Id).ToList();
+
+                // Removing Previous Group Features
+                foreach (var item in productGroupFeatures)
+                    db.ProductGroupFeatures.Remove(item);
+
+                db.SaveChanges();
+
+                // Adding New Group Features
+                foreach (var featureId in newProductGroup.ProductGroupFeatureIds)
+                {
+                    var productGroupFeature = new ProductGroupFeature();
+                    productGroupFeature.ProductGroupId = productGroup.Id;
+                    productGroupFeature.FeatureId = featureId;
+                    db.ProductGroupFeatures.Add(productGroupFeature);
+                }
+                db.SaveChanges();
+                #endregion
+                return productGroup.Id;
             }
-            return View(productGroup);
+
+            return null;
         }
 
+        [HttpPost]
+        public bool UploadImage(int id, HttpPostedFileBase File)
+        {
+            #region Upload Image
+            if (File != null)
+            {
+                var productGroup = db.ProductGroups.Find(id);
+                if (productGroup.GroupImage != null)
+                {
+                    if (System.IO.File.Exists(Server.MapPath("/Images/ProductGroup/" + productGroup.GroupImage)))
+                        System.IO.File.Delete(Server.MapPath("/Images/ProductGroup/" + productGroup.GroupImage));
+                }
+                // Saving Image
+                var newFileName = Guid.NewGuid() + Path.GetExtension(File.FileName);
+                File.SaveAs(Server.MapPath("/Images/ProductGroup/" + newFileName));
+                productGroup.GroupImage = newFileName;
+                db.Entry(productGroup).State = EntityState.Modified;
+                db.SaveChanges();
+                return true;
+            }
+            #endregion
+            return false;
+        }
         // GET: Admin/ProductGroups/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -155,7 +225,25 @@ namespace SmartStore.Areas.Admin.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             var productGroup = db.ProductGroups.Find(id);
-            if (productGroup.ProductGroup1.Any())
+
+            // Removing Group Brands
+            var productGroupBrands = db.ProductGroupBrands
+                .Where(b => b.ProductGroupId == productGroup.Id).ToList();
+            foreach (var item in productGroupBrands)
+                db.ProductGroupBrands.Remove(item);
+
+            db.SaveChanges();
+
+            // Removing Previous Group Features
+            var productGroupFeatures = db.ProductGroupFeatures
+                .Where(b => b.ProductGroupId == productGroup.Id).ToList();
+
+            foreach (var item in productGroupFeatures)
+                db.ProductGroupFeatures.Remove(item);
+
+            db.SaveChanges();
+
+            if (productGroup.Children.Any())
             {
                 foreach (var subgroup in db.ProductGroups.Where(g => g.ParentId == id))
                 {

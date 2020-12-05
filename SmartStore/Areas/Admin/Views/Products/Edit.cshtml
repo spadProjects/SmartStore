@@ -1,57 +1,29 @@
-﻿@model SmartStore.Models.ProductViewModel
-
+﻿@using SmartStore.Infrastructure.Utility
+@using SmartStore.Model.Entities
+@model SmartStore.Models.ProductViewModel
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    var ProductGroups = ViewBag.ProductGroups as List<ProductGroup>;
 }
+<link href="/Content/jstree/jstree.bundle.css" rel="stylesheet" type="text/css" />
+<link href="/Content/Plugins/plugins.bundle.css" rel="stylesheet" type="text/css" />
+<style>
+    .subGroupMargin {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+</style>
 
-@using (Html.BeginForm("Edit", "Products", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("Edit", "Products", FormMethod.Post, new { id = "form", enctype = "multipart/form-data" }))
 {
     <div style="background:#ffffff center;padding:50px;margin-left:50px;margin-right:50px">
         <h4 style="text-align: center;font-weight: bold;">Edit Product</h4>
         @Html.AntiForgeryToken()
         <div class="form-horizontal">
+            <input type="hidden" id="levelIndex" />
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            @Html.HiddenFor(model => model.Id)
-            @Html.HiddenFor(model => model.ProductImg)
-            @*@Html.HiddenFor(model => model.ProductPrice)*@
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.ProductGroupId, "Select Group", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @*@Html.DropDownList("ProductGroupId", null, htmlAttributes: new { @class = "form-control" })*@
-                    <select id="ProductGroupId" class="form-control" onchange="getSubGroups(this,true,0)">
-                        @{
-                            for (int i = 0; i < Model.ProductGroupList.Count; i++)
-                            {
-                                var item = Model.ProductGroupList[i];
-
-                                <option value="@item.Id">@item.GroupName</option>
-                            }
-                        }
-
-                    </select>
-
-                    @Html.ValidationMessageFor(model => model.ProductGroupId, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.ProductGroupId, "Select SubGroup", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10" id="subGroups">
-
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.BrandId, "Select Brand", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("BrandId", null, htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.BrandId, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
             <div class="form-group">
                 @Html.LabelFor(model => model.ProductName, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -63,27 +35,25 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.ProductImg, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    <input type="file" name="file" />
-                    <br />
-                    <img src="~/Images/Product/@Model.ProductImg" alt="@Model.ProductName" width="150" height="100" />
+                    <input type="file" name="file" id="file" />
                 </div>
             </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.ProductPrice, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.ProductPrice, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.ProductPrice, "", new { @class = "text-danger" })
+            @*<div class="form-group">
+                    @Html.LabelFor(model => model.ProductPrice, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.ProductPrice, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ProductPrice, "", new { @class = "text-danger" })
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.ProductDiscountPercent, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.ProductDiscountPercent, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.ProductDiscountPercent, "", new { @class = "text-danger" })
-                </div>
-            </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ProductDiscountPercent, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.ProductDiscountPercent, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ProductDiscountPercent, "", new { @class = "text-danger" })
+                    </div>
+                </div>*@
 
             <div class="form-group">
                 @Html.LabelFor(model => model.ProductDescription, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -101,151 +71,390 @@
                 </div>
             </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.ProductOrder, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.ProductOrder, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.ProductOrder, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.ProductCost, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.ProductCost, new { htmlAttributes = new { @class = "form-control", @Value = 0, min = 0 } })
-                    @Html.ValidationMessageFor(model => model.ProductCost, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.ProductNotShow, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    <div class="checkbox">
-                        @Html.EditorFor(model => model.ProductNotShow)
-                        @Html.ValidationMessageFor(model => model.ProductNotShow, "", new { @class = "text-danger" })
+            @*<div class="form-group">
+                    @Html.LabelFor(model => model.ProductOrder, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.ProductOrder, new { htmlAttributes = new { @class = "form-control", @Value = 0, min = 0 } })
+                        @Html.ValidationMessageFor(model => model.ProductOrder, "", new { @class = "text-danger" })
                     </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ProductCost, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.ProductCost, new { htmlAttributes = new { @class = "form-control", @Value = 0, min = 0 } })
+                        @Html.ValidationMessageFor(model => model.ProductCost, "", new { @class = "text-danger" })
+                    </div>
+                </div>*@
+
+            @*<div class="form-group">
+                    @Html.LabelFor(model => model.ProductNotShow, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <div class="checkbox">
+                            @Html.EditorFor(model => model.ProductNotShow)
+                            @Html.ValidationMessageFor(model => model.ProductNotShow, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>*@
+            <div class="form-group">
+                <label class="">Choose Product Group</label>
+                <div class="col-lg-4 col-md-9 col-sm-12">
+                    <div id="ParentGroupId" class="tree-demo">
+                        <ul>
+                            @foreach (var group in ProductGroups.Where(p => p.ParentId == null))
+                            {
+                                var result = HierarchyLoop.GetProductGroupHierarchy(group);
+                                @Html.Raw(result)
+                            }
+                        </ul>
+                    </div>
+                    <span class="text-danger" style="display: none;color:darkred" id="validate_product_group">Please Choose A Product Group</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="">Brand</label>
+                <div class="col-md-10">
+                    <select class="form-control" id="Brands" name="Brands">
+                        <option value="">Please Choose A Product Group</option>
+                    </select>
+                </div>
+                <span class="text-danger" style="display: none" id="validate_brand">Please Choose A Brand</span>
+            </div>
+            <div class="form-group">
+                <label class="">Product Features</label>
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div id="productGroupFeatures">Please Choose A Product Group</div>
                 </div>
             </div>
             <hr />
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10" style="margin-bottom: -20px;">
-                    <input type="submit" value="Save" class="btn btn-primary" />
-                    <input type="submit" value="Cancel" class="btn btn-default" data-dismiss="modal" />
+                    <input type="submit" value="Add" class="btn btn-primary" />
+                    <input type="button" value="Cancel" class="btn btn-default" data-dismiss="modal" onclick="cancel()" />
                 </div>
             </div>
         </div>
     </div>
 }
 
-@*@section editorscripts{
-        <script src="/ckeditor/ckeditor.js"></script>
-        <script src="/ckeditor/adapters/jquery.js"></script>
-
-        <script>
-            $(function () {
-                $('#ProductDescription').ckeditor();
-            });
-        </script>
-    }*@
-
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 
-
 @section Scripts{
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="/Content/Plugins/plugins.bundle.js"></script>
+    <script src="/Content/jstree/jstree.bundle.js"></script>
+    <script src="/Content/jstree/treeview.js"></script>
     <script>
-        function getSubGroups(select, resetlevelIndex, selectIndex) {
+        function getFeatureInput(el) {
+            var switchBtn = $(el);
+            var name = switchBtn.attr("name"); // feature_1[0][existingFeature]
+            // getting feature id & index
+            var splitName = name.split('_'); // [feature,1[0][existingFeature]]
+            var secondSplit = splitName[1].split('['); // ["1", "0]", "existingSubFeature]", "]"]
 
-            if (resetlevelIndex == true) {
-                var sgDiv = document.getElementById('subGroups');
-                sgDiv.innerHTML = '';
-                document.getElementById('levelIndex').innerText = '';
+            // getting feature id
+            var idStr = secondSplit[0];
+            var featureId = parseInt(idStr);
+            // getting index
+            var index = secondSplit[1].split(']')[0];
+            // feature input container
+            var featureDetailContainer = $("[name='feature_" + idStr + "[" + index + "][featureDetailContainer]']");
+
+            if (switchBtn.prop("checked") === true) {
+                var optionsStr = "";
+                $.ajax({
+                    type: 'GET',
+                    url: '/Admin/Products/GetFeatureSubFeatures/' + featureId,
+                    async: false,
+                    success: function (data) {
+                        data.map(function (item) {
+                            var option = "<option value='" + item.Id + "'>" + item.Value + "</option>";
+                            optionsStr = optionsStr + option;
+                        });
+                    },
+                    error: function (data) {
+                        console.log("error");
+                        console.log(data);
+                    }
+                });
+                featureDetailContainer.html('<select class="form-control" name="feature_' +
+                    idStr +
+                    '[' +
+                    index +
+                    '][featureDetail]">' +
+                    optionsStr +
+                    '</select>');
+            } else {
+                featureDetailContainer.html('<input type="text" name="feature_' +
+                    idStr +
+                    '[' +
+                    index +
+                    '][featureDetail]" class="form-control" placeholder="Please Enter The Value">');
             }
-
-            var levelIndex = document.getElementById('levelIndex').innerText;
-
-            if (levelIndex == '') {
-                levelIndex = 0;
-            }
-
-            levelIndex++;
-
-            var id = select.options[select.selectedIndex].value;
-            var url = "/ProductGroups/GetSubGroups/" + id;
-
-            document.getElementById('levelIndex').innerText = levelIndex;
-
+        }
+        $("#ParentGroupId").jstree({
+            "core": {
+                "themes": {
+                    "responsive": false
+                }
+            },
+            "types": {
+                "default": {
+                    "icon": "fa fa-box"
+                }
+            },
+            "plugins": ["types"]
+        });
+        $('#ParentGroupId').on('select_node.jstree',
+            function (e, data) {
+                var selectedGroupArr = data.node.id.split('_'); // ["pg","id"]
+                var productGroupId = parseInt(selectedGroupArr[1]); // id
+                getProductGroupFeatures(productGroupId);
+                getProductGroupBrands(productGroupId);
+            });
+    </script>
+    <script>
+        function getProductGroupBrands(productGroupId) {
+            var optionsStr = "";
             $.ajax({
-                url: url, success: function (result) {
-                    fillSubGroupData(result, levelIndex, selectIndex);
+                type: 'GET',
+                url: '/Admin/Products/GetProductGroupBrands/' + productGroupId,
+                async: false,
+                success: function (data) {
+                    data.map(function (item) {
+                        var option = "<option value='" + item.Id + "'>" + item.Name + "</option>";
+                        optionsStr = optionsStr + option;
+                    });
+                },
+                error: function (data) {
+                    console.log("error");
+                    console.log(data);
                 }
             });
+            $('#Brands').html(optionsStr);
         }
-
-        function fillSubGroupData(data, levelIndex, selectIndex) {
-            if (data.length != 0) {
-                debugger;
-                if (selectIndex != 0) {
-                    levelIndex = removeElement(selectIndex);
-                }
-                var selectItem = '<div class="row subGroupMargin"><div class="col-md-12"><select id="GroupId' + levelIndex + '" class="form-control"  onchange="getSubGroups(this,false,' + levelIndex + ')"></select></div></div>';
-                var sgDiv = document.getElementById('subGroups');
-
-                //var existTxt = sgDiv.innerHTML;
-                //sgDiv.innerHTML = existTxt + selectItem;
-
-
-                var select = document.createElement("select");
-
-                select.setAttribute('id', 'GroupId' + levelIndex);
-                select.setAttribute('class', "form-control");
-                select.setAttribute('onchange', 'getSubGroups(this,false,' + levelIndex + ')');
-
-                sgDiv.appendChild(select);
-
-                var sId = 'GroupId' + levelIndex;
-                var select = document.getElementById(sId);
-                select.innerHTML = '';
-
-                for (var i = 0; i < data.length; i++) {
-
-                    var item = data[i];
-
-                    select.appendChild(new Option(item.GroupName, item.GroupId));
-
-                }
-
-            }
+        function getProductGroupFeatures(productGroupId) {
+            $.post("/Admin/Products/GetProductGroupFeatures/" + productGroupId,
+                function (data) {
+                    $("#productGroupFeatures").empty();
+                    data.map(function (item, index) {
+                        var mainFeature = "";
+                        if (index === 0) {
+                            mainFeature = "checked='checked'";
+                        }
+                        var feature = '<div id="feature_' +
+                            item.Id +
+                            '_repeater">' +
+                            '<div class="form-group" id="feature_' +
+                            item.Id +
+                            '_repeater">' +
+                            '<label class="col-lg-4 col-form-label text-left"><a href="javascript:;" class="btn btn-icon btn-circle btn-sm btn-success mr-2" data-repeater-create=""><i class="la la-plus"></i></a>' +
+                            item.Title +
+                            '</label>' +
+                            '<label class="radio radio-lg"><input type="radio" onchange="setMainFeatureFields(this) " id="isMain_' + item.Id + '" ' + mainFeature + ' name="MainFeature"/><span style="margin-left:10px"></span>Main Feature</label>' +
+                            '<div data-repeater-list="feature_' +
+                            item.Id +
+                            '" class="col-lg-10">' +
+                            '<div data-repeater-item class="">' +
+                            '<div class="form-group row" style="align-items: center">' +
+                            '<label class="col-md-4">Existing Values</label>' +
+                            '<div class="col-md-3">' +
+                            '<span class="switch">' +
+                            '<label>' +
+                            '<input type="checkbox" onclick="getFeatureInput(this)" name="existingSubFeature"/>' +
+                            '<span></span>' +
+                            '</label>' +
+                            '</span>' +
+                            '</div>' +
+                            '<div class="col-md-2">' +
+                            '<a href="javascript:;" data-repeater-delete="" class="btn btn-sm btn-icon btn-circle btn-danger">' +
+                            '<i class="la la-trash"></i>' +
+                            '</a>' +
+                            '</div>' +
+                            '</div>' +
+                            '<div class="form-group row">' +
+                            '<label class="col-md-2 col-form-label text-left">Values :</label>' +
+                            '<div class="col-lg-8" name="featureDetailContainer">' +
+                            '<input type="text" name="featureDetail" class="form-control" placeholder="Please Enter The Value">' +
+                            '</div>' +
+                            '</div>' +
+                            '<div style="display:none" name="mainFeatureFields_' + item.Id + '">' +
+                            '<div class="form-group row">' +
+                            '<label class="col-md-2 col-form-label text-left">Quantity :</label>' +
+                            '<div class="col-lg-8">' +
+                            '<input type="number" name="Quantity" class="form-control" placeholder="Enter The Quantity">' +
+                            '<span name="QuantityValidate" class="text-danger" style="display:none">Please Enter the Quantity</span>' +
+                            '</div>' +
+                            '</div>' +
+                            '<div class="form-group row">' +
+                            '<label class="col-md-2 col-form-label text-left">Price :</label>' +
+                            '<div class="col-lg-8">' +
+                            '<input type="number" name="Price" class="form-control" placeholder="Enter The Price">' +
+                            '<span name="PriceValidate" class="text-danger" style="display:none">Please Enter The Price</span>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>' +
+                            '<script>$("#feature_' + item.Id + '_repeater").repeater({initEmpty: true,show: function () {' +
+                            'if($(\'#isMain_' + item.Id + '\').prop("checked"))' +
+                            '{$("[name*=\'mainFeatureFields_' + item.Id + '\']").show()}' +
+                            'else {$("[name*=\'mainFeatureFields_' + item.Id + '\']").hide()}' +
+                            '$(this).slideDown();' +
+                            '},' +
+                            'hide: function (deleteElement) {var currentInstance = $(this).index();var nextInstance = $(this).index() + 1;' +
+                            '$(this).slideUp(deleteElement);}});' +
+                            "<\/script>";
+                        $("#productGroupFeatures").append(feature);
+                    });
+                });
         }
-
-
-        function removeElement(selectIndex) {
-            debugger;
-
-            var levelIndex = document.getElementById('levelIndex').innerText;
-
-            if (levelIndex == '') {
-                levelIndex = 0;
+        function setMainFeatureFields(el) {
+            var selectedItem = $(el).attr('id');
+            var selectedFeatureId = selectedItem.split('_')[1];
+            var mainFeatureField = $("[name*='mainFeatureFields_" + selectedFeatureId + "']");
+            mainFeatureField.show();
+            $("[name='MainFeature']").not(":checked").each(function () {
+                var notSelected = $(this).attr('id');
+                var notSelectedFeatureId = notSelected.split('_')[1];
+                var mainFeatureField = $("[name*='mainFeatureFields_" + notSelectedFeatureId + "']");
+                mainFeatureField.hide();
+            });
+            var mainFeatureField = $("[name*='mainFeatureFields_" + featureId + "']");
+            mainFeatureField.show();
+        }
+    </script>
+    <script>
+        $("#form").submit(function (e) {
+            e.preventDefault();
+            var ProductName = $("#ProductName").val();
+            var ProductShortDescription = $("#ProductShortDescription").val();
+            var Brand = $("#Brands option:selected").val();
+            var ProductDescription = $("#ProductDescription").val();
+            var ProductGroup = 0;
+            var selectedGroup = $("#ParentGroupId").jstree().get_selected()[0]; // ["pg_id"]
+            if (selectedGroup == undefined) {
+                $("#validate_product_group").show();
+            } else {
+                $("#validate_product_group").hide();
+                var selectedGroupArr = selectedGroup.split('_'); // ["pg","id"]
+                ProductGroup = parseInt(selectedGroupArr[1]); // id
             }
 
-            var tempLevel = levelIndex;
-
-            while (selectIndex < tempLevel) {
-                var element = document.getElementById('GroupId' + tempLevel);
-                if (element != null) {
-                    if (element.parentNode != null) {
-                        element.parentNode.removeChild(element);
-
-                        --levelIndex;
-                        document.getElementById('levelIndex').innerText = levelIndex;
+            var ProductFeatures = [];
+            var featureValidation = false;
+            if ($("[name*='[featureDetail]']").length >= 0) {
+                $("[name*='[featureDetail]']").each(function () {
+                    if ($(this).val() != null && $(this).val() != undefined && $(this).val() !== "") {
+                        var feature = {
+                            FeatureId: null,
+                            SubFeatureId: null,
+                            Value: null,
+                            IsMain: false,
+                            Quantity: null,
+                            Price: null
+                        };
+                        var name = $(this).attr("name"); // feature_2[0][featureDetail]
+                        var featureId = parseInt(name.split('_')[1].split('[')[0]);
+                        var index = name.split('_')[1].split('[')[1].split(']')[0];
+                        feature.FeatureId = featureId;
+                        if ($(this).is("input")) {
+                            feature.Value = $(this).val();
+                        } else {
+                            feature.SubFeatureId = parseInt($(this).val());
+                        }
+                        var isMain = $("#isMain_" + featureId).prop("checked");
+                        if (isMain) {
+                            feature.IsMain = true;
+                            var quantity = $("[name='feature_" + featureId + "[" + index + "][Quantity]']").val();
+                            var validateQuantity = $("[name='feature_" + featureId + "[" + index + "][QuantityValidate]']");
+                            console.log(quantity);
+                            var price = $("[name='feature_" + featureId + "[" + index + "][Price]']").val();
+                            var validatePrice = $("[name='feature_" + featureId + "[" + index + "][PriceValidate]']");
+                            if (quantity == null || quantity.length === 0 || price === null || price.length === 0) {
+                                if (quantity == null || quantity.length === 0) {
+                                    console.log('triggered');
+                                    validateQuantity.show();
+                                    featureValidation = false;
+                                }
+                                if (price === null || price.length === 0) {
+                                    validatePrice.show();
+                                    featureValidation = false;
+                                }
+                            } else {
+                                validateQuantity.hide();
+                                validatePrice.hide();
+                                feature.Quantity = parseInt(quantity);
+                                feature.Price = parseInt(price);
+                                featureValidation = true;
+                            }
+                        }
+                        ProductFeatures.push(feature);
                     }
-                }
-
-                --tempLevel;
+                });
             }
+            $("#validate_brand").hide();
+            $("#validate_feature").hide();
+            if (Brand === null || Brand == undefined || ProductFeatures.length <= 0) {
+                if (Brand === null || Brand == undefined) {
+                    $("#validate_brand").show();
+                }
+                if (ProductFeatures.length <= 0) {
+                    $("#validate_feature").show();
+                }
+            }
+            else if (featureValidation === true) {
+                $("#validate_brand").hide();
+                $("#validate_feature").hide();
+                var ProductImg = $('#file').get(0).files[0];
+                var product = {
+                    ProductName: ProductName,
+                    ProductShortDescription: ProductShortDescription,
+                    Brand: Brand,
+                    ProductDescription: ProductDescription,
+                    ProductGroup: ProductGroup,
+                    ProductFeatures: ProductFeatures
+                }
+                console.log(product);
+                $.post($("#form").attr('action'),
+                    product,
+                    function (id) {
+                        var formData = new FormData();
+                        formData.append('File', ProductImg);
+                        $.ajax({
+                            type: 'POST',
+                            url: "/Products/UploadImage/" + id,
+                            data: formData,
+                            processData: false,
+                            contentType: false,
+                            success: function (data) {
+                                console.log("success");
+                                location.href = "/Admin/Products";
+                            },
+                            error: function (data) {
+                                console.log("error");
+                                console.log(data);
+                            }
+                        });
+                    });
+            };
+        });
+    </script>
+    <script>
+        function redirectToAction(url) {
 
-            return levelIndex;
+            window.location.href = url;
+        }
+        function cancel() {
+            if (confirm("Are you sure?"))
+                redirectToAction("/admin/products/index");
+            else
+                return false;
         }
     </script>
 }

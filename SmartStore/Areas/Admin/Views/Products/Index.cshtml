@@ -53,10 +53,10 @@
                 <tr>
                     <th>#</th>
                     <th>Product Image</th>
-                    @*<th>Product Name</th>*@
-                    <th>Product SubGroup</th>
+                    <th>Product Name</th>
+                    <th>Product Group</th>
                     <th>Product Brand</th>
-                    <th>Product Price</th>
+                    @*<th>Product Price</th>*@
                     @*<th>Product DiscountPercent</th>*@
                     @*<th>Product Order</th>
                     <th>Product Cost</th>*@
@@ -70,10 +70,10 @@
                     <tr>
                         <td>@(rowno += 1)</td>
                         <td><a href="#"><img src="~/Images/Product/@item.ProductImg" alt="Avatar" width="100" height="100"></a></td>
-                        @*<td>@Html.DisplayFor(modelItem => item.ProductName)</td>*@
                         <td>@Html.DisplayFor(modelItem => item.ProductName)</td>
-                        <td>@Html.DisplayFor(modelItem => item.BrandId)</td>
-                        <td>£@Html.DisplayFor(modelItem => item.ProductPrice)</td>
+                        <td>@Html.DisplayFor(modelItem => item.ProductGroup.GroupName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Brand.BrandName)</td>
+                        @*<td>£@Html.DisplayFor(modelItem => item.ProductPrice)</td>*@
                         @*<td>%@Html.DisplayFor(modelItem => item.ProductDiscountPercent)</td>*@
                         @*<td>@Html.DisplayFor(modelItem => item.ProductOrder)</td>*@
                         @*<td>@Html.DisplayFor(modelItem => item.ProductCost)</td>*@
