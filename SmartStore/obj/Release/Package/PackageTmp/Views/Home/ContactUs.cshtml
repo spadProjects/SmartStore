@@ -1,0 +1,22 @@
+﻿@model IEnumerable<SmartStore.Model.Entities.ContactUs>
+
+<div class="col-lg-3 col-md-6 footer__content">
+    <h5 class="footer-heading">Keep in touch</h5>
+    <ul class="footer-list footer-list-info">
+        @foreach (var item in Model)
+        {
+            <li class="footer-list__item">
+                <span><i class="fas fa-map-marker-alt"></i></span>
+                <span>@item.Address</span>
+            </li>
+            <li class="footer-list__item">
+                <span><i class="fas fa-phone"></i></span>
+                <span>@item.Tel</span>
+            </li>
+            <li class="footer-list__item">
+                <span><i class="fas fa-envelope"></i></span>
+                <span>@item.Email</span>
+            </li>
+        }
+    </ul>
+</div>

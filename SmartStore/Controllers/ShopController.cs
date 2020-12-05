@@ -13,8 +13,6 @@ using System.IO;
 using System.Web.UI;
 using PagedList;
 using System.Net;
-using BitPayLight;
-using BitPayLight.Models.Invoice;
 
 namespace SmartStore.Controllers
 {
@@ -68,24 +66,9 @@ namespace SmartStore.Controllers
             int pagesize = (pageSize ?? 12);
             int PageNumber = (Page ?? 1);
 
-            var groupList = new List<int>();
-
-            groupList.Add(groupid ?? 0);
-
-            var subGroups = db.ProductGroups.Where(w => w.ParentId == groupid).Select(s => s.Id).ToList();
-
-            subGroups.ForEach(item =>
-            {
-                groupList.Add(item);
-
-                var subSubGroup = db.ProductGroups.Where(w => w.ParentId == item).Select(s => s.Id).ToList();
-
-                groupList.AddRange(subSubGroup);
-            });
-
             List<SmartStore.Model.Entities.Product> prdlist = new List<Product>();
-
-            prdlist = db.Products.Where(m => groupList.Contains( m.ProductGroupId)).ToList();
+            
+            prdlist = db.Products.Where(m => m.ProductNotShow == false && m.ProductGroupId == groupid).ToList();
             return View(prdlist.ToPagedList(PageNumber, pagesize));
         }
 
@@ -282,7 +265,8 @@ namespace SmartStore.Controllers
             return PartialView("Order", getListOrder());
         }
 
-        public ActionResult SubmitFactor()
+        [Authorize]
+        public ActionResult Payment()
         {
             ViewBag.MyUserId = db.Users.Single(u => u.UserEmail == User.Identity.Name).Id;
             int userId = db.Users.Single(u => u.UserEmail == User.Identity.Name).Id;
@@ -310,15 +294,13 @@ namespace SmartStore.Controllers
             Factor factor = new Factor()
             {
                 UserId = userId,
-                Price = 2,
+                Price=product.ProductPrice,
                 CreationDate = DateTime.Now,
-                IsPay = false,
+                IsPay = true,
                 FactorNumber = MyFactorNumber.ToString(),
                 PayNumber = MyPayNumber.ToString(),
-                InsertUser = "admin",
-                InsertDate = DateTime.Now,
                 PayDate = DateTime.Now.ToString("dd/MM/yyyy"),
-                PayTime = DateTime.Now.ToString("hh:mm tt"),
+                PayTime=DateTime.Now.ToString("hh:mm tt"),
             };
             db.Factors.Add(factor);
 
@@ -332,49 +314,10 @@ namespace SmartStore.Controllers
                     FactorId = factor.Id,
                     UnitPrice = item.ProductPrice,
                     ProductId = item.ProductId,
-                    InsertDate = DateTime.Now,
-                    InsertUser = "admin"
                 });
             }
             db.SaveChanges();
-            return RedirectToAction("Payment", new { factorId = factor.Id });
-        }
-        [Authorize]
-        public ActionResult Payment(int factorId)
-        {
-            var factor = db.Factors.Find(factorId);
-            return View(factor);
-        }
-
-        [HttpPost]
-        public ActionResult Checkout(int id)
-        {
-
-            var factor = db.Factors.Where(w => w.Id == id).FirstOrDefault();
-
-            var price = (double)factor.Price;
-
-            //var bitpay = new IranianBazar.Controllers.HomeController();
-
-            var bitpay = new BitPay("CPQMfPuwEHV8Ss1GefgErbqCsDSFw9uRTpiLNFfuTbYu");
-            var invoice = new Invoice();
-
-            invoice = new Invoice(price, "GBP");
-            invoice.Buyer = new Buyer();
-            invoice.Buyer.Name = factor.User?.UserLastName;
-            invoice.Buyer.Email = "Customer@outlook.com";
-            invoice.FullNotifications = true;
-            invoice.NotificationEmail = "Customer@yahoo.com";
-            string data = factor.FactorNumber;
-            invoice.PosData = data;
-
-            invoice = bitpay.CreateInvoice(invoice).Result;
-            var url = invoice.Url;
-            ViewBag.data = data;
-
-            return Redirect(url);
-
-            //return bitpay.Index(price);
+            return View(db.Factors.Where(f => f.UserId == userId));
         }
 
     }

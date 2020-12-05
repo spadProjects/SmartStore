@@ -1,0 +1,286 @@
+﻿@model PagedList.IPagedList<SmartStore.Model.Entities.Product>
+
+@using PagedList.Mvc
+
+@{
+    ViewBag.Title = "ProductList";
+    Layout = "~/Views/Shared/_Home.cshtml";
+}
+
+<div class="bs-canvas bs-canvas-right">
+    <div class="collapse-filter">
+        <button type="button" class="bs-canvas-close close" aria-label="Close">
+            <span aria-hidden="true">
+                <i class="fas fa-times"></i>
+            </span>
+        </button>
+        <div class="collapse-filter__header">
+            <img src="~/Content/Shop/images/logo.png" alt="">
+        </div>
+        <div class="collapse-filter__content sidebar">
+            <div class="sidebar-shop">
+                <form action="http://127.0.0.1/form.php" method="post">
+                    <div class="accordion" id="sidebarShop">
+                        <!-- categories -->
+                        @Html.Action("Category", "Shop")
+                        <!-- colors -->
+                        @*<div class="widget">
+                            <div class="widget__heading" id="headingTwo">
+                                <a href="#" class="btn widget__heading--title" data-toggle="collapse"
+                                   data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                                    <h3>Colors<span class="widget__heading--icon"></span></h3>
+                                </a>
+                            </div>
+                            <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo">
+                                <div class="widget__body">
+                                    <ul class="color-list">
+                                        <li class="color-list__item">
+                                            <label for="color_Blue" style="background-color: #668cb9;"
+                                                   data-allow-multiple="" class="btn-color"></label>
+                                            <input type="checkbox" name="color[]" value="668cb9"
+                                                   id="color_Blue" class="input-invisible">
+                                        </li>
+                                        <li class="color-list__item">
+                                            <label for="color_White" style="background-color: #f8f8f8"
+                                                   data-allow-multiple="" class="btn-color"></label>
+                                            <input type="checkbox" name="color[]" value="fff"
+                                                   id="color_White" class="input-invisible">
+                                        </li>
+                                        <li class="color-list__item">
+                                            <label for="color_Violet" style="background-color: #8b6ea4"
+                                                   data-allow-multiple="" class="btn-color"></label>
+                                            <input type="checkbox" name="color[]" value="8b6ea4"
+                                                   id="color_Violet" class="input-invisible">
+                                        </li>
+                                        <li class="color-list__item">
+                                            <label for="color_Red" style="background-color: #808080"
+                                                   data-allow-multiple="" class="btn-color"></label>
+                                            <input type="checkbox" name="color[]" value="dd6265"
+                                                   id="color_Gray" class="input-invisible">
+                                        </li>
+                                        <li class="color-list__item">
+                                            <label for="color_Red" style="background-color: #dd6265"
+                                                   data-allow-multiple="" class="btn-color"></label>
+                                            <input type="checkbox" name="color[]" value="dd6265"
+                                                   id="color_Red" class="input-invisible">
+                                        </li>
+                                        <li class="color-list__item">
+                                            <label for="color_Red" style="background-color: #000000"
+                                                   data-allow-multiple="" class="btn-color"></label>
+                                            <input type="checkbox" name="color[]" value="dd6265"
+                                                   id="color_Black" class="input-invisible">
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>*@
+                        <!-- price range -->
+                        @*<div class="widget">
+                            <div class="widget__heading" id="headingThree">
+                                <a href="#" class="btn widget__heading--title" data-toggle="collapse"
+                                   data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                                    <h3>Price<span class="widget__heading--icon"></span></h3>
+                                </a>
+                            </div>
+                            <div id="collapseThree" class="collapse show" aria-labelledby="headingThree">
+                                <div class="widget__body">
+                                    <!-- product price widget -->
+                                    <div class="widget__body--item filter-price">
+                                        <div class="filter-price__value">
+                                            <label for="amount">Price Range:</label>
+                                            <input type="text" id="amount" class="price-slider" />
+                                        </div>
+                                        <div id="slider-range"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>*@
+                        <!-- brands -->
+                        @Html.Action("Brands", "Shop")
+                    </div>
+                </form>
+                <!-- filter tags -->
+                @*<div class="filter-tag">
+                    <div class="filter-tag__heading">
+                        <h3>Filters</h3>
+                    </div>
+                    <div class="filter-tag__list">
+                        <ul>
+                            <li class="filter-tag__list--item">
+                                <a href="#"><i class="fas fa-times"></i></a>
+                                <span>all</span>
+                            </li>
+                            <li class="widget-tags__list--item">
+                                <a href="#"><i class="fas fa-times"></i></a>
+                                <span>gray</span>
+                            </li>
+                            <li class="widget-tags__list--item">
+                                <a href="#"><i class="fas fa-times"></i></a>
+                                <span>$32-$100</span>
+                            </li>
+                            <li class="widget-tags__list--item">
+                                <a href="#"><i class="fas fa-times"></i></a>
+                                <span>Ikea</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>*@
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end sidebar menu -->
+@*<!-- header slider -->
+@Html.Action("HeaderSlider", "Shop")
+<!-- end header slider -->*@
+<!-- main content -->
+<div class="main-content pt-50 pb-80">
+    <div class="container">
+        <!-- toolbox -->
+        <div class="row">
+            <div class="col-12">
+                <div class="shop-toolbox">
+                    @*<div class="toolbox-filter">
+                        <div class="collapse-filter" id="SidefilterBtn">
+                            <span class="pull-bs-canvas-left">
+                                <span><i class="fas fa-filter"></i> Filters</span>
+                            </span>
+                        </div>
+                    </div>*@
+                    <div class="toolbox-layout">
+                        @*<span>Show:</span>
+                            <ul>
+                                <li><a class="active" href="#">12</a></li>
+                                <li><a href="#">15</a></li>
+                                <li><a href="#">30</a></li>
+                            </ul>*@
+                    </div>
+                    @*<div class="toolbox-sort">
+                        <form>
+                            <div class="form-group">
+                                <select class="form-control" id="sortOption">
+                                    <option selected>Sort by</option>
+                                    <option>Newest</option>
+                                    <option>Best sellers</option>
+                                    <option>Lowest price</option>
+                                    <option>Highest price</option>
+                                </select>
+                            </div>
+                        </form>
+                    </div>*@
+                </div>
+            </div>
+        </div>
+        <!-- end toolbox -->
+        <!-- product list -->
+        <div class="row">
+
+            @{
+                foreach (var item in Model)
+                {
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="card-item card-item--light mb-30">
+                            <div class="card-item__bg">
+                                <a href="#">
+                                    <img src="~/Images/Product/@item.ProductImg" alt="">
+                                    <span class="badge card-item__bg--badge">@item.ProductName</span>
+                                </a>
+                            </div>
+                            <div class="card-item__body">
+                                <div class="card-item__body--price">
+                                    <strong>$@item.ProductPrice</strong>
+                                </div>
+                                <div class="card-item__body--title">
+                                    <a href="#"><h4>@item.ProductName</h4></a>
+                                </div>
+                                <div class="product-rate">
+                                    <div class="product-rate__star">
+                                        <span class="rate-3"></span>
+                                    </div>
+                                    <div class="rate-number">
+                                        (3)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-item__overlay">
+                                <ul class="action-btn">
+                                    <li><a href="/Shop/ProductDetails/@item.Id/" target="_blank" class="icon-box"><i class="icon-search"></i></a></li>
+                                    <li class="wishlist-btn">
+                                        <span class="icon-box">
+                                            <i class="wishlist__icon icon-heart"></i>
+                                        </span>
+                                    </li>
+                                </ul>
+                                <a onclick="AddToCart(@item.Id)" role="button" class="btn">Add to cart</a>
+                            </div>
+                        </div>
+                    </div>
+
+                }
+            }
+
+
+
+
+
+        </div>
+        <!-- end product list -->
+        <!-- pagination -->
+        <div class="row">
+            <div class="col-12">
+                <div class="shop-pagination">
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination custom-pagination">
+                            @Html.PagedListPager(Model, page => "/ProductList/Group/" + Model.FirstOrDefault().ProductGroup.GroupName + "/" + Model.FirstOrDefault().ProductGroup.Id + "/" + page)
+                        </ul>
+                    </nav>
+                    <div class="clearfix">
+                        <div class="hint-text">Showing <b>@Model.PageNumber</b> out of <b>@Model.PageCount</b> entries</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end pagination -->
+    </div>
+    <!-- end main content -->
+    <!-- Modal search content -->
+    <div class="modal fade modal-search" id="searchModal" tabindex="-1" aria-labelledby="searchModal"
+         aria-hidden="true">
+        <div class="modal-dialog search1" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <ul class="category">
+                            <li class="category-option active">
+                                <a href="#" class="product-cat">All</a>
+                            </li>
+                            <li class="category-option">
+                                <a href="#" class="product-cat">Bedroom</a>
+                            </li>
+                            <li class="category-option">
+                                <a href="#" class="product-cat">Dining</a>
+                            </li>
+                            <li class="category-option">
+                                <a href="#" class="product-cat">Living room</a>
+                            </li>
+                        </ul>
+                        <form class="search-form form-row" role="search">
+                            <div class="form-group col-12">
+                                <input type="search" class="form-control"
+                                       placeholder="Search">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end Modal search content -->
+</div>
+

@@ -1,0 +1,98 @@
+C:\Users\top\source\repos\Update2 SmartStore\SmartStore\SmartStore.DataAccessLayer\bin\Debug\SmartStore.DataAccessLayer.dll.config
+C:\Users\top\source\repos\Update2 SmartStore\SmartStore\SmartStore.DataAccessLayer\bin\Debug\SmartStore.DataAccessLayer.dll
+C:\Users\top\source\repos\Update2 SmartStore\SmartStore\SmartStore.DataAccessLayer\bin\Debug\SmartStore.DataAccessLayer.pdb
+C:\Users\top\source\repos\Update2 SmartStore\SmartStore\SmartStore.DataAccessLayer\bin\Debug\EntityFramework.dll
+C:\Users\top\source\repos\Update2 SmartStore\SmartStore\SmartStore.DataAccessLayer\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\top\source\repos\Update2 SmartStore\SmartStore\SmartStore.DataAccessLayer\bin\Debug\Microsoft.Web.Infrastructure.dll
+C:\Users\top\source\repos\Update2 SmartStore\SmartStore\SmartStore.DataAccessLayer\bin\Debug\System.Web.Helpers.dll
+C:\Users\top\source\repos\Update2 SmartStore\SmartStore\SmartStore.DataAccessLayer\bin\Debug\System.Web.Mvc.dll
+C:\Users\top\source\repos\Update2 SmartStore\SmartStore\SmartStore.DataAccessLayer\bin\Debug\System.Web.Razor.dll
+C:\Users\top\source\repos\Update2 SmartStore\SmartStore\SmartStore.DataAccessLayer\bin\Debug\System.Web.WebPages.Deployment.dll
+C:\Users\top\source\repos\Update2 SmartStore\SmartStore\SmartStore.DataAccessLayer\bin\Debug\System.Web.WebPages.dll
+C:\Users\top\source\repos\Update2 SmartStore\SmartStore\SmartStore.DataAccessLayer\bin\Debug\System.Web.WebPages.Razor.dll
+C:\Users\top\source\repos\Update2 SmartStore\SmartStore\SmartStore.DataAccessLayer\bin\Debug\EntityFramework.xml
+C:\Users\top\source\repos\Update2 SmartStore\SmartStore\SmartStore.DataAccessLayer\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\top\source\repos\Update2 SmartStore\SmartStore\SmartStore.DataAccessLayer\bin\Debug\System.Web.Helpers.xml
+C:\Users\top\source\repos\Update2 SmartStore\SmartStore\SmartStore.DataAccessLayer\bin\Debug\System.Web.Mvc.xml
+C:\Users\top\source\repos\Update2 SmartStore\SmartStore\SmartStore.DataAccessLayer\bin\Debug\System.Web.Razor.xml
+C:\Users\top\source\repos\Update2 SmartStore\SmartStore\SmartStore.DataAccessLayer\bin\Debug\System.Web.WebPages.xml
+C:\Users\top\source\repos\Update2 SmartStore\SmartStore\SmartStore.DataAccessLayer\bin\Debug\System.Web.WebPages.Deployment.xml
+C:\Users\top\source\repos\Update2 SmartStore\SmartStore\SmartStore.DataAccessLayer\bin\Debug\System.Web.WebPages.Razor.xml
+C:\Users\top\source\repos\Update2 SmartStore\SmartStore\SmartStore.DataAccessLayer\obj\Debug\SmartStore.DataAccessLayer.csproj.CoreCompileInputs.cache
+C:\Users\top\source\repos\Update2 SmartStore\SmartStore\SmartStore.DataAccessLayer\obj\Debug\SmartStore.DataAccessLayer.dll
+C:\Users\top\source\repos\Update2 SmartStore\SmartStore\SmartStore.DataAccessLayer\obj\Debug\SmartStore.DataAccessLayer.pdb
+C:\Users\top\source\repos\Update15 SmartStore\SmartStore\SmartStore.DataAccessLayer\bin\Debug\SmartStore.DataAccessLayer.dll.config
+C:\Users\top\source\repos\Update15 SmartStore\SmartStore\SmartStore.DataAccessLayer\bin\Debug\SmartStore.DataAccessLayer.dll
+C:\Users\top\source\repos\Update15 SmartStore\SmartStore\SmartStore.DataAccessLayer\bin\Debug\SmartStore.DataAccessLayer.pdb
+C:\Users\top\source\repos\Update15 SmartStore\SmartStore\SmartStore.DataAccessLayer\bin\Debug\EntityFramework.dll
+C:\Users\top\source\repos\Update15 SmartStore\SmartStore\SmartStore.DataAccessLayer\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\top\source\repos\Update15 SmartStore\SmartStore\SmartStore.DataAccessLayer\bin\Debug\Microsoft.Web.Infrastructure.dll
+C:\Users\top\source\repos\Update15 SmartStore\SmartStore\SmartStore.DataAccessLayer\bin\Debug\System.Web.Helpers.dll
+C:\Users\top\source\repos\Update15 SmartStore\SmartStore\SmartStore.DataAccessLayer\bin\Debug\System.Web.Mvc.dll
+C:\Users\top\source\repos\Update15 SmartStore\SmartStore\SmartStore.DataAccessLayer\bin\Debug\System.Web.Razor.dll
+C:\Users\top\source\repos\Update15 SmartStore\SmartStore\SmartStore.DataAccessLayer\bin\Debug\System.Web.WebPages.Deployment.dll
+C:\Users\top\source\repos\Update15 SmartStore\SmartStore\SmartStore.DataAccessLayer\bin\Debug\System.Web.WebPages.dll
+C:\Users\top\source\repos\Update15 SmartStore\SmartStore\SmartStore.DataAccessLayer\bin\Debug\System.Web.WebPages.Razor.dll
+C:\Users\top\source\repos\Update15 SmartStore\SmartStore\SmartStore.DataAccessLayer\bin\Debug\EntityFramework.xml
+C:\Users\top\source\repos\Update15 SmartStore\SmartStore\SmartStore.DataAccessLayer\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\top\source\repos\Update15 SmartStore\SmartStore\SmartStore.DataAccessLayer\bin\Debug\System.Web.Helpers.xml
+C:\Users\top\source\repos\Update15 SmartStore\SmartStore\SmartStore.DataAccessLayer\bin\Debug\System.Web.Mvc.xml
+C:\Users\top\source\repos\Update15 SmartStore\SmartStore\SmartStore.DataAccessLayer\bin\Debug\System.Web.Razor.xml
+C:\Users\top\source\repos\Update15 SmartStore\SmartStore\SmartStore.DataAccessLayer\bin\Debug\System.Web.WebPages.xml
+C:\Users\top\source\repos\Update15 SmartStore\SmartStore\SmartStore.DataAccessLayer\bin\Debug\System.Web.WebPages.Deployment.xml
+C:\Users\top\source\repos\Update15 SmartStore\SmartStore\SmartStore.DataAccessLayer\bin\Debug\System.Web.WebPages.Razor.xml
+C:\Users\top\source\repos\Update15 SmartStore\SmartStore\SmartStore.DataAccessLayer\obj\Debug\SmartStore.DataAccessLayer.csproj.CoreCompileInputs.cache
+C:\Users\top\source\repos\Update15 SmartStore\SmartStore\SmartStore.DataAccessLayer\obj\Debug\SmartStore.DataAccessLayer.dll
+C:\Users\top\source\repos\Update15 SmartStore\SmartStore\SmartStore.DataAccessLayer\obj\Debug\SmartStore.DataAccessLayer.pdb
+C:\Users\top\source\repos\SmartStore\SmartStore.DataAccessLayer\bin\Debug\SmartStore.DataAccessLayer.dll.config
+C:\Users\top\source\repos\SmartStore\SmartStore.DataAccessLayer\bin\Debug\SmartStore.DataAccessLayer.dll
+C:\Users\top\source\repos\SmartStore\SmartStore.DataAccessLayer\bin\Debug\SmartStore.DataAccessLayer.pdb
+C:\Users\top\source\repos\SmartStore\SmartStore.DataAccessLayer\bin\Debug\EntityFramework.dll
+C:\Users\top\source\repos\SmartStore\SmartStore.DataAccessLayer\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\top\source\repos\SmartStore\SmartStore.DataAccessLayer\bin\Debug\Microsoft.Web.Infrastructure.dll
+C:\Users\top\source\repos\SmartStore\SmartStore.DataAccessLayer\bin\Debug\System.Web.Helpers.dll
+C:\Users\top\source\repos\SmartStore\SmartStore.DataAccessLayer\bin\Debug\System.Web.Mvc.dll
+C:\Users\top\source\repos\SmartStore\SmartStore.DataAccessLayer\bin\Debug\System.Web.Razor.dll
+C:\Users\top\source\repos\SmartStore\SmartStore.DataAccessLayer\bin\Debug\System.Web.WebPages.Deployment.dll
+C:\Users\top\source\repos\SmartStore\SmartStore.DataAccessLayer\bin\Debug\System.Web.WebPages.dll
+C:\Users\top\source\repos\SmartStore\SmartStore.DataAccessLayer\bin\Debug\System.Web.WebPages.Razor.dll
+C:\Users\top\source\repos\SmartStore\SmartStore.DataAccessLayer\bin\Debug\EntityFramework.xml
+C:\Users\top\source\repos\SmartStore\SmartStore.DataAccessLayer\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\top\source\repos\SmartStore\SmartStore.DataAccessLayer\bin\Debug\System.Web.Helpers.xml
+C:\Users\top\source\repos\SmartStore\SmartStore.DataAccessLayer\bin\Debug\System.Web.Mvc.xml
+C:\Users\top\source\repos\SmartStore\SmartStore.DataAccessLayer\bin\Debug\System.Web.Razor.xml
+C:\Users\top\source\repos\SmartStore\SmartStore.DataAccessLayer\bin\Debug\System.Web.WebPages.xml
+C:\Users\top\source\repos\SmartStore\SmartStore.DataAccessLayer\bin\Debug\System.Web.WebPages.Deployment.xml
+C:\Users\top\source\repos\SmartStore\SmartStore.DataAccessLayer\bin\Debug\System.Web.WebPages.Razor.xml
+C:\Users\top\source\repos\SmartStore\SmartStore.DataAccessLayer\obj\Debug\SmartStore.DataAccessLayer.csproj.CoreCompileInputs.cache
+C:\Users\top\source\repos\SmartStore\SmartStore.DataAccessLayer\obj\Debug\SmartStore.DataAccessLayer.dll
+C:\Users\top\source\repos\SmartStore\SmartStore.DataAccessLayer\obj\Debug\SmartStore.DataAccessLayer.pdb
+E:\Spad Tfs\SmartStore\SmartStore.DataAccessLayer\bin\Debug\SmartStore.DataAccessLayer.dll.config
+E:\Spad Tfs\SmartStore\SmartStore.DataAccessLayer\bin\Debug\SmartStore.DataAccessLayer.dll
+E:\Spad Tfs\SmartStore\SmartStore.DataAccessLayer\bin\Debug\SmartStore.DataAccessLayer.pdb
+E:\Spad Tfs\SmartStore\SmartStore.DataAccessLayer\bin\Debug\EntityFramework.SqlServer.dll
+E:\Spad Tfs\SmartStore\SmartStore.DataAccessLayer\bin\Debug\FluentValidation.dll
+E:\Spad Tfs\SmartStore\SmartStore.DataAccessLayer\bin\Debug\Microsoft.Web.Infrastructure.dll
+E:\Spad Tfs\SmartStore\SmartStore.DataAccessLayer\bin\Debug\SmartStore.Model.dll
+E:\Spad Tfs\SmartStore\SmartStore.DataAccessLayer\bin\Debug\System.Web.Helpers.dll
+E:\Spad Tfs\SmartStore\SmartStore.DataAccessLayer\bin\Debug\System.Web.Mvc.dll
+E:\Spad Tfs\SmartStore\SmartStore.DataAccessLayer\bin\Debug\System.Web.Razor.dll
+E:\Spad Tfs\SmartStore\SmartStore.DataAccessLayer\bin\Debug\System.Web.WebPages.Deployment.dll
+E:\Spad Tfs\SmartStore\SmartStore.DataAccessLayer\bin\Debug\System.Web.WebPages.dll
+E:\Spad Tfs\SmartStore\SmartStore.DataAccessLayer\bin\Debug\System.Web.WebPages.Razor.dll
+E:\Spad Tfs\SmartStore\SmartStore.DataAccessLayer\bin\Debug\SmartStore.Model.pdb
+E:\Spad Tfs\SmartStore\SmartStore.DataAccessLayer\bin\Debug\EntityFramework.SqlServer.xml
+E:\Spad Tfs\SmartStore\SmartStore.DataAccessLayer\bin\Debug\FluentValidation.pdb
+E:\Spad Tfs\SmartStore\SmartStore.DataAccessLayer\bin\Debug\FluentValidation.xml
+E:\Spad Tfs\SmartStore\SmartStore.DataAccessLayer\bin\Debug\System.Web.Helpers.xml
+E:\Spad Tfs\SmartStore\SmartStore.DataAccessLayer\bin\Debug\System.Web.Mvc.xml
+E:\Spad Tfs\SmartStore\SmartStore.DataAccessLayer\bin\Debug\System.Web.Razor.xml
+E:\Spad Tfs\SmartStore\SmartStore.DataAccessLayer\bin\Debug\System.Web.WebPages.xml
+E:\Spad Tfs\SmartStore\SmartStore.DataAccessLayer\bin\Debug\System.Web.WebPages.Deployment.xml
+E:\Spad Tfs\SmartStore\SmartStore.DataAccessLayer\bin\Debug\System.Web.WebPages.Razor.xml
+E:\Spad Tfs\SmartStore\SmartStore.DataAccessLayer\obj\Debug\SmartStore.DataAccessLayer.csprojResolveAssemblyReference.cache
+E:\Spad Tfs\SmartStore\SmartStore.DataAccessLayer\obj\Debug\SmartStore.DataAccessLayer.csproj.CoreCompileInputs.cache
+E:\Spad Tfs\SmartStore\SmartStore.DataAccessLayer\obj\Debug\SmartStore.DataAccessLayer.dll
+E:\Spad Tfs\SmartStore\SmartStore.DataAccessLayer\obj\Debug\SmartStore.DataAccessLayer.pdb
+E:\Spad Tfs\SmartStore\SmartStore.DataAccessLayer\bin\Debug\EntityFramework.dll
+E:\Spad Tfs\SmartStore\SmartStore.DataAccessLayer\bin\Debug\EntityFramework.xml

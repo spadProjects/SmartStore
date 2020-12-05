@@ -1,0 +1,111 @@
+﻿@model PagedList.IPagedList<SmartStore.Model.Entities.Blog>
+
+@using PagedList.Mvc
+
+@{
+    ViewBag.Title = "Blog";
+    Layout = "~/Views/Shared/_Home.cshtml";
+}
+
+
+@*@Html.Action("HeaderNavbar", "Home")*@
+
+<!-- end main header navbar -->
+<!-- breadcrumb -->
+<div class="container header-mt">
+    <div class="row">
+        <div class="col-12">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb custom-breadcrumb">
+                    <li class="breadcrumb-item"><a href="/Home/Index">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Blog list</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</div>
+<!-- end breadcrumb -->
+<!-- main content -->
+<div class="main-content pb-80">
+    <div class="container">
+        <div class="row">
+            <!-- sidebar -->
+            <div class="col-lg-3 col-md-4 sidebar">
+                <!-- popular blog posts -->
+                <div class="sidebar__item">
+                    <h3 class="sidebar__item--title">
+                        Popular Blogs
+                    </h3>
+                    @Html.Action("PopularBlog", "Home")
+                </div>
+                <!-- blog post categories -->
+                <div class="sidebar__item">
+                    <h3 class="sidebar__item--title">
+                        Categories
+                    </h3>
+                    @Html.Action("Categories", "Home")
+                </div>
+                <!-- end blog post categories -->
+                <!-- latest products -->
+                <div class="sidebar__item">
+                    <h3 class="sidebar__item--title">
+                        Latest products
+                    </h3>
+                    @Html.Action("LatestProducts", "Home")
+                </div>
+                <!-- end of latest products -->
+            </div>
+            <!-- end sidebar -->
+            <!-- blog post grid view -->
+            <div class="col-lg-9 col-md-8">
+                @foreach (var item in Model)
+                {
+                    <div class="row no-gutters blog-post blog-post--list mb-30">
+                        <div class="col-lg-4">
+                            <div class="blog-post__img">
+                                <a href="#">
+                                    <img src="~/Images/Blog/@item.BlogImage" alt="">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="blog-post__inner ht-100">
+                                <div class="blog-post__inner--title">
+                                    <a href="#">
+                                        <h4>@item.BlogTitle</h4>
+                                    </a>
+                                </div>
+                                <div class="blog-post__inner--content">
+                                    <p>
+                                        @item.BlogSubTitle
+                                    </p>
+                                </div>
+
+                                <div class="blog-post__inner--btn">
+                                    <a href="/Home/BlogDetails/@item.Id/" target="_blank" class="btn">Read more</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                <div class="row">
+                    <!-- custom pagination -->
+                    <div class="col-12">
+                        <div class="shop-pagination">
+                            <nav aria-label="Page navigation">
+                                <ul class="pagination custom-pagination">
+                                    @Html.PagedListPager(Model, page => "/BlogList/" + page)
+                                </ul>
+                            </nav>
+                            <div class="clearfix">
+                                <div class="hint-text">Showing <b>@Model.PageNumber</b> out of <b>@Model.PageCount</b> entries</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end custom pagination -->
+                </div>
+            </div>
+            <!-- end blog post grid view -->
+        </div>
+    </div>
+</div>

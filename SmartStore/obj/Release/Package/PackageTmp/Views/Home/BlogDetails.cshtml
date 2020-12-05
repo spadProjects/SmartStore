@@ -1,0 +1,231 @@
+﻿@model SmartStore.Model.Entities.Blog
+
+@{
+    ViewBag.Title = "BlogDetails";
+    Layout = "~/Views/Shared/_Home.cshtml";
+}
+
+
+
+<div class="container header-mt">
+    <div class="row">
+        <div class="col-12">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb custom-breadcrumb">
+                    <li class="breadcrumb-item"><a href="index-2.html">Home</a></li>
+                    <li class="breadcrumb-item"><a href="/Home/Blog">Blog</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">@Model.BlogTitle</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</div>
+<!-- end breadcrumb -->
+<!-- main content -->
+<div class="main-content pb-80">
+    <div class="container">
+        <div class="row">
+            <!-- sidebar -->
+            <div class="col-lg-3 col-md-4 sidebar">
+                <!-- related posts -->
+                <div class="sidebar__item">
+                    <h3 class="sidebar__item--title">
+                        Popular Blogs
+                    </h3>
+                    @Html.Action("PopularBlog","Home")
+                </div>
+                <!-- end related posts -->
+                <!-- single post instagram posts -->
+                @*<div class="sidebar__item">
+                    <h3 class="sidebar__item--title">Instagram posts</h3>
+                    <div class="Social-post">
+                        <a href="#" class="Social-post__img"><img src="images/media04.jpg" alt=""></a>
+                        <a href="#" class="Social-post__img"><img src="images/media05.jpg" alt=""></a>
+                        <a href="#" class="Social-post__img"><img src="images/media06.jpg" alt=""></a>
+                        <a href="#" class="Social-post__img"><img src="images/media07.jpg" alt=""></a>
+                        <a href="#" class="Social-post__img"><img src="images/media08.jpg" alt=""></a>
+                        <a href="#" class="Social-post__img"><img src="images/media09.jpg" alt=""></a>
+                    </div>
+                </div>*@
+                <!-- end single post instagram posts -->
+            </div>
+            <!-- sidebar -->
+            <!-- single blog posts -->
+            <div class="col-lg-9 col-md-8 single-post">
+                <div class="single-post__img">
+                    <img src="~/Images/Blog/@Model.BlogImage" alt="">
+                </div>
+                <h1 class="single-post__title">@Model.BlogTitle</h1>
+                <div class="single-post__body">
+                    <p>
+                        @Model.Description
+                    </p>
+                </div>
+                <div class="single-post__footer">
+                    <div class="post-details">
+                        <span class="author">Post by: <a href="#">@Model.CreatorName</a></span>
+                        <a href="#">@Model.CreateDate</a>
+                    </div>
+                    <div class="share-post">
+                        <ul>
+                            <li>
+                                <a href="#" class="social-icon fb-icon"><i class="fab fa-facebook"></i></a>
+                            </li>
+                            <li>
+                                <a href="#" class="social-icon tr-icon"><i class="fab fa-twitter"></i></a>
+                            </li>
+                            <li>
+                                <a href="#" class="social-icon pin-icon"><i class="fab fa-pinterest-p"></i></a>
+                            </li>
+                            <li>
+                                <a href="#" class="social-icon li-icon"><i class="fab fa-linkedin-in"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="single-post__tag">
+                    <span>Tags:</span>
+                    <a href="#">Sofas</a>
+                    <a href="#">Homedecor</a>
+                    <a href="#">Lighting</a>
+                    <a href="#">Kitchen</a>
+                    <a href="#">Tables</a>
+                    <a href="#">Minimal</a>
+                    <a href="#">Design</a>
+                    <a href="#">Livingroom</a>
+                    <a href="#">Dining</a>
+                </div>
+                <!-- end single blog post -->
+                <!-- related blog posts -->
+                <div class="row mt-100">
+                    <div class="col-12">
+                        <h2 class="main-title wow fadeIn">Related blog posts</h2>
+                    </div>
+                    @Html.Action("RelatedBlogPosts","Home")
+                </div>
+                <!-- end related blog posts -->
+                <!-- blog post comments -->
+                <!--  comments -->
+                <div class="comments mt-70">
+                    <!-- comments list -->
+                    @*<div class="row">
+                        <div class="col-12">
+                            <h2 class="main-title">
+                                Comments
+                            </h2>
+                            <div class="comments__list">
+                                <ul class="media-list">
+                                    <li class="media-list__item">
+                                        <div class="media">
+                                            <img src="images/profile-02.jpg" class="media-list__item--img"
+                                                 alt="avatar-img">
+                                            <div class="media-body">
+                                                <div class="media-list__item--content">
+                                                    <div class="comment-details">
+                                                        <span class="author">Mark Green</span>
+                                                        <span class="date">2 Days ago</span>
+                                                    </div>
+                                                    <p>
+                                                        Lorem ipsum dolor sit amet,
+                                                        consectetur
+                                                        adipisicing elit. Accusamus assumenda, dolorum enim
+                                                        excepturi
+                                                        inventore
+                                                        iure
+                                                        minus nemo pariatur quae velit.
+                                                    </p>
+                                                </div>
+                                                <a class="media-list__item--icon" href="#">
+                                                    <i class="fas fa-reply fa-rotate-180"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="media-list__item media-list__item--nested">
+                                        <div class="media">
+                                            <img src="images/profile-03.jpg" class="media-list__item--img"
+                                                 alt="avatar-img">
+                                            <div class="media-body">
+                                                <div class="media-list__item--content">
+                                                    <div class="comment-details">
+                                                        <span class="author">Mark Green</span>
+                                                        <span class="date">2 Days ago</span>
+                                                    </div>
+                                                    <p>
+                                                        Lorem ipsum dolor sit amet,
+                                                        consectetur
+                                                        adipisicing elit. Accusamus assumenda, dolorum enim
+                                                        excepturi
+                                                        inventore
+                                                        iure
+                                                        minus nemo pariatur quae velit.
+                                                    </p>
+                                                </div>
+                                                <a class="media-list__item--icon" href="#">
+                                                    <i class="fas fa-reply fa-rotate-180"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="media-list__item">
+                                        <div class="media">
+                                            <img src="images/profile-01.jpg" class="media-list__item--img"
+                                                 alt="avatar-img">
+                                            <div class="media-body">
+                                                <div class="media-list__item--content">
+                                                    <div class="comment-details">
+                                                        <span class="author">Mark Green</span>
+                                                        <span class="date">2 Days ago</span>
+                                                    </div>
+                                                    <p>
+                                                        Lorem ipsum dolor sit amet,
+                                                        consectetur
+                                                        adipisicing elit. Accusamus assumenda, dolorum enim
+                                                        excepturi
+                                                        inventore
+                                                        iure
+                                                        minus nemo pariatur quae velit.
+                                                    </p>
+                                                </div>
+                                                <a class="media-list__item--icon" href="#">
+                                                    <i class="fas fa-reply fa-rotate-180"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>*@
+                    <!--  end comments list -->
+                    <!-- comments form -->
+                    @*<form class="comments__form">
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label for="inputName">Name</label>
+                                <input type="text" class="form-control comments__form--input" id="inputName"
+                                       placeholder="">
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label for="inputName">Email</label>
+                                <input type="email" class="form-control comments__form--input" id="inputEmail"
+                                       placeholder="">
+                            </div>
+                            <div class="col-12 form-group">
+                                <label for="InputTextarea">Comment</label>
+                                <textarea class="form-control comments__form--input" id="InputTextarea"
+                                          rows="5"></textarea>
+                            </div>
+                            <div class="col-12 comments__form--btn">
+                                <button type="submit" class="btn">Post a comment</button>
+                            </div>
+                        </div>
+                    </form>*@
+                    <!-- end comments form -->
+                </div>
+                <!--  end comments -->
+            </div>
+            <!-- end blog post comments -->
+        </div>
+    </div>
+</div>

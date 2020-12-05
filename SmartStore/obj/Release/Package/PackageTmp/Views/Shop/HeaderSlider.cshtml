@@ -1,0 +1,37 @@
+﻿@model IEnumerable<SmartStore.Model.Entities.SliderHeader>
+
+<div class="container">
+    <div class="slider-area hero-header">
+        <div class="owl-carousel ltr" id="shopListSlider">
+            @{
+                foreach (var item in Model)
+                {
+
+                    <div class="shop-slider">
+                        <div class="container">
+                            <div class="row shop-slider__row">
+                                <div class="col-lg-5 col-12">
+                                    <div class="shop-slider__inner slider-animated">
+                                        <h5 class="slider-subtitle">@item.SliderTitle</h5>
+                                        <h1 class="slider-title animated"><a href="#"></a>@item.SliderSubTitle</h1>
+                                        <p class="slider-content animated">
+                                            @item.SliderDescription
+                                        </p>
+                                        <div class="slider-btn">
+                                            <a class="btn animated" href="#">Shop Now</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-7 col-12">
+                                    <div class="shop-slider__img slider-animated">
+                                        <img class="animated" src="~/Images/SliderHeader/@item.SliderImg" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,46 @@
+﻿@model SmartStore.Models.VerificationCodeViewModel
+
+@{
+    ViewBag.Title = "VerificationCode";
+    Layout = "~/Views/Shared/_Account.cshtml";
+}
+<div class="container header-mt">
+    <div class="row">
+        <div class="col-12">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb custom-breadcrumb">
+                    <li class="breadcrumb-item"><a href="/Home/Index">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Verification Code</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</div>
+<div class="main-content pb-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-8 col-12 mx-auto">
+                <div class="custom-form custom-form--box">
+                    <h3 class="custom-form__title">Verification Code</h3>
+                    @using (Html.BeginForm("VerificationCode", "Account", FormMethod.Post, new { @class = "form-group custom-form__input", role = "form" }))
+                    {
+                        @Html.ValidationMessageFor(model => model.UserVerificationCode, "", new { @class = "err err-number" })
+                        <div class="form-group custom-form__input">
+                            @Html.TextBoxFor(m => m.UserVerificationCode, new { @class = "form-control", @type = "pass", @placeholder = "Verification Code" })
+                        </div>
+
+                        <div class="forgot-pass">
+                            <a href="resetpass.html">
+                                <small> </small>
+                            </a>
+                        </div>
+                        <div class="custom-form__btn">
+                            <input type="submit" class="btn submit-btn" value="Submit" />
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

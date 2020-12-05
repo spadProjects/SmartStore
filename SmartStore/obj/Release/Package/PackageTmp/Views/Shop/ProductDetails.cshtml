@@ -1,0 +1,88 @@
+﻿@using SmartStore.DataAccess.Context;
+@model SmartStore.Model.Entities.Product
+
+@{
+    SmartStore.DataAccess.Context.SmartStoreContext db = new SmartStore.DataAccess.Context.SmartStoreContext();
+    var user = db.Users.FirstOrDefault(u => u.UserPhoneNumber == User.Identity.Name);
+    var product = db.Products.ToList();
+    var price = Model.ProductPrice- Model.ProductPrice * Model.ProductDiscountPercent / 100;
+
+}
+
+@{
+    ViewBag.Title = "ProductDetails";
+    Layout = "~/Views/Shared/_Home.cshtml";
+}
+@{ 
+    var groupName = db.ProductGroups.Where(w => w.Id == Model.ProductGroup.ParentId)
+        .Select(s => s.GroupName).FirstOrDefault();
+    }
+
+<!-- breadcrumb -->
+<div class="container header-mt">
+    <div class="row">
+        <div class="col-12">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb custom-breadcrumb">
+                    <li class="breadcrumb-item"><a href="/Home/Index">Home</a></li>
+                    <li class="breadcrumb-item"><a href="/ProductList/Group/@Model.ProductGroup.ParentId">@groupName</a></li>
+                    <li class="breadcrumb-item"><a href="/ProductList/Group/@Model.ProductGroup.Id">@Model.ProductGroup.GroupName</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">@Model.ProductName</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</div>
+
+<div class="main-content pb-50">
+    <div class="container">
+        <div class="row">
+            <!-- product image gallery -->
+            <div class="col-lg-7">
+                <div class="gallery-on-top">
+                    <a href="images/single-product-01.jpg" data-toggle="lightbox" data-gallery="example-gallery">
+                        <img src="~/Images/Product/@Model.ProductImg" alt="" style="max-height:400px">
+                    </a>
+                </div>
+                <!-- product thumbnails -->
+
+                @Html.Action("ImageGallery", "Shop")
+
+            </div>
+            <!-- product main information -->
+            <div class="col-lg-5 product-info">
+                <h1 class="product-info__title">@Model.ProductName</h1>
+                <div class="product-info__rate">
+                    <div class="product-rate">
+                        <div class="product-rate__star">
+                            <span class="rate-3"></span>
+                        </div>
+                        <div class="rate-number">
+                            (3)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-info__price">
+                    <span>@price</span>
+                    <span class="old">@Model.ProductPrice$</span>
+                    <span class="badge price-badge">@Model.ProductDiscountPercent%</span>
+                </div>
+
+                <div class="product-info__desc">
+                    <p>@Model.ProductShortDescription</p>
+                    @*<div class="designer">
+                        <strong>Designer</strong>
+                        <span>Ali Mohammadi</span>
+                    </div>*@
+                </div>
+                <div class="product-info__shop">
+                    <a onclick="AddToCart(@Model.Id)" role="button" class="btn"><i class="fas fa-shopping-cart pr-1"></i>Add To Cart</a>
+                </div>
+            </div>
+        </div>
+        @Html.Action("ProductMore", "Shop")
+    </div>
+
+
+</div>

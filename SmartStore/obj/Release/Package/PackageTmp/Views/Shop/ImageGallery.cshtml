@@ -1,0 +1,15 @@
+﻿@model IEnumerable<SmartStore.Model.Entities.Gallery>
+
+
+
+<div class="owl-carousel gallery-thumbs ltr">
+    @{
+        foreach (var item in Model)
+        {
+            <div class="item" data-target="/Images/Gallery/@item.Image">
+                <img src="~/Images/Gallery/@item.Image" alt="" data-target="/Images/Gallery/@item.Image" style="height:100px">
+            </div>
+        }
+    }
+
+</div>

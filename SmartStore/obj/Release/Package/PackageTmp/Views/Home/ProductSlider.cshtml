@@ -1,0 +1,48 @@
+﻿@model IEnumerable<SmartStore.Model.Entities.Product>
+
+<div class="mb-100 overflow-hidden">
+    <h2 class="main-title">New Arrivals</h2>
+    <div class="owl-carousel card-item-slider ltr" id="itemSliderLight">
+        @foreach (var item in Model)
+        {
+            <div class="item">
+                <div class="card-item card-item--light">
+                    <div class="card-item__bg">
+                        <a href="#">
+                            <img src="~/Images/Product/@item.ProductImg" alt="" style="width:200px;height:200px">
+                            <span class="badge card-item__bg--badge">%@item.ProductDiscountPercent sale</span>
+
+                        </a>
+                    </div>
+                    <div class="card-item__body">
+                        <div class="card-item__body--price">
+                            <strong>$@item.ProductPrice</strong>
+                        </div>
+                        <div class="card-item__body--title">
+                            <a href="#"><h4>@item.ProductName</h4></a>
+                        </div>
+                        <div class="product-rate">
+                            <div class="product-rate__star">
+                                <span class="rate-3"></span>
+                            </div>
+                            <div class="rate-number">
+                                (3)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-item__overlay">
+                        <ul class="action-btn">
+                            <li><a href="/Shop/ProductDetails/@item.Id/" target="_blank" class="icon-box"><i class="icon-search"></i></a></li>
+                            <li class="wishlist-btn">
+                                <span class="icon-box">
+                                    <i class="wishlist__icon icon-heart"></i>
+                                </span>
+                            </li>
+                        </ul>
+                        <a onclick="AddToCart(@item.Id)" role="button" class="btn">Add to cart</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

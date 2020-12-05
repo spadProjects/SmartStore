@@ -1,0 +1,414 @@
+C:\Users\top\source\repos\Update2 SmartStore\SmartStore\SmartStore\bin\SmartStore.dll.config
+C:\Users\top\source\repos\Update2 SmartStore\SmartStore\SmartStore\bin\SmartStore.dll
+C:\Users\top\source\repos\Update2 SmartStore\SmartStore\SmartStore\bin\SmartStore.pdb
+C:\Users\top\source\repos\Update2 SmartStore\SmartStore\SmartStore\bin\EntityFramework.dll
+C:\Users\top\source\repos\Update2 SmartStore\SmartStore\SmartStore\bin\EntityFramework.SqlServer.dll
+C:\Users\top\source\repos\Update2 SmartStore\SmartStore\SmartStore\bin\EPPlus.dll
+C:\Users\top\source\repos\Update2 SmartStore\SmartStore\SmartStore\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\top\source\repos\Update2 SmartStore\SmartStore\SmartStore\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\top\source\repos\Update2 SmartStore\SmartStore\SmartStore\bin\Newtonsoft.Json.dll
+C:\Users\top\source\repos\Update2 SmartStore\SmartStore\SmartStore\bin\PagedList.dll
+C:\Users\top\source\repos\Update2 SmartStore\SmartStore\SmartStore\bin\PagedList.Mvc.dll
+C:\Users\top\source\repos\Update2 SmartStore\SmartStore\SmartStore\bin\Rotativa.dll
+C:\Users\top\source\repos\Update2 SmartStore\SmartStore\SmartStore\bin\SmartStore.Core.dll
+C:\Users\top\source\repos\Update2 SmartStore\SmartStore\SmartStore\bin\SmartStore.DataAccessLayer.dll
+C:\Users\top\source\repos\Update2 SmartStore\SmartStore\SmartStore\bin\SmsIrRestful.dll
+C:\Users\top\source\repos\Update2 SmartStore\SmartStore\SmartStore\bin\System.ComponentModel.Annotations.dll
+C:\Users\top\source\repos\Update2 SmartStore\SmartStore\SmartStore\bin\System.Web.Helpers.dll
+C:\Users\top\source\repos\Update2 SmartStore\SmartStore\SmartStore\bin\System.Web.Mvc.dll
+C:\Users\top\source\repos\Update2 SmartStore\SmartStore\SmartStore\bin\System.Web.Razor.dll
+C:\Users\top\source\repos\Update2 SmartStore\SmartStore\SmartStore\bin\System.Web.WebPages.Deployment.dll
+C:\Users\top\source\repos\Update2 SmartStore\SmartStore\SmartStore\bin\System.Web.WebPages.dll
+C:\Users\top\source\repos\Update2 SmartStore\SmartStore\SmartStore\bin\System.Web.WebPages.Razor.dll
+C:\Users\top\source\repos\Update2 SmartStore\SmartStore\SmartStore\bin\SmartStore.Core.pdb
+C:\Users\top\source\repos\Update2 SmartStore\SmartStore\SmartStore\bin\SmartStore.Core.dll.config
+C:\Users\top\source\repos\Update2 SmartStore\SmartStore\SmartStore\bin\SmartStore.DataAccessLayer.pdb
+C:\Users\top\source\repos\Update2 SmartStore\SmartStore\SmartStore\bin\SmartStore.DataAccessLayer.dll.config
+C:\Users\top\source\repos\Update2 SmartStore\SmartStore\SmartStore\bin\EntityFramework.xml
+C:\Users\top\source\repos\Update2 SmartStore\SmartStore\SmartStore\bin\EntityFramework.SqlServer.xml
+C:\Users\top\source\repos\Update2 SmartStore\SmartStore\SmartStore\bin\EPPlus.xml
+C:\Users\top\source\repos\Update2 SmartStore\SmartStore\SmartStore\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\top\source\repos\Update2 SmartStore\SmartStore\SmartStore\bin\Newtonsoft.Json.xml
+C:\Users\top\source\repos\Update2 SmartStore\SmartStore\SmartStore\bin\PagedList.xml
+C:\Users\top\source\repos\Update2 SmartStore\SmartStore\SmartStore\bin\PagedList.Mvc.xml
+C:\Users\top\source\repos\Update2 SmartStore\SmartStore\SmartStore\bin\System.Web.Helpers.xml
+C:\Users\top\source\repos\Update2 SmartStore\SmartStore\SmartStore\bin\System.Web.Mvc.xml
+C:\Users\top\source\repos\Update2 SmartStore\SmartStore\SmartStore\bin\System.Web.Razor.xml
+C:\Users\top\source\repos\Update2 SmartStore\SmartStore\SmartStore\bin\System.Web.WebPages.xml
+C:\Users\top\source\repos\Update2 SmartStore\SmartStore\SmartStore\bin\System.Web.WebPages.Deployment.xml
+C:\Users\top\source\repos\Update2 SmartStore\SmartStore\SmartStore\bin\System.Web.WebPages.Razor.xml
+C:\Users\top\source\repos\Update2 SmartStore\SmartStore\SmartStore\obj\Debug\SmartStore.csprojResolveAssemblyReference.cache
+C:\Users\top\source\repos\Update2 SmartStore\SmartStore\SmartStore\obj\Debug\SmartStore.csproj.CoreCompileInputs.cache
+C:\Users\top\source\repos\Update2 SmartStore\SmartStore\SmartStore\obj\Debug\SmartStore.dll
+C:\Users\top\source\repos\Update2 SmartStore\SmartStore\SmartStore\obj\Debug\SmartStore.pdb
+C:\Users\top\source\repos\Update15 SmartStore\SmartStore\SmartStore\bin\SmartStore.dll.config
+C:\Users\top\source\repos\Update15 SmartStore\SmartStore\SmartStore\bin\SmartStore.dll
+C:\Users\top\source\repos\Update15 SmartStore\SmartStore\SmartStore\bin\SmartStore.pdb
+C:\Users\top\source\repos\Update15 SmartStore\SmartStore\SmartStore\bin\EntityFramework.dll
+C:\Users\top\source\repos\Update15 SmartStore\SmartStore\SmartStore\bin\EntityFramework.SqlServer.dll
+C:\Users\top\source\repos\Update15 SmartStore\SmartStore\SmartStore\bin\EPPlus.dll
+C:\Users\top\source\repos\Update15 SmartStore\SmartStore\SmartStore\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\top\source\repos\Update15 SmartStore\SmartStore\SmartStore\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\top\source\repos\Update15 SmartStore\SmartStore\SmartStore\bin\Newtonsoft.Json.dll
+C:\Users\top\source\repos\Update15 SmartStore\SmartStore\SmartStore\bin\PagedList.dll
+C:\Users\top\source\repos\Update15 SmartStore\SmartStore\SmartStore\bin\PagedList.Mvc.dll
+C:\Users\top\source\repos\Update15 SmartStore\SmartStore\SmartStore\bin\Rotativa.dll
+C:\Users\top\source\repos\Update15 SmartStore\SmartStore\SmartStore\bin\SmartStore.Core.dll
+C:\Users\top\source\repos\Update15 SmartStore\SmartStore\SmartStore\bin\SmartStore.DataAccessLayer.dll
+C:\Users\top\source\repos\Update15 SmartStore\SmartStore\SmartStore\bin\SmsIrRestful.dll
+C:\Users\top\source\repos\Update15 SmartStore\SmartStore\SmartStore\bin\System.ComponentModel.Annotations.dll
+C:\Users\top\source\repos\Update15 SmartStore\SmartStore\SmartStore\bin\System.Web.Helpers.dll
+C:\Users\top\source\repos\Update15 SmartStore\SmartStore\SmartStore\bin\System.Web.Mvc.dll
+C:\Users\top\source\repos\Update15 SmartStore\SmartStore\SmartStore\bin\System.Web.Razor.dll
+C:\Users\top\source\repos\Update15 SmartStore\SmartStore\SmartStore\bin\System.Web.WebPages.Deployment.dll
+C:\Users\top\source\repos\Update15 SmartStore\SmartStore\SmartStore\bin\System.Web.WebPages.dll
+C:\Users\top\source\repos\Update15 SmartStore\SmartStore\SmartStore\bin\System.Web.WebPages.Razor.dll
+C:\Users\top\source\repos\Update15 SmartStore\SmartStore\SmartStore\bin\SmartStore.Core.pdb
+C:\Users\top\source\repos\Update15 SmartStore\SmartStore\SmartStore\bin\SmartStore.Core.dll.config
+C:\Users\top\source\repos\Update15 SmartStore\SmartStore\SmartStore\bin\SmartStore.DataAccessLayer.pdb
+C:\Users\top\source\repos\Update15 SmartStore\SmartStore\SmartStore\bin\SmartStore.DataAccessLayer.dll.config
+C:\Users\top\source\repos\Update15 SmartStore\SmartStore\SmartStore\bin\EntityFramework.xml
+C:\Users\top\source\repos\Update15 SmartStore\SmartStore\SmartStore\bin\EntityFramework.SqlServer.xml
+C:\Users\top\source\repos\Update15 SmartStore\SmartStore\SmartStore\bin\EPPlus.xml
+C:\Users\top\source\repos\Update15 SmartStore\SmartStore\SmartStore\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\top\source\repos\Update15 SmartStore\SmartStore\SmartStore\bin\Newtonsoft.Json.xml
+C:\Users\top\source\repos\Update15 SmartStore\SmartStore\SmartStore\bin\PagedList.xml
+C:\Users\top\source\repos\Update15 SmartStore\SmartStore\SmartStore\bin\PagedList.Mvc.xml
+C:\Users\top\source\repos\Update15 SmartStore\SmartStore\SmartStore\bin\System.Web.Helpers.xml
+C:\Users\top\source\repos\Update15 SmartStore\SmartStore\SmartStore\bin\System.Web.Mvc.xml
+C:\Users\top\source\repos\Update15 SmartStore\SmartStore\SmartStore\bin\System.Web.Razor.xml
+C:\Users\top\source\repos\Update15 SmartStore\SmartStore\SmartStore\bin\System.Web.WebPages.xml
+C:\Users\top\source\repos\Update15 SmartStore\SmartStore\SmartStore\bin\System.Web.WebPages.Deployment.xml
+C:\Users\top\source\repos\Update15 SmartStore\SmartStore\SmartStore\bin\System.Web.WebPages.Razor.xml
+C:\Users\top\source\repos\Update15 SmartStore\SmartStore\SmartStore\obj\Debug\SmartStore.csprojResolveAssemblyReference.cache
+C:\Users\top\source\repos\Update15 SmartStore\SmartStore\SmartStore\obj\Debug\SmartStore.csproj.CoreCompileInputs.cache
+C:\Users\top\source\repos\Update15 SmartStore\SmartStore\SmartStore\obj\Debug\SmartStore.dll
+C:\Users\top\source\repos\Update15 SmartStore\SmartStore\SmartStore\obj\Debug\SmartStore.pdb
+E:\Spad Tfs\SmartStore\SmartStore\bin\SmartStore.dll.config
+E:\Spad Tfs\SmartStore\SmartStore\bin\SmartStore.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\SmartStore.pdb
+E:\Spad Tfs\SmartStore\SmartStore\bin\Microsoft.Win32.Primitives.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\netstandard.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.AppContext.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Collections.Concurrent.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Collections.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Collections.NonGeneric.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Collections.Specialized.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.ComponentModel.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.ComponentModel.EventBasedAsync.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.ComponentModel.Primitives.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.ComponentModel.TypeConverter.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Console.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Data.Common.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Diagnostics.Contracts.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Diagnostics.Debug.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Diagnostics.FileVersionInfo.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Diagnostics.Process.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Diagnostics.StackTrace.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Diagnostics.TextWriterTraceListener.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Diagnostics.Tools.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Diagnostics.TraceSource.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Diagnostics.Tracing.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Drawing.Primitives.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Dynamic.Runtime.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Globalization.Calendars.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Globalization.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Globalization.Extensions.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.IO.Compression.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.IO.Compression.ZipFile.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.IO.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.IO.FileSystem.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.IO.FileSystem.DriveInfo.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.IO.FileSystem.Primitives.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.IO.FileSystem.Watcher.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.IO.IsolatedStorage.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.IO.MemoryMappedFiles.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.IO.Pipes.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.IO.UnmanagedMemoryStream.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Linq.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Linq.Expressions.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Linq.Parallel.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Linq.Queryable.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Net.Http.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Net.NameResolution.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Net.NetworkInformation.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Net.Ping.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Net.Primitives.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Net.Requests.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Net.Security.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Net.Sockets.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Net.WebHeaderCollection.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Net.WebSockets.Client.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Net.WebSockets.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.ObjectModel.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Reflection.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Reflection.Extensions.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Reflection.Primitives.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Resources.Reader.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Resources.ResourceManager.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Resources.Writer.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Runtime.CompilerServices.VisualC.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Runtime.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Runtime.Extensions.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Runtime.Handles.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Runtime.InteropServices.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Runtime.InteropServices.RuntimeInformation.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Runtime.Numerics.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Runtime.Serialization.Formatters.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Runtime.Serialization.Json.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Runtime.Serialization.Primitives.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Runtime.Serialization.Xml.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Security.Claims.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Security.Cryptography.Algorithms.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Security.Cryptography.Csp.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Security.Cryptography.Encoding.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Security.Cryptography.Primitives.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Security.Cryptography.X509Certificates.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Security.Principal.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Security.SecureString.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Text.Encoding.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Text.Encoding.Extensions.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Text.RegularExpressions.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Threading.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Threading.Overlapped.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Threading.Tasks.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Threading.Tasks.Parallel.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Threading.Thread.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Threading.ThreadPool.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Threading.Timer.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.ValueTuple.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Xml.ReaderWriter.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Xml.XDocument.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Xml.XmlDocument.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Xml.XmlSerializer.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Xml.XPath.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Xml.XPath.XDocument.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\BitPay.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\BouncyCastle.Crypto.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\EntityFramework.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\EntityFramework.SqlServer.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\Microsoft.Extensions.Configuration.Abstractions.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\Microsoft.Extensions.Configuration.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\Microsoft.Extensions.Configuration.FileExtensions.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\Microsoft.Extensions.Configuration.Json.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\Microsoft.Extensions.FileProviders.Abstractions.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\Microsoft.Extensions.FileProviders.Physical.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\Microsoft.Extensions.FileSystemGlobbing.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\Microsoft.Extensions.Primitives.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\Microsoft.Web.Infrastructure.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\Newtonsoft.Json.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\PagedList.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\PagedList.Mvc.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\SmartStore.Core.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\SmartStore.Model.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\SmsIrRestful.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Buffers.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.ComponentModel.Annotations.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Memory.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Numerics.Vectors.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Runtime.CompilerServices.Unsafe.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Web.Helpers.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Web.Mvc.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Web.Razor.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Web.WebPages.Deployment.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Web.WebPages.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Web.WebPages.Razor.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\SmartStore.Core.pdb
+E:\Spad Tfs\SmartStore\SmartStore\bin\SmartStore.Core.dll.config
+E:\Spad Tfs\SmartStore\SmartStore\bin\SmartStore.Model.pdb
+E:\Spad Tfs\SmartStore\SmartStore\bin\EntityFramework.xml
+E:\Spad Tfs\SmartStore\SmartStore\bin\EntityFramework.SqlServer.xml
+E:\Spad Tfs\SmartStore\SmartStore\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+E:\Spad Tfs\SmartStore\SmartStore\bin\Microsoft.Extensions.Configuration.xml
+E:\Spad Tfs\SmartStore\SmartStore\bin\Microsoft.Extensions.Configuration.Abstractions.xml
+E:\Spad Tfs\SmartStore\SmartStore\bin\Microsoft.Extensions.Configuration.FileExtensions.xml
+E:\Spad Tfs\SmartStore\SmartStore\bin\Microsoft.Extensions.Configuration.Json.xml
+E:\Spad Tfs\SmartStore\SmartStore\bin\Microsoft.Extensions.FileProviders.Abstractions.xml
+E:\Spad Tfs\SmartStore\SmartStore\bin\Microsoft.Extensions.FileProviders.Physical.xml
+E:\Spad Tfs\SmartStore\SmartStore\bin\Microsoft.Extensions.FileSystemGlobbing.xml
+E:\Spad Tfs\SmartStore\SmartStore\bin\Microsoft.Extensions.Primitives.xml
+E:\Spad Tfs\SmartStore\SmartStore\bin\Newtonsoft.Json.xml
+E:\Spad Tfs\SmartStore\SmartStore\bin\PagedList.xml
+E:\Spad Tfs\SmartStore\SmartStore\bin\PagedList.Mvc.xml
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Buffers.xml
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Memory.xml
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Numerics.Vectors.xml
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Runtime.CompilerServices.Unsafe.xml
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Web.Helpers.xml
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Web.Mvc.xml
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Web.Razor.xml
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Web.WebPages.xml
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Web.WebPages.Deployment.xml
+E:\Spad Tfs\SmartStore\SmartStore\bin\System.Web.WebPages.Razor.xml
+E:\Spad Tfs\SmartStore\SmartStore\obj\Debug\SmartStore.csprojResolveAssemblyReference.cache
+E:\Spad Tfs\SmartStore\SmartStore\obj\Debug\SmartStore.csproj.CoreCompileInputs.cache
+E:\Spad Tfs\SmartStore\SmartStore\obj\Debug\SmartStore.dll
+E:\Spad Tfs\SmartStore\SmartStore\obj\Debug\SmartStore.pdb
+E:\Spad Tfs\SmartStore\SmartStore\bin\SmartStore.DataAccess.dll
+E:\Spad Tfs\SmartStore\SmartStore\bin\SmartStore.DataAccess.pdb
+E:\Spad Tfs\SmartStore\SmartStore\bin\SmartStore.DataAccess.dll.config
+C:\Users\top\source\repos\SmartStore\SmartStore\obj\Debug\SmartStore.csprojResolveAssemblyReference.cache
+C:\Users\top\source\repos\SmartStore\SmartStore\obj\Debug\SmartStore.csproj.CoreCompileInputs.cache
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\SmartStore.dll.config
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\SmartStore.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\SmartStore.pdb
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\Microsoft.Win32.Primitives.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\netstandard.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.AppContext.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Collections.Concurrent.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Collections.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Collections.NonGeneric.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Collections.Specialized.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.ComponentModel.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.ComponentModel.EventBasedAsync.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.ComponentModel.Primitives.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.ComponentModel.TypeConverter.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Console.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Data.Common.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Diagnostics.Contracts.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Diagnostics.Debug.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Diagnostics.FileVersionInfo.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Diagnostics.Process.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Diagnostics.StackTrace.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Diagnostics.TextWriterTraceListener.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Diagnostics.Tools.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Diagnostics.TraceSource.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Diagnostics.Tracing.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Drawing.Primitives.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Dynamic.Runtime.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Globalization.Calendars.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Globalization.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Globalization.Extensions.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.IO.Compression.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.IO.Compression.ZipFile.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.IO.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.IO.FileSystem.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.IO.FileSystem.DriveInfo.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.IO.FileSystem.Primitives.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.IO.FileSystem.Watcher.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.IO.IsolatedStorage.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.IO.MemoryMappedFiles.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.IO.Pipes.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.IO.UnmanagedMemoryStream.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Linq.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Linq.Expressions.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Linq.Parallel.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Linq.Queryable.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Net.Http.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Net.NameResolution.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Net.NetworkInformation.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Net.Ping.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Net.Primitives.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Net.Requests.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Net.Security.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Net.Sockets.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Net.WebHeaderCollection.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Net.WebSockets.Client.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Net.WebSockets.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.ObjectModel.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Reflection.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Reflection.Extensions.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Reflection.Primitives.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Resources.Reader.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Resources.ResourceManager.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Resources.Writer.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Runtime.CompilerServices.VisualC.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Runtime.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Runtime.Extensions.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Runtime.Handles.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Runtime.InteropServices.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Runtime.Numerics.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Runtime.Serialization.Formatters.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Runtime.Serialization.Json.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Runtime.Serialization.Primitives.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Runtime.Serialization.Xml.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Security.Claims.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Security.Cryptography.Algorithms.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Security.Cryptography.Csp.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Security.Cryptography.Encoding.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Security.Cryptography.Primitives.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Security.Cryptography.X509Certificates.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Security.Principal.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Security.SecureString.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Text.Encoding.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Text.Encoding.Extensions.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Text.RegularExpressions.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Threading.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Threading.Overlapped.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Threading.Tasks.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Threading.Tasks.Parallel.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Threading.Thread.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Threading.ThreadPool.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Threading.Timer.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.ValueTuple.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Xml.ReaderWriter.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Xml.XDocument.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Xml.XmlDocument.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Xml.XmlSerializer.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Xml.XPath.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Xml.XPath.XDocument.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\BitPay.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\BouncyCastle.Crypto.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\EntityFramework.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\EntityFramework.SqlServer.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\Microsoft.Extensions.Configuration.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\Microsoft.Extensions.Configuration.FileExtensions.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\Microsoft.Extensions.Configuration.Json.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\Microsoft.Extensions.FileProviders.Abstractions.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\Microsoft.Extensions.FileProviders.Physical.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\Microsoft.Extensions.FileSystemGlobbing.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\Microsoft.Extensions.Primitives.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\Newtonsoft.Json.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\PagedList.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\PagedList.Mvc.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\SmartStore.Core.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\SmartStore.DataAccess.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\SmartStore.Model.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\SmsIrRestful.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Buffers.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.ComponentModel.Annotations.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Memory.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Numerics.Vectors.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Web.Helpers.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Web.Mvc.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Web.Razor.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Web.WebPages.Deployment.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Web.WebPages.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Web.WebPages.Razor.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\SmartStore.Core.pdb
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\SmartStore.Core.dll.config
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\SmartStore.DataAccess.pdb
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\SmartStore.DataAccess.dll.config
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\SmartStore.Model.pdb
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\EntityFramework.xml
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\EntityFramework.SqlServer.xml
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\Microsoft.Extensions.Configuration.xml
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\Microsoft.Extensions.Configuration.Abstractions.xml
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\Microsoft.Extensions.Configuration.FileExtensions.xml
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\Microsoft.Extensions.Configuration.Json.xml
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\Microsoft.Extensions.FileProviders.Abstractions.xml
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\Microsoft.Extensions.FileProviders.Physical.xml
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\Microsoft.Extensions.FileSystemGlobbing.xml
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\Microsoft.Extensions.Primitives.xml
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\Newtonsoft.Json.xml
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\PagedList.xml
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\PagedList.Mvc.xml
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Buffers.xml
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Memory.xml
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Numerics.Vectors.xml
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Web.Helpers.xml
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Web.Mvc.xml
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Web.Razor.xml
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Web.WebPages.xml
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Web.WebPages.Deployment.xml
+C:\Users\top\source\repos\SmartStore\SmartStore\bin\System.Web.WebPages.Razor.xml
+C:\Users\top\source\repos\SmartStore\SmartStore\obj\Debug\SmartStore.dll
+C:\Users\top\source\repos\SmartStore\SmartStore\obj\Debug\SmartStore.pdb

@@ -1,0 +1,54 @@
+﻿
+@model IEnumerable<SmartStore.Model.Entities.Product>
+
+<div class="mb-100 overflow-hidden">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="main-title wow fadeIn">Top selling</h2>
+        </div>
+    </div>
+    <div class="owl-carousel card-item-slider ltr wow fadeIn" id="itemSliderBlue">
+        @foreach (var item in Model)
+        {
+            <div class="item">
+                <div class="card-item card-item--blue">
+                    <div class="row no-gutters">
+                        <div class="col-md-4">
+                            <img src="~/Images/Product/@item.ProductImg" class="card-item__img" alt="">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-item__body">
+                                <div class="card-item__body--title">
+                                    <a href="#"><h3>@item.ProductName</h3></a>
+                                </div>
+                                <div class="card-item__body--price">
+                                    @{
+                                        int price = item.ProductPrice;
+                                        int discountpercent = item.ProductDiscountPercent;
+                                        int discounted = (price) - (price * discountpercent / 100);
+                                    }
+                                    <strong>$@discounted</strong>
+
+                                    <span class="old">$@item.ProductPrice</span>
+                                </div>
+                                <div class="card-item__body--rate">
+                                    <div class="product-rate">
+                                        <div class="product-rate__star">
+                                            <span class="rate-3"></span>
+                                        </div>
+                                        <div class="rate-number">
+                                            (3)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-item__body--btn">
+                                    <a href="/Shop/ProductDetails/@item.Id/" target="_blank" class="btn btn-shop">Shop now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+    </div>

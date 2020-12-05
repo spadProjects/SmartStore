@@ -1,0 +1,55 @@
+﻿@model SmartStore.Models.RegisterWithPhoneNumberViewModel
+
+
+<div class="col-12 jSReviews" id="Experts">
+    <div class="container-fluid mpZero">
+        <div class="row mt-5" id="articleVideos">
+            <div class="col-12 mpZero">
+                @using (Html.BeginForm("RegisterWithPhoneNumber", "Account", FormMethod.Post, new { @class = "form-group custom-form__input", role = "form" }))
+                {
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-10 col-lg-6 ml-auto mr-auto">
+                                    @Html.ValidationMessageFor(model => model.UserPhoneNumber, "", new { @class = "err err-number" })
+                                    <div class="input-group">
+                                        @Html.TextBoxFor(m => m.UserPhoneNumber, new { @class = "RE_input pl-2 w-100 bg-light", @type = "tel", @placeholder = "PhoneNumber" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-10 col-lg-6 mt-2 ml-auto mr-auto">
+                                    @*@Html.ValidationMessageFor(model => model.UserPassword, "", new { @class = "err err-number" })*@
+                                    <div class="input-group">
+                                        @Html.TextBoxFor(m => m.UserPassword, new { @class = "RE_input pl-2 w-100 bg-light", @id = "password", @type = "password", @placeholder = "Password" })
+                                    </div>
+                                </div>
+                            </div>
+                            @*<div class="row">
+                                    <div class="col-10 col-lg-6 mt-2 ml-auto mr-auto">
+                                        <div class="checkbox">
+                                            <input type="checkbox" id="checkbox_24" name="Location">
+                                            <label for="checkbox_24">
+                                                <span class="box"></span>
+                                                Remember me
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>*@
+                            <div class="row">
+                                <div class="col-6 mt-2 ml-auto mr-auto">
+                                    <input type="submit" class="btn all_bgColor text-white pr-4 pl-4 H_btn btn-block" value="Sign up" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="row LP_boxShadow pt-4 pb-2 mt-3">
+        @*<a href="" class="Text-Decoration C_pointer ml-auto mr-auto">
+                <p class="text-center text-danger">No account? Create one!</p>
+            </a>*@
+    </div>
+</div>

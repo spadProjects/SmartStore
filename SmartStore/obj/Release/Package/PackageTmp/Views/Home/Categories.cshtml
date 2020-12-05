@@ -1,0 +1,22 @@
+﻿@model IEnumerable<SmartStore.Model.Entities.ProductGroup>
+
+<ul class="categories-list">
+
+    <li class="categories-list__item">
+        <a href="#">
+            All
+            <span class="badge category-badge">56</span>
+        </a>
+    </li>
+
+    @foreach (var item in Model)
+    {
+        <li class="categories-list__item">
+            <a href="#">
+                @item.GroupName
+                <span class="badge category-badge">2</span>
+            </a>
+        </li>
+    }
+
+</ul>

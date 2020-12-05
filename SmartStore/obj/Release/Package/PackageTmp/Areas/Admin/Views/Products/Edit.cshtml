@@ -1,0 +1,251 @@
+﻿@model SmartStore.Models.ProductViewModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@using (Html.BeginForm("Edit", "Products", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div style="background:#ffffff center;padding:50px;margin-left:50px;margin-right:50px">
+        <h4 style="text-align: center;font-weight: bold;">Edit Product</h4>
+        @Html.AntiForgeryToken()
+        <div class="form-horizontal">
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.Id)
+            @Html.HiddenFor(model => model.ProductImg)
+            @*@Html.HiddenFor(model => model.ProductPrice)*@
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ProductGroupId, "Select Group", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @*@Html.DropDownList("ProductGroupId", null, htmlAttributes: new { @class = "form-control" })*@
+                    <select id="ProductGroupId" class="form-control" onchange="getSubGroups(this,true,0)">
+                        @{
+                            for (int i = 0; i < Model.ProductGroupList.Count; i++)
+                            {
+                                var item = Model.ProductGroupList[i];
+
+                                <option value="@item.Id">@item.GroupName</option>
+                            }
+                        }
+
+                    </select>
+
+                    @Html.ValidationMessageFor(model => model.ProductGroupId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ProductGroupId, "Select SubGroup", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10" id="subGroups">
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.BrandId, "Select Brand", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("BrandId", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.BrandId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ProductName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ProductName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ProductName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ProductImg, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type="file" name="file" />
+                    <br />
+                    <img src="~/Images/Product/@Model.ProductImg" alt="@Model.ProductName" width="150" height="100" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ProductPrice, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ProductPrice, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ProductPrice, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ProductDiscountPercent, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ProductDiscountPercent, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ProductDiscountPercent, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ProductDescription, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ProductDescription, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ProductDescription, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ProductShortDescription, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ProductShortDescription, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ProductShortDescription, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ProductOrder, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ProductOrder, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ProductOrder, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ProductCost, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ProductCost, new { htmlAttributes = new { @class = "form-control", @Value = 0, min = 0 } })
+                    @Html.ValidationMessageFor(model => model.ProductCost, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ProductNotShow, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.ProductNotShow)
+                        @Html.ValidationMessageFor(model => model.ProductNotShow, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10" style="margin-bottom: -20px;">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                    <input type="submit" value="Cancel" class="btn btn-default" data-dismiss="modal" />
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@*@section editorscripts{
+        <script src="/ckeditor/ckeditor.js"></script>
+        <script src="/ckeditor/adapters/jquery.js"></script>
+
+        <script>
+            $(function () {
+                $('#ProductDescription').ckeditor();
+            });
+        </script>
+    }*@
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+
+@section Scripts{
+    <script>
+        function getSubGroups(select, resetlevelIndex, selectIndex) {
+
+            if (resetlevelIndex == true) {
+                var sgDiv = document.getElementById('subGroups');
+                sgDiv.innerHTML = '';
+                document.getElementById('levelIndex').innerText = '';
+            }
+
+            var levelIndex = document.getElementById('levelIndex').innerText;
+
+            if (levelIndex == '') {
+                levelIndex = 0;
+            }
+
+            levelIndex++;
+
+            var id = select.options[select.selectedIndex].value;
+            var url = "/ProductGroups/GetSubGroups/" + id;
+
+            document.getElementById('levelIndex').innerText = levelIndex;
+
+            $.ajax({
+                url: url, success: function (result) {
+                    fillSubGroupData(result, levelIndex, selectIndex);
+                }
+            });
+        }
+
+        function fillSubGroupData(data, levelIndex, selectIndex) {
+            if (data.length != 0) {
+                debugger;
+                if (selectIndex != 0) {
+                    levelIndex = removeElement(selectIndex);
+                }
+                var selectItem = '<div class="row subGroupMargin"><div class="col-md-12"><select id="GroupId' + levelIndex + '" class="form-control"  onchange="getSubGroups(this,false,' + levelIndex + ')"></select></div></div>';
+                var sgDiv = document.getElementById('subGroups');
+
+                //var existTxt = sgDiv.innerHTML;
+                //sgDiv.innerHTML = existTxt + selectItem;
+
+
+                var select = document.createElement("select");
+
+                select.setAttribute('id', 'GroupId' + levelIndex);
+                select.setAttribute('class', "form-control");
+                select.setAttribute('onchange', 'getSubGroups(this,false,' + levelIndex + ')');
+
+                sgDiv.appendChild(select);
+
+                var sId = 'GroupId' + levelIndex;
+                var select = document.getElementById(sId);
+                select.innerHTML = '';
+
+                for (var i = 0; i < data.length; i++) {
+
+                    var item = data[i];
+
+                    select.appendChild(new Option(item.GroupName, item.GroupId));
+
+                }
+
+            }
+        }
+
+
+        function removeElement(selectIndex) {
+            debugger;
+
+            var levelIndex = document.getElementById('levelIndex').innerText;
+
+            if (levelIndex == '') {
+                levelIndex = 0;
+            }
+
+            var tempLevel = levelIndex;
+
+            while (selectIndex < tempLevel) {
+                var element = document.getElementById('GroupId' + tempLevel);
+                if (element != null) {
+                    if (element.parentNode != null) {
+                        element.parentNode.removeChild(element);
+
+                        --levelIndex;
+                        document.getElementById('levelIndex').innerText = levelIndex;
+                    }
+                }
+
+                --tempLevel;
+            }
+
+            return levelIndex;
+        }
+    </script>
+}

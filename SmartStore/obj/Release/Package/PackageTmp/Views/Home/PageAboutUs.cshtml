@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "About";
+    Layout = "~/Views/Shared/_Home.cshtml";
+}
+
+<div class="container header-mt">
+    <div class="row">
+        <div class="col-12">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb custom-breadcrumb">
+                    <li class="breadcrumb-item"><a href="index-2.html">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">AboutUs</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</div>
+<!-- end breadcrumb -->
+<!-- main content -->
+@Html.Action("AboutUs","Home")
+

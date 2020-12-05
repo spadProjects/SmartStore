@@ -1,0 +1,35 @@
+﻿@model IEnumerable<SmartStore.Model.Entities.SliderHeader>
+
+<div class="hero-header-slider">
+    <div class="owl-carousel ltr" id="heroHeaderSlider">
+        @foreach (var item in Model)
+        {
+            <div class="item">
+                <div class="hero-header-slider__img slider-img"
+                     style="background-image: url('../../Images/SliderHeader/@item.SliderImg');">
+                    <div class="hero-header-slider__wrapper">
+                        <div class="slider-inner">
+                            <div class="container overflow-hidden">
+                                <div class="inner-content inner-content--dark slider-animated">
+                                    <h5 class="slider-subtitle animated">@item.SliderTitle</h5>
+                                    <h1 class="slider-title animated">@item.SliderSubTitle</h1>
+                                    <p class="slider-text animated">
+                                        @item.SliderDescription
+                                    </p>
+                                    @if (item.SliderUrl != null)
+                                    {
+                                        <div class="slider-btn">
+                                            <a class="btn animated" href="@item.SliderUrl">Shop now</a>
+                                        </div>
+                                    }
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,59 @@
+﻿@model SmartStore.Model.Entities.ProductGroup
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ProductGroup</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.GroupImage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GroupImage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GroupName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GroupName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GroupOrder)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GroupOrder)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GroupNotShow)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GroupNotShow)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ParentId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ParentId)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

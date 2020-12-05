@@ -1,0 +1,33 @@
+﻿@model IEnumerable<SmartStore.Model.Entities.Product>
+
+<ul>
+    @foreach (var item in Model)
+    {
+        <li class="product-media">
+            <div class="media">
+                <a class="product-media__img" href="#">
+                    <img src="~/Images/Product/@item.ProductImg" alt="" width="50" height="50">
+                </a>
+                <div class="media-body product-media__body">
+                    <div class="title">
+                        <a href="#">@item.ProductName</a>
+                    </div>
+                    <div class="price">
+                        <span>$@item.ProductPrice</span>
+                        <span class="old">$50</span>
+                    </div>
+                    <div class="rating">
+                        <div class="product-rate">
+                            <div class="product-rate__star">
+                                <span class="rate-4"></span>
+                            </div>
+                            <div class="rate-number">
+                                (4)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+    }
+</ul>

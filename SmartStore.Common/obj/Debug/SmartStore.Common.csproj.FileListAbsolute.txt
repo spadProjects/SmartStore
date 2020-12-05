@@ -1,0 +1,6 @@
+C:\Users\top\source\repos\SmartStore\SmartStore.Common\bin\Debug\SmartStore.Common.dll
+C:\Users\top\source\repos\SmartStore\SmartStore.Common\bin\Debug\SmartStore.Common.pdb
+C:\Users\top\source\repos\SmartStore\SmartStore.Common\obj\Debug\SmartStore.Common.csproj.CoreCompileInputs.cache
+C:\Users\top\source\repos\SmartStore\SmartStore.Common\obj\Debug\SmartStore.Common.dll
+C:\Users\top\source\repos\SmartStore\SmartStore.Common\obj\Debug\SmartStore.Common.pdb
+C:\Users\top\source\repos\SmartStore\SmartStore.Common\obj\Debug\SmartStore.Common.csprojResolveAssemblyReference.cache

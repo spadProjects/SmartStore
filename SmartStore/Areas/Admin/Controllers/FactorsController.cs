@@ -7,7 +7,6 @@ using System.Web.Mvc;
 using SmartStore.DataAccess.Context;
 using SmartStore.Model.Entities;
 using PagedList;
-using System.Data.Entity;
 
 namespace SmartStore.Areas.Admin.Controllers
 {
@@ -39,22 +38,7 @@ namespace SmartStore.Areas.Admin.Controllers
             factorlist = db.Factors.ToList();
             return View(factorlist.ToPagedList(PageNumber, pagesize));
         }
-        [HttpPost]
-        public bool ConfirmPayment(int id)
-        {
-            try
-            {
-                var factor = db.Factors.Find(id);
-                factor.IsPay = true;
-                db.Entry(factor).State = EntityState.Modified;
-                db.SaveChanges();
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-        }
+
         public ActionResult FactorListDetails(int? id)
         {
             if (id == null)

@@ -1,0 +1,43 @@
+﻿@model SmartStore.Models.LoginViewModel
+
+<div class="account-wrapper__content">
+    @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "form-group custom-form__input", role = "form" }))
+    {
+        @Html.ValidationMessageFor(model => model.UserEmail, "", new { @class = "err err-number" })
+        <div class="form-group custom-form__input">
+            @Html.TextBoxFor(m => m.UserEmail, new { @class = "form-control", @type = "tel", @id = "emailInput", @placeholder = "Email" })
+        </div>
+
+        @*@Html.ValidationMessageFor(model => model.UserEmail, "", new { @class = "err err-number" })
+            <div class="form-group custom-form__input">
+                @Html.TextBoxFor(m => m.UserEmail, new { @class = "form-control", @type = "tel", @id = "emailInput", @placeholder = "UserEmail" })
+            </div>*@
+
+        @Html.ValidationMessageFor(model => model.UserPassword, "", new { @class = "err err-number" })
+        <div class="input-box password-box">
+            @Html.TextBoxFor(m => m.UserPassword, new { @class = "form-control", @id = "passwordInput", @type = "password", @placeholder = "Password" })
+            <div class="input-box__icon">
+                @*<span class="showhidepassword"><i class="far fa-eye-slash"></i></span>*@
+            </div>
+        </div>
+
+        <div class="forgot-pass">
+            <a href="/Account/CheckEmail">
+                <small>Forget your password?</small>
+            </a>
+        </div>
+
+        <div class="forgot-pass">
+            <a href="resetpass.html">
+                <small> </small>
+            </a>
+        </div>
+        <div class="custom-form__btn">
+            <input type="submit" class="btn submit-btn" value="Login" />
+        </div>
+    }
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

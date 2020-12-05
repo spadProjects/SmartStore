@@ -1,0 +1,16 @@
+C:\Users\top\source\repos\SmartStore\SmartStore.Model\bin\Release\SmartStore.Model.dll
+C:\Users\top\source\repos\SmartStore\SmartStore.Model\bin\Release\SmartStore.Model.pdb
+C:\Users\top\source\repos\SmartStore\SmartStore.Model\bin\Release\System.Web.Mvc.dll
+C:\Users\top\source\repos\SmartStore\SmartStore.Model\bin\Release\System.Web.Razor.dll
+C:\Users\top\source\repos\SmartStore\SmartStore.Model\bin\Release\System.Web.WebPages.Razor.dll
+C:\Users\top\source\repos\SmartStore\SmartStore.Model\bin\Release\System.Web.WebPages.dll
+C:\Users\top\source\repos\SmartStore\SmartStore.Model\bin\Release\Microsoft.Web.Infrastructure.dll
+C:\Users\top\source\repos\SmartStore\SmartStore.Model\bin\Release\System.Web.WebPages.Deployment.dll
+C:\Users\top\source\repos\SmartStore\SmartStore.Model\bin\Release\System.Web.Mvc.xml
+C:\Users\top\source\repos\SmartStore\SmartStore.Model\bin\Release\System.Web.Razor.xml
+C:\Users\top\source\repos\SmartStore\SmartStore.Model\bin\Release\System.Web.WebPages.Razor.xml
+C:\Users\top\source\repos\SmartStore\SmartStore.Model\bin\Release\System.Web.WebPages.xml
+C:\Users\top\source\repos\SmartStore\SmartStore.Model\bin\Release\System.Web.WebPages.Deployment.xml
+C:\Users\top\source\repos\SmartStore\SmartStore.Model\obj\Release\SmartStore.Model.csproj.CoreCompileInputs.cache
+C:\Users\top\source\repos\SmartStore\SmartStore.Model\obj\Release\SmartStore.Model.dll
+C:\Users\top\source\repos\SmartStore\SmartStore.Model\obj\Release\SmartStore.Model.pdb

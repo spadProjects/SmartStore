@@ -186,17 +186,6 @@ namespace SmartStore.Controllers
             ViewBag.RoleId = new SelectList(db.Roles, "Id", "RoleName", user.RoleId);
             return View(user);
         }
-        public ActionResult IntroducersChart()
-        {
-            var user = db.Users.FirstOrDefault(u => u.UserEmail == User.Identity.Name);
-            var parent = db.Users.FirstOrDefault(u => u.UserCode == user.UserIdentifierCode);
-            var children = db.Users.Where(u => u.UserIdentifierCode == user.UserCode).ToList();
-            var introducersChartVm = new IntroducersChartViewModel();
-            introducersChartVm.User = user;
-            introducersChartVm.Parent = parent;
-            introducersChartVm.Children = children;
-            return View(introducersChartVm);
-        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]

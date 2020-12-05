@@ -1,0 +1,75 @@
+﻿@model SmartStore.Model.Entities.SliderHeader
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>SliderHeader</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SliderTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SliderTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SliderSubTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SliderSubTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SliderDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SliderDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SliderImg)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SliderImg)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SliderUrl)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SliderUrl)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SliderOrder)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SliderOrder)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SliderNotShow)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SliderNotShow)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
