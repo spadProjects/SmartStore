@@ -15,7 +15,7 @@
                     </div>
                     <div class="media-body">
                         <a href="#"><h6 class="media-title">@item.ProductName</h6></a>
-                        <small class="media-details">$@item.ProductPrice</small>
+                        <small class="media-details">£@item.ProductPrice</small>
                     </div>
                 </div>
             }
@@ -23,7 +23,7 @@
     </div>
     <div class="dropdown-divider"></div>
     <div class="dropdown-wrapper__item total-price">
-        <span>Total price: <span>$@Model.Sum(p => p.Sum)</span></span>
+        <span>Total price: <span>£@Model.Sum(p => p.Sum)</span></span>
     </div>
     <div class="dropdown-divider"></div>
     <div class="dropdown-wrapper__item cart-btn">

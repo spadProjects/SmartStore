@@ -1,0 +1,38 @@
+﻿@model List<SmartStore.Models.ProductCard>
+@{ 
+    Layout = null;
+}
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-lg-4 col-md-6">
+            <div class="card-item card-item--light mb-30">
+                <div class="card-item__bg">
+                    <a href="/Shop/ProductDetails/@item.Id">
+                        <img src="/Images/Product/@item.ProductImg" alt="@item.ProductName">
+                    </a>
+                </div>
+                <div class="card-item__body">
+                    <div class="card-item__body--price">
+                        <strong>$@item.Price</strong>
+                    </div>
+                    <div class="card-item__body--title">
+                        <a href="/Shop/ProductDetails/@item.Id"><h4>@item.ProductName</h4></a>
+                    </div>
+                </div>
+                <div class="card-item__overlay">
+                    <ul class="action-btn">
+                        <li><a href="/Shop/ProductDetails/@item.Id" class="icon-box"><i class="icon-search"></i></a></li>
+                        <li class="wishlist-btn">
+                            <span class="icon-box">
+                                <i class="wishlist__icon icon-heart"></i>
+                            </span>
+                        </li>
+                    </ul>
+                    <a href="#" onclick="AddToCart(@item.Id)" class="btn">Add to cart</a>
+                </div>
+            </div>
+        </div>
+
+    }
+</div>

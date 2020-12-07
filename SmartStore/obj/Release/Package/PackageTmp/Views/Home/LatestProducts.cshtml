@@ -1,8 +1,10 @@
 ﻿@model IEnumerable<SmartStore.Model.Entities.Product>
 
+
 <ul>
     @foreach (var item in Model)
     {
+        var price = item.ProductPrice - item.ProductPrice * item.ProductDiscountPercent / 100;
         <li class="product-media">
             <div class="media">
                 <a class="product-media__img" href="#">
@@ -13,17 +15,17 @@
                         <a href="#">@item.ProductName</a>
                     </div>
                     <div class="price">
-                        <span>$@item.ProductPrice</span>
-                        <span class="old">$50</span>
+                        <span>£@price</span>
+                        <span class="old">£@item.ProductPrice</span>
                     </div>
                     <div class="rating">
                         <div class="product-rate">
                             <div class="product-rate__star">
                                 <span class="rate-4"></span>
                             </div>
-                            <div class="rate-number">
+                            @*<div class="rate-number">
                                 (4)
-                            </div>
+                            </div>*@
                         </div>
                     </div>
                 </div>

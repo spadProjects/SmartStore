@@ -1,0 +1,174 @@
+﻿@using SmartStore.Model.Entities
+@model SmartStore.Models.ProductListViewModel
+@{
+    ViewBag.Title = "ProductList";
+    Layout = "~/Views/Shared/_Home.cshtml";
+
+}
+<!-- main content -->
+<div class="main-content pt-50 pb-80" style="padding-top: 100px">
+    <div class="container">
+        <!-- toolbox -->
+        @*<div class="row">
+                <div class="col-12">
+                    <div class="shop-toolbox">
+                        <div class="toolbox-layout">
+                            <span>Show:</span>
+                            <ul>
+                                <li><a class="active" href="#">12</a></li>
+                                <li><a href="#">15</a></li>
+                                <li><a href="#">30</a></li>
+                            </ul>
+                        </div>
+                        <div class="toolbox-sort">
+                            <form>
+                                <div class="form-group">
+                                    <select class="form-control" id="sortOption">
+                                        <option selected>Sort by</option>
+                                        <option>Newest</option>
+                                        <option>Best sellers</option>
+                                        <option>Lowest price</option>
+                                        <option>Highest price</option>
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>*@
+        <!-- end toolbox -->
+        <div class="row">
+
+            <!-- shop sidebar -->
+            <div class="col-lg-3 col-md-4 sidebar sidebar--order">
+                <div class="sidebar-shop">
+                    <div class="accordion" id="sidebarShop">
+                        <!-- categories -->
+                        <div class="sidebar__item">
+                            <h3 class="sidebar__item--title">
+                                Product Groups
+                            </h3>
+                            <ul class="categories-list">
+                                <li class="categories-list__item">
+                                    <a href="/Shop/ProductList">
+                                        All
+                                        <span class="badge category-badge">@(Model.ProductCount)</span>
+                                    </a>
+                                </li>
+                                @foreach (var group in Model.ProductGroups.Where(p=>p.Products.Count != 0))
+                                {
+                                    <li class="categories-list__item">
+                                        <a href="/Shop/ProductList/@group.Id">
+                                            @group.GroupName
+                                            <span class="badge category-badge">@group.Products.Count</span>
+                                        </a>
+                                    </li>  
+                                }
+                            </ul>
+                        </div>
+                        @foreach (var feature in Model.Features)
+                        {
+                            <div class="widget">
+                                <div class="widget__heading" id="headingOne">
+                                    <h3>@feature.FeatureTitle</h3>
+                                </div>
+                                <div>
+                                    <div class="widget__body">
+                                        <ul class="widget-list">
+                                            @foreach (var subFeature in feature.SubFeatures)
+                                            {
+                                                <li class="widget-list__item">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" name="subFeature" type="checkbox"
+                                                               onchange="viewProducts()"
+                                                               value="@subFeature.Id"
+                                                               id="sf_@subFeature.Id">
+                                                        <label class="form-check-label" for="sf_@subFeature.Id">
+                                                            @subFeature.Value
+                                                        </label>
+                                                    </div>
+                                                </li>
+                                            }
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        <div class="widget">
+                            <div class="widget__heading">
+                                <h3>Brands</h3>
+                            </div>
+                            <div>
+                                <div class="widget__body">
+                                    <ul class="widget-list">
+                                        @foreach (var brand in Model.Brands)
+                                        {
+                                            <li class="widget-list__item">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" name="brand" type="checkbox"
+                                                           onchange="viewProducts()"
+                                                           value="@brand.Id"
+                                                           id="br_@brand.Id">
+                                                    <label class="form-check-label" for="br_@brand.Id">
+                                                        @brand.BrandName
+                                                    </label>
+                                                </div>
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end shop sidebar -->
+            <div class="col-lg-9 col-md-8">
+                <!-- product list -->
+                <div id="viewProducts"></div>
+                <!-- end product list -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end main content -->
+
+@section Uploaders
+{
+    <script>
+        function viewProducts() {
+            var selectedProductGroup = @Model.SelectedGroupId;
+            var selectedBrands = [];
+            $("[name='brand']").map(function () {
+                if ($(this).prop("checked") === true) {
+                    selectedBrands.push(parseInt($(this).val()));
+                }
+            });
+            var selectedSubFeatures = [];
+            $("[name='subFeature']").map(function () {
+                if ($(this).prop("checked") === true) {
+                    selectedSubFeatures.push(parseInt($(this).val()));
+                }
+            });
+            var params = {
+                selectedProductGroup: selectedProductGroup,
+                selectedBrands:selectedBrands
+            }
+            $.ajax({
+                type: 'GET',
+                url: '/Shop/ViewProducts?selectedProductGroup=' + selectedProductGroup + '&selectedBrands=' + selectedBrands + '&selectedSubFeatures=' + selectedSubFeatures,
+                success: function (data) {
+                    $("#viewProducts").html(data);
+                },
+                error: function (data) {
+                    console.log("error");
+                    console.log(data);
+                }
+            });
+        }
+        $( document ).ready(function() {
+            viewProducts();
+        });
+    </script>
+
+}

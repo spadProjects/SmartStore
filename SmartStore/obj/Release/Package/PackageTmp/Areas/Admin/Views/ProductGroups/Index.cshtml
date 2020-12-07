@@ -33,7 +33,7 @@
                     <h2>Groups <b>Management</b></h2>
                 </div>
                 <div class="col-sm-7">
-                    <a data-toggle="modal" onclick='Create()' class="btn btn-primary"><i class="material-icons">&#xE147;</i><span>Add Group</span></a>
+                    <a href="/Admin/ProductGroups/Create" class="btn btn-primary"><i class="material-icons">&#xE147;</i><span>Add Group</span></a>
                 </div>
             </div>
         </div>
@@ -92,14 +92,12 @@
                             @*<a href="#" onclick='Create(@item.GroupId)' class="view" title="Add SubGroup" data-toggle="tooltip">
                                     <i class="material-icons">&#xE147;</i>
                                 </a>*@
-                            <a href="#" onclick='Edit(@item.Id)' class="edit" title="Edit" data-toggle="tooltip">
+                            <a href="/Admin/ProductGroups/Edit/@item.Id" class="edit" title="Edit" data-toggle="tooltip">
                                 <i class="material-icons">&#xE254;</i>
                             </a>
                             <a href="#" onclick='Delete(@item.Id)' class="delete" title="Delete" data-toggle="tooltip">
                                 <i class="material-icons">&#xE5C9;</i>
                             </a>
-                            <a href="/Admin/ProductGroups/Index/@item.Id" class="view" title="View Details" data-toggle="tooltip"><i class="material-icons">&#xE5C8;</i></a>
-
                         </td>
                     </tr>
                 }

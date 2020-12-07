@@ -23,15 +23,15 @@
                                 </div>
                                 <div class="card-item__body--price">
                                     @{
-                                        int price = item.ProductPrice;
+                                        decimal price = item.ProductPrice;
                                         int discountpercent = item.ProductDiscountPercent;
-                                        int discounted = (price) - (price * discountpercent / 100);
+                                        decimal discounted = (price) - (price * discountpercent / 100);
                                     }
-                                    <strong>$@discounted</strong>
+                                    <strong>£@discounted</strong>
 
-                                    <span class="old">$@item.ProductPrice</span>
+                                    <span class="old">£@item.ProductPrice</span>
                                 </div>
-                                <div class="card-item__body--rate">
+                                @*<div class="card-item__body--rate">
                                     <div class="product-rate">
                                         <div class="product-rate__star">
                                             <span class="rate-3"></span>
@@ -40,7 +40,7 @@
                                             (3)
                                         </div>
                                     </div>
-                                </div>
+                                </div>*@
                                 <div class="card-item__body--btn">
                                     <a href="/Shop/ProductDetails/@item.Id/" target="_blank" class="btn btn-shop">Shop now</a>
                                 </div>
