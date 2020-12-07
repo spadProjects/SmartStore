@@ -166,26 +166,58 @@ namespace SmartStore.Areas.Admin.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(Product product, HttpPostedFileBase file)
+        public int? Edit(NewProductViewModel product)
         {
-            if (ModelState.IsValid)
-            {
-                if (file != null)
-                {
-                    Random random = new Random();
-                    string imgcode = random.Next(100000, 999999).ToString();
+            if (!ModelState.IsValid) return null;
+            var prod = db.Products.Find(product.Id.Value);
+            prod.ProductName = product.ProductName;
+            prod.ProductShortDescription = product.ProductShortDescription;
+            prod.ProductDescription = prod.ProductDescription;
+            prod.BrandId = product.Brand;
+            prod.ProductGroupId = product.ProductGroup;
+            db.Entry(prod).State = EntityState.Modified;
+            db.SaveChanges();
+            #region Removing Previous Product Features
+            var productMainFeatures = db.ProductMainFeatures.Where(f=>f.ProductId == prod.Id).ToList();
+            foreach (var mainFeature in productMainFeatures)
+                db.ProductMainFeatures.Remove(mainFeature);
+            db.SaveChanges();
+            var productFeatures = db.ProductFeatureValues.Where(f => f.ProductId == prod.Id).ToList();
+            foreach (var feature in productFeatures)
+                db.ProductFeatureValues.Remove(feature);
+            db.SaveChanges();
+            #endregion
 
-                    file.SaveAs(HttpContext.Server.MapPath("~/Images/Product/") + imgcode.ToString() + "-" + file.FileName);
-                    product.ProductImg = imgcode.ToString() + "-" + file.FileName;
+            #region Adding Product Features
+
+            foreach (var feature in product.ProductFeatures)
+            {
+                if (feature.IsMain)
+                {
+                    var model = new ProductMainFeature();
+                    model.ProductId = prod.Id;
+                    model.FeatureId = feature.FeatureId;
+                    model.SubFeatureId = feature.SubFeatureId;
+                    model.Value = feature.Value;
+                    model.Quantity = feature.Quantity ?? 0;
+                    model.Price = feature.Price ?? 0;
+                    db.ProductMainFeatures.Add(model);
+                    db.SaveChanges();
                 }
-                db.Entry(product).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                else
+                {
+                    var model = new ProductFeatureValue();
+                    model.ProductId = prod.Id;
+                    model.FeatureId = feature.FeatureId;
+                    model.SubFeatureId = feature.SubFeatureId;
+                    model.Value = feature.Value;
+                    db.ProductFeatureValues.Add(model);
+                    db.SaveChanges();
+                }
             }
-            ViewBag.BrandId = new SelectList(db.Brands, "Id", "BrandName", product.BrandId);
-            ViewBag.ProductGroupId = new SelectList(db.ProductGroups, "Id", "GroupName", product.ProductGroupId);
-            return View(product);
+            #endregion
+            return prod.Id;
+
         }
 
         // GET: Admin/Products/Delete/5
@@ -209,8 +241,27 @@ namespace SmartStore.Areas.Admin.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Product product = db.Products.Find(id);
+            var productMainFeatures = db.ProductMainFeatures.Where(f => f.ProductId == id).ToList();
+            var productFeatures = db.ProductFeatureValues.Where(f => f.ProductId == id).ToList();
+            foreach (var mainFeature in productMainFeatures)
+                db.ProductMainFeatures.Remove(mainFeature);
+            db.SaveChanges();
+
+            foreach (var feature in productFeatures)
+                db.ProductFeatureValues.Remove(feature);
+            db.SaveChanges();
+
+            #region Delete Product Image
+            if (product.ProductImg != null)
+            {
+                if (System.IO.File.Exists(Server.MapPath("/Images/Product/" + product.ProductImg)))
+                    System.IO.File.Delete(Server.MapPath("/Images/Product/" + product.ProductImg));
+            }
+            #endregion
+
             db.Products.Remove(product);
             db.SaveChanges();
+
             return RedirectToAction("Index");
         }
 

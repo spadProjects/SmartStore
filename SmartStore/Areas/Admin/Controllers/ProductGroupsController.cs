@@ -249,7 +249,17 @@ namespace SmartStore.Areas.Admin.Controllers
                 {
                     db.ProductGroups.Remove(subgroup);
                 }
+
+                db.SaveChanges();
             }
+
+            #region Delete ProductGroup Image
+            if (productGroup.GroupImage != null)
+            {
+                if (System.IO.File.Exists(Server.MapPath("/Images/ProductGroup/" + productGroup.GroupImage)))
+                    System.IO.File.Delete(Server.MapPath("/Images/ProductGroup/" + productGroup.GroupImage));
+            }
+            #endregion
             db.ProductGroups.Remove(productGroup);
             db.SaveChanges();
             return RedirectToAction("Index", new { Id = productGroup.ParentId });

@@ -1,6 +1,6 @@
 ﻿@using SmartStore.Infrastructure.Utility
 @using SmartStore.Model.Entities
-@model SmartStore.Models.ProductViewModel
+@model Product
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
@@ -20,120 +20,124 @@
     <div style="background:#ffffff center;padding:50px;margin-left:50px;margin-right:50px">
         <h4 style="text-align: center;font-weight: bold;">Edit Product</h4>
         @Html.AntiForgeryToken()
-        <div class="form-horizontal">
-            <input type="hidden" id="levelIndex" />
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="form-group">
-                @Html.LabelFor(model => model.ProductName, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.ProductName, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.ProductName, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.ProductImg, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    <input type="file" name="file" id="file" />
-                </div>
-            </div>
-
-            @*<div class="form-group">
-                    @Html.LabelFor(model => model.ProductPrice, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.ProductPrice, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.ProductPrice, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.ProductDiscountPercent, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.ProductDiscountPercent, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.ProductDiscountPercent, "", new { @class = "text-danger" })
-                    </div>
-                </div>*@
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.ProductDescription, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.ProductDescription, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.ProductDescription, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.ProductShortDescription, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.ProductShortDescription, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.ProductShortDescription, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            @*<div class="form-group">
-                    @Html.LabelFor(model => model.ProductOrder, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.ProductOrder, new { htmlAttributes = new { @class = "form-control", @Value = 0, min = 0 } })
-                        @Html.ValidationMessageFor(model => model.ProductOrder, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.ProductCost, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.ProductCost, new { htmlAttributes = new { @class = "form-control", @Value = 0, min = 0 } })
-                        @Html.ValidationMessageFor(model => model.ProductCost, "", new { @class = "text-danger" })
-                    </div>
-                </div>*@
-
-            @*<div class="form-group">
-                    @Html.LabelFor(model => model.ProductNotShow, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        <div class="checkbox">
-                            @Html.EditorFor(model => model.ProductNotShow)
-                            @Html.ValidationMessageFor(model => model.ProductNotShow, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                </div>*@
-            <div class="form-group">
-                <label class="">Choose Product Group</label>
-                <div class="col-lg-4 col-md-9 col-sm-12">
-                    <div id="ParentGroupId" class="tree-demo">
-                        <ul>
-                            @foreach (var group in ProductGroups.Where(p => p.ParentId == null))
-                            {
-                                var result = HierarchyLoop.GetProductGroupHierarchy(group);
-                                @Html.Raw(result)
-                            }
-                        </ul>
-                    </div>
-                    <span class="text-danger" style="display: none;color:darkred" id="validate_product_group">Please Choose A Product Group</span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="">Brand</label>
-                <div class="col-md-10">
-                    <select class="form-control" id="Brands" name="Brands">
-                        <option value="">Please Choose A Product Group</option>
-                    </select>
-                </div>
-                <span class="text-danger" style="display: none" id="validate_brand">Please Choose A Brand</span>
-            </div>
-            <div class="form-group">
-                <label class="">Product Features</label>
-                <div class="col-lg-12 col-md-12 col-sm-12">
-                    <div id="productGroupFeatures">Please Choose A Product Group</div>
-                </div>
-            </div>
-            <hr />
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10" style="margin-bottom: -20px;">
-                    <input type="submit" value="Add" class="btn btn-primary" />
-                    <input type="button" value="Cancel" class="btn btn-default" data-dismiss="modal" onclick="cancel()" />
-                </div>
+    <div class="form-horizontal">
+        <input type="hidden" id="levelIndex" />
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.ProductImg)
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProductName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ProductName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ProductName, "", new { @class = "text-danger" })
             </div>
         </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProductImg, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" name="file" id="file" />
+                <br />
+                <img src="~/Images/Product/@Model.ProductImg" alt="@Model.ProductName" width="150" height="100" />
+            </div>
+        </div>
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.ProductPrice, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ProductPrice, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ProductPrice, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProductDiscountPercent, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ProductDiscountPercent, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ProductDiscountPercent, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProductDescription, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ProductDescription, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ProductDescription, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProductShortDescription, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ProductShortDescription, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ProductShortDescription, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.ProductOrder, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ProductOrder, new { htmlAttributes = new { @class = "form-control", @Value = 0, min = 0 } })
+                @Html.ValidationMessageFor(model => model.ProductOrder, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProductCost, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ProductCost, new { htmlAttributes = new { @class = "form-control", @Value = 0, min = 0 } })
+                @Html.ValidationMessageFor(model => model.ProductCost, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.ProductNotShow, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.ProductNotShow)
+                    @Html.ValidationMessageFor(model => model.ProductNotShow, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>*@
+        <div class="form-group">
+            <label class="">Choose Product Group</label>
+            <div class="col-lg-4 col-md-9 col-sm-12">
+                <div id="ParentGroupId" class="tree-demo">
+                    <ul>
+                        @foreach (var group in ProductGroups.Where(p => p.ParentId == null))
+                        {
+                            var result = HierarchyLoop.GetProductGroupHierarchy(group, Model.ProductGroupId);
+                            @Html.Raw(result)
+                        }
+                    </ul>
+                </div>
+                <span class="text-danger" style="display: none;color:darkred" id="validate_product_group">Please Choose A Product Group</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="">Brand</label>
+            <div class="col-md-10">
+                <select class="form-control" id="Brands" name="Brands">
+                    <option value="">Please Choose A Product Group</option>
+                </select>
+            </div>
+            <span class="text-danger" style="display: none" id="validate_brand">Please Choose A Brand</span>
+        </div>
+        <div class="form-group">
+            <label class="">Product Features</label>
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div id="productGroupFeatures">Please Choose A Product Group</div>
+            </div>
+        </div>
+        <hr />
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10" style="margin-bottom: -20px;">
+                <input type="submit" value="Add" class="btn btn-primary" />
+                <input type="button" value="Cancel" class="btn btn-default" data-dismiss="modal" onclick="cancel()" />
+            </div>
+        </div>
+    </div>
     </div>
 }
 
@@ -218,32 +222,40 @@
             });
     </script>
     <script>
-        function getProductGroupBrands(productGroupId) {
+        function getProductGroupBrands(productGroupId, selectedBrandId) {
             var optionsStr = "";
             $.ajax({
                 type: 'GET',
                 url: '/Admin/Products/GetProductGroupBrands/' + productGroupId,
                 async: false,
-                success: function (data) {
-                    data.map(function (item) {
-                        var option = "<option value='" + item.Id + "'>" + item.Name + "</option>";
+                success: function(data) {
+                    data.map(function(item) {
+                        if (selectedBrandId != null && item.Id === selectedBrandId) {
+                            var option = "<option value='" + item.Id + "' selected>" + item.Name + "</option>";
+                        } else {
+                            var option = "<option value='" + item.Id + "'>" + item.Name + "</option>";
+                        }
                         optionsStr = optionsStr + option;
                     });
                 },
-                error: function (data) {
+                error: function(data) {
                     console.log("error");
                     console.log(data);
                 }
             });
             $('#Brands').html(optionsStr);
         }
+
         function getProductGroupFeatures(productGroupId) {
-            $.post("/Admin/Products/GetProductGroupFeatures/" + productGroupId,
-                function (data) {
+            $.ajax({
+                type: 'GET',
+                url: "/Admin/Products/GetProductGroupFeatures/" + productGroupId,
+                async: false,
+                success: function(data) {
                     $("#productGroupFeatures").empty();
-                    data.map(function (item, index) {
+                    data.map(function(item, index) {
                         var mainFeature = "";
-                        if (index === 0) {
+                        if (item.Id === @Model.ProductMainFeatures.FirstOrDefault().FeatureId) {
                             mainFeature = "checked='checked'";
                         }
                         var feature = '<div id="feature_' +
@@ -255,13 +267,17 @@
                             '<label class="col-lg-4 col-form-label text-left"><a href="javascript:;" class="btn btn-icon btn-circle btn-sm btn-success mr-2" data-repeater-create=""><i class="la la-plus"></i></a>' +
                             item.Title +
                             '</label>' +
-                            '<label class="radio radio-lg"><input type="radio" onchange="setMainFeatureFields(this) " id="isMain_' + item.Id + '" ' + mainFeature + ' name="MainFeature"/><span style="margin-left:10px"></span>Main Feature</label>' +
+                            '<label class="radio radio-lg"><input type="radio" onchange="setMainFeatureFields(this) " id="isMain_' +
+                            item.Id +
+                            '" ' +
+                            mainFeature +
+                            ' name="MainFeature"/><span style="margin-left:10px"></span>Main Feature</label>' +
                             '<div data-repeater-list="feature_' +
                             item.Id +
                             '" class="col-lg-10">' +
                             '<div data-repeater-item class="">' +
                             '<div class="form-group row" style="align-items: center">' +
-                            '<label class="col-md-4">Existing Values</label>' +
+                            '<label class="col-md-4">Existing Features</label>' +
                             '<div class="col-md-3">' +
                             '<span class="switch">' +
                             '<label>' +
@@ -277,17 +293,19 @@
                             '</div>' +
                             '</div>' +
                             '<div class="form-group row">' +
-                            '<label class="col-md-2 col-form-label text-left">Values :</label>' +
+                            '<label class="col-md-2 col-form-label text-left">Value :</label>' +
                             '<div class="col-lg-8" name="featureDetailContainer">' +
                             '<input type="text" name="featureDetail" class="form-control" placeholder="Please Enter The Value">' +
                             '</div>' +
                             '</div>' +
-                            '<div style="display:none" name="mainFeatureFields_' + item.Id + '">' +
+                            '<div style="display:none" name="mainFeatureFields_' +
+                            item.Id +
+                            '">' +
                             '<div class="form-group row">' +
                             '<label class="col-md-2 col-form-label text-left">Quantity :</label>' +
                             '<div class="col-lg-8">' +
                             '<input type="number" name="Quantity" class="form-control" placeholder="Enter The Quantity">' +
-                            '<span name="QuantityValidate" class="text-danger" style="display:none">Please Enter the Quantity</span>' +
+                            '<span name="QuantityValidate" class="text-danger" style="display:none">Please Enter The Quantity</span>' +
                             '</div>' +
                             '</div>' +
                             '<div class="form-group row">' +
@@ -301,10 +319,18 @@
                             '</div>' +
                             '</div>' +
                             '</div>' +
-                            '<script>$("#feature_' + item.Id + '_repeater").repeater({initEmpty: true,show: function () {' +
-                            'if($(\'#isMain_' + item.Id + '\').prop("checked"))' +
-                            '{$("[name*=\'mainFeatureFields_' + item.Id + '\']").show()}' +
-                            'else {$("[name*=\'mainFeatureFields_' + item.Id + '\']").hide()}' +
+                            '<script>$("#feature_' +
+                            item.Id +
+                            '_repeater").repeater({initEmpty: true,show: function () {' +
+                            'if($(\'#isMain_' +
+                            item.Id +
+                            '\').prop("checked"))' +
+                            '{$("[name*=\'mainFeatureFields_' +
+                            item.Id +
+                            '\']").show()}' +
+                            'else {$("[name*=\'mainFeatureFields_' +
+                            item.Id +
+                            '\']").hide()}' +
                             '$(this).slideDown();' +
                             '},' +
                             'hide: function (deleteElement) {var currentInstance = $(this).index();var nextInstance = $(this).index() + 1;' +
@@ -312,14 +338,20 @@
                             "<\/script>";
                         $("#productGroupFeatures").append(feature);
                     });
-                });
+                },
+                error: function(data) {
+                    console.log("error");
+                    console.log(data);
+                }
+            });
         }
+
         function setMainFeatureFields(el) {
             var selectedItem = $(el).attr('id');
             var selectedFeatureId = selectedItem.split('_')[1];
             var mainFeatureField = $("[name*='mainFeatureFields_" + selectedFeatureId + "']");
             mainFeatureField.show();
-            $("[name='MainFeature']").not(":checked").each(function () {
+            $("[name='MainFeature']").not(":checked").each(function() {
                 var notSelected = $(this).attr('id');
                 var notSelectedFeatureId = notSelected.split('_')[1];
                 var mainFeatureField = $("[name*='mainFeatureFields_" + notSelectedFeatureId + "']");
@@ -443,6 +475,80 @@
                         });
                     });
             };
+        });
+    </script>
+    <script>
+        function setProductFeatures(id) {
+            var productFeatures = [];
+            $.ajax({
+                type: 'GET',
+                url: "/Products/GetProductFeatures/" + id,
+                async: false,
+                success: function(data) {
+                    console.log("success");
+                    data.map(function(item) {
+                        productFeatures.push(item);
+                    });
+                },
+                error: function(data) {
+                    console.log("error");
+                    console.log(data);
+                }
+            });
+            productFeatures.map(function(item) {
+
+                var featureContainer = $("[data-repeater-list=feature_" + item[0].FeatureId + "]");
+                item.map(function (productFeature, index) {
+                    var mainFeature = "display:none";
+                    if (productFeature.IsMain === true) {
+                        mainFeature = "";
+                    }
+                    var featureDetail = "";
+                    featureDetail +=
+                        '<div data-repeater-item="" class="" style="">' +
+                        '<div class="form-group row" style="align-items: center">' +
+                        '<label class="col-md-4">Existing Features</label>' +
+                        '<div class="col-md-3"><span class="switch">' +
+                        '<label><input type="checkbox" onclick="getFeatureInput(this,'+productFeature.SubFeatureId+')" name="feature_'+productFeature.FeatureId+'['+index+'][existingSubFeature][]"><span></span></label>' +
+                        '</span></div>' +
+                        '<div class="col-md-2">' +
+                        '<a href="javascript:;" data-repeater-delete="" class="btn btn-sm btn-icon btn-danger"><i class="la la-trash"></i></a>' +
+                        '</div></div>'+
+                        '<div class="form-group row"><label class="col-md-2 col-form-label text-left">Value :</label>' +
+                        '<div class="col-lg-8" name="feature_' + productFeature.FeatureId + '[' + index +'][featureDetailContainer]">' +
+                    '<input type="text" name="feature_' + productFeature.FeatureId + '[' + index + '][featureDetail]" value="' + productFeature.Value +'" class="form-control" placeholder="Please Enter The Value"></div></div>' +
+                        '<div style="' + mainFeature +'" name="feature_' + productFeature.FeatureId + '[' + index + '][mainFeatureFields_' + productFeature.FeatureId + ']"><div class="form-group row">' +
+                        '<label class="col-md-2 col-form-label text-left">Quantity :</label><div class="col-lg-8">' +
+                        '<input type="number" name="feature_' + productFeature.FeatureId + '[' + index + '][Quantity]" value="' + productFeature.Quantity +'" class="form-control" placeholder="Enter The Quantity">' +
+                        '<span name="feature_' + productFeature.FeatureId + '[' + index +'][QuantityValidate]" class="text-danger" style="display:none">Please Enter The Quantity</span>' +
+                        '</div></div>' +
+                        '<div class="form-group row"><label class="col-md-2 col-form-label text-left">Price :</label>' +
+                        '<div class="col-lg-8">' +
+                        '<input type="number" name="feature_' + productFeature.FeatureId + '[' + index + '][Price]" value="' + productFeature.Price +'" class="form-control" placeholder="Enter The Price">' +
+                        '<span name="feature_' + productFeature.FeatureId + '[' + index +'][PriceValidate]" class="text-danger" style="display:none">Please Enter The Price</span>' +
+                        '</div></div></div></div>';
+                    if (productFeature.SubFeatureId != null) {
+                        featureDetail += '<script>$("[name=\'feature_' +
+                            productFeature.FeatureId +
+                            '[' +
+                            index +
+                            '][existingSubFeature][]\']").click()<\/script>';
+                    }
+
+                    featureContainer.append(featureDetail);
+                });
+            });
+        }
+
+        function InitializeFields() {
+            var currentBrandId = @Model.BrandId;
+            getProductGroupBrands(@Model.ProductGroupId, currentBrandId);
+            getProductGroupFeatures(@Model.ProductGroupId);
+            setProductFeatures(@Model.Id);
+        }
+
+        $(document).ready(function() {
+            InitializeFields();
         });
     </script>
     <script>

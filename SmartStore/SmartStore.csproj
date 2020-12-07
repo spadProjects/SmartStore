@@ -5300,6 +5300,8 @@
     <Content Include="Areas\Admin\Views\Features\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Features\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Features\Delete.cshtml" />
+    <Content Include="Views\Shop\ProductList.cshtml" />
+    <Content Include="Views\Shop\ViewProducts.cshtml" />
     <None Include="Web References\ShopSmsService\SendReceive.disco" />
     <Content Include="Web.config" />
     <Content Include="Views\Shared\_Home.cshtml" />
@@ -5421,6 +5423,10 @@
     <ProjectReference Include="..\SmartStore.Model\SmartStore.Model.csproj">
       <Project>{478DD29B-263F-46E1-8A98-D3D55ADFECA4}</Project>
       <Name>SmartStore.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SmartStore.Service\SmartStore.Service.csproj">
+      <Project>{2FD20623-3937-4AD2-96B2-18FD22E160AD}</Project>
+      <Name>SmartStore.Service</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

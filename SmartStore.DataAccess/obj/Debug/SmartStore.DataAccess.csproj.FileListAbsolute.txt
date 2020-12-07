@@ -90,3 +90,4 @@ C:\Users\spad\Desktop\Projects\SmartStore\SmartStore\SmartStore.DataAccess\obj\D
 C:\Users\spad\Desktop\Projects\SmartStore\SmartStore\SmartStore.DataAccess\obj\Debug\SmartStore.DataAccess.csproj.GenerateResource.cache
 C:\Users\spad\Desktop\Projects\SmartStore\SmartStore\SmartStore.DataAccess\obj\Debug\SmartStore.DataAccess.Migrations.updatedfeatures.resources
 C:\Users\spad\Desktop\Projects\SmartStore\SmartStore\SmartStore.DataAccess\obj\Debug\SmartStore.DataAccess.Migrations.fixedproductgroupparentrelation.resources
+C:\Users\spad\Desktop\Projects\SmartStore\SmartStore\SmartStore.DataAccess\obj\Debug\SmartStore.DataAccess.Migrations.Updatedproduct.resources

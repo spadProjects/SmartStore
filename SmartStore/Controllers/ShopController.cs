@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -13,6 +14,8 @@ using System.IO;
 using System.Web.UI;
 using PagedList;
 using System.Net;
+using System.Linq;
+using SmartStore.Service.Extensions;
 
 namespace SmartStore.Controllers
 {
@@ -319,6 +322,94 @@ namespace SmartStore.Controllers
             db.SaveChanges();
             return View(db.Factors.Where(f => f.UserId == userId));
         }
+        public ActionResult ProductList(int? id)
+        {
+            var vm = new ProductListViewModel();
+            vm.ProductCount = db.Products.Count();
+            vm.SelectedGroupId = id??0;
+            vm.ProductGroups = db.ProductGroups.Include(p=>p.Products).ToList();
+            if (id == null)
+            {
+                vm.Features = db.Features.Include(f=>f.SubFeatures).ToList();
+                vm.Brands = db.Brands.ToList();
+            }
+            else
+            {
+                var pgFeatures = db.ProductGroupFeatures.Where(f => f.ProductGroupId == id).ToList();
+                var features = pgFeatures.Select(item => db.Features.Include(f => f.SubFeatures).FirstOrDefault(f=>f.Id == item.FeatureId)).ToList();
+                vm.Features = features;
 
+                var pgBrands = db.ProductGroupBrands.Where(f => f.ProductGroupId == id).ToList();
+                var brands = pgBrands.Select(item => db.Brands.Find(item.BrandId)).ToList();
+                vm.Brands = brands;
+            }
+            return View(vm);
+        }
+        public JsonResult GetProductGroupFeatures(List<int> productGroups)
+        {
+            var features = new List<Feature>();
+            if (productGroups.Count == 0)
+            {
+                features = db.Features.ToList();
+            }
+            else
+            {
+                foreach (var groupId in productGroups)
+                {
+                    var pgFeatures = db.ProductGroupFeatures.Where(f => f.ProductGroupId == groupId).ToList();
+                    var ftre = pgFeatures.Select(item => db.Features.FirstOrDefault(f => f.Id == item.FeatureId)).ToList();
+                    features.AddRange(ftre);
+                }
+            }
+
+            features = features.DistinctBy(f => f.Id).ToList();
+            var obj = features.Select(item => new FeaturesObjViewModel() { Id = item.Id, Title = item.FeatureTitle }).ToList();
+            return Json(obj, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult GetProductGroupBrands(int id)
+        {
+            var pgBrands = db.ProductGroupBrands.Where(f => f.ProductGroupId == id).ToList();
+            var brands = pgBrands.Select(item => db.Brands.FirstOrDefault(f => f.Id == item.BrandId)).ToList();
+            var obj = brands.Select(item => new BrandsObjViewModel() { Id = item.Id, Name = item.BrandName }).ToList();
+            return Json(obj, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult ViewProducts(int selectedProductGroup, List<int> selectedBrands, List<int> selectedSubFeatures)
+        {
+            var products = new List<Product>();
+            if (selectedProductGroup == 0)
+                products = db.Products.Include(p=>p.ProductMainFeatures).Include(p=>p.ProductFeatureValues).ToList();
+            else
+                products = db.Products.Where(p=>p.ProductGroupId == selectedProductGroup).Include(p => p.ProductMainFeatures).Include(p => p.ProductFeatureValues).ToList();
+            if (selectedBrands.Any() && selectedBrands.All(id => id != 0))
+            {
+                var productFilteredByBrand = new List<Product>();
+                foreach (var brand in selectedBrands)
+                {
+                    productFilteredByBrand.AddRange(products.Where(p=>p.BrandId == brand));
+                }
+                products = productFilteredByBrand;
+            }
+            if (selectedSubFeatures.Any() && selectedSubFeatures.All(id => id != 0))
+            {
+                var productFilteredBySubFeature = new List<Product>();
+                foreach (var subFeature in selectedSubFeatures)
+                {
+                    productFilteredBySubFeature.AddRange(products.Where(p => p.ProductFeatureValues.Any(pf=>pf.SubFeatureId == subFeature) || p.ProductMainFeatures.Any(pf => pf.SubFeatureId == subFeature)));
+                }
+                products = productFilteredBySubFeature;
+            }
+
+            var vm = new List<ProductCard>();
+            foreach (var product in products)
+            {
+               var card = new ProductCard();
+               card.Id = product.Id;
+               card.ProductName = product.ProductName;
+               card.ProductImg = product.ProductImg;
+               card.Price = product.ProductMainFeatures.OrderByDescending(p => p.Price).FirstOrDefault().Price;
+               vm.Add(card);
+            }
+            return PartialView(vm);
+        }
     }
 }

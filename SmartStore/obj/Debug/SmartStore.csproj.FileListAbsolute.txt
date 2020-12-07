@@ -579,3 +579,5 @@ C:\Users\spad\Desktop\Projects\SmartStore\SmartStore\SmartStore\obj\Debug\SmartS
 C:\Users\spad\Desktop\Projects\SmartStore\SmartStore\SmartStore\obj\Debug\SmartStore.pdb
 C:\Users\spad\Desktop\Projects\SmartStore\SmartStore\SmartStore\bin\SmartStore.Infrastructure.dll
 C:\Users\spad\Desktop\Projects\SmartStore\SmartStore\SmartStore\bin\SmartStore.Infrastructure.pdb
+C:\Users\spad\Desktop\Projects\SmartStore\SmartStore\SmartStore\bin\SmartStore.Service.dll
+C:\Users\spad\Desktop\Projects\SmartStore\SmartStore\SmartStore\bin\SmartStore.Service.pdb

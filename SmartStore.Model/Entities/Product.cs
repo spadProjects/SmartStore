@@ -60,7 +60,8 @@ namespace SmartStore.Model.Entities
 
         public virtual ICollection<Gallery> Galleries { get; set; }
         public virtual ICollection<ShopCartItem> ShopCartItem { get; set; }
-        //public virtual ICollection<ProductFeature> ProductFeatures { get; set; }
+        public virtual ICollection<ProductFeatureValue> ProductFeatureValues { get; set; }
+        public virtual ICollection<ProductMainFeature> ProductMainFeatures { get; set; }
 
     }
     
