@@ -1,0 +1,46 @@
+﻿@model SmartStore.Models.IntroducersChartViewModel
+@{
+    ViewBag.Title = "IntroducersChart";
+    Layout = "~/Views/Shared/_Customer.cshtml";
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel="stylesheet" href="~/Content/Customer/IntroducersChart.css">
+<div class="pg-orgchart">
+    <div class="org-chart">
+        <ul>
+            <li>
+                <ul>
+                    <li>
+                        <div class="user">
+                            <img src="~/Images/User/@(Model.Parent.UserImage != null? Model.Parent.UserImage : "user-avatar.png")" class="img-responsive" />
+                            <div class="name">@Model.Parent.UserFirstName @Model.Parent.UserLastName</div>
+                            <div class="role">@Model.Parent.Role.RoleTitle</div>
+                        </div>
+                        <ul>
+                            <li>
+                                <div class="user">
+                                    <img src="~/Images/User/@(Model.User.UserImage != null? Model.User.UserImage : "user-avatar.png")" class="img-responsive" />
+                                    <div class="name">@Model.User.UserFirstName @Model.User.UserLastName</div>
+                                    <div class="role">@Model.User.Role.RoleTitle</div>
+                                </div>
+                                <ul>
+                                    @foreach (var child in Model.Children)
+                                    {
+                                        <li>
+                                            <div class="user">
+                                                <img src="~/Images/User/@(child.UserImage != null? child.UserImage : "user-avatar.png")" class="img-responsive" />
+                                                <div class="name">@child.UserFirstName @child.UserLastName</div>
+                                                <div class="role">@child.Role.RoleTitle</div>
+                                            </div>
+                                        </li>
+                                    }
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>

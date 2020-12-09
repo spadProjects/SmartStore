@@ -55,11 +55,11 @@
                                                     {
                                                         <!-- post -->
                                                         <div class="col-md-3">
-                                                            <h4 class="dropdown-heading"><a href="/ProductList/Group/@subItem.GroupId">@subItem.Title</a></h4>
+                                                            <h4 class="dropdown-heading"><a href="/Shop/ProductList/@subItem.GroupId">@subItem.Title</a></h4>
                                                             <ul class="dropdown-list">
                                                                 @foreach (var subSubItem in subItem.SubGroups)
                                                                 {
-                                                                    <li><a href="/ProductList/Group/@subSubItem.GroupId">@subSubItem.Title</a></li>
+                                                                    <li><a href="/Shop/ProductList/@subSubItem.GroupId">@subSubItem.Title</a></li>
                                                                 }
                                                             </ul>
                                                         </div>

@@ -59,6 +59,9 @@ namespace SmartStore.Areas.Admin.Controllers
             prod.ProductDescription = entity.ProductDescription;
             prod.BrandId = entity.Brand;
             prod.ProductGroupId = entity.ProductGroup;
+            prod.ProductPrice = entity.ProductPrice;
+            prod.ProductDiscountPercent = entity.ProductDiscountPercent;
+            prod.Point = entity.Point;
             var addProduct = db.Products.Add(prod);
             db.SaveChanges();
             #region Adding Product Features
@@ -175,6 +178,9 @@ namespace SmartStore.Areas.Admin.Controllers
             prod.ProductDescription = prod.ProductDescription;
             prod.BrandId = product.Brand;
             prod.ProductGroupId = product.ProductGroup;
+            prod.ProductPrice = product.ProductPrice;
+            prod.ProductDiscountPercent = product.ProductDiscountPercent;
+            prod.Point = product.Point;
             db.Entry(prod).State = EntityState.Modified;
             db.SaveChanges();
             #region Removing Previous Product Features

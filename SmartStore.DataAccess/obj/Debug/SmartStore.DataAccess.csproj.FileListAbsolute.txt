@@ -91,3 +91,6 @@ C:\Users\spad\Desktop\Projects\SmartStore\SmartStore\SmartStore.DataAccess\obj\D
 C:\Users\spad\Desktop\Projects\SmartStore\SmartStore\SmartStore.DataAccess\obj\Debug\SmartStore.DataAccess.Migrations.updatedfeatures.resources
 C:\Users\spad\Desktop\Projects\SmartStore\SmartStore\SmartStore.DataAccess\obj\Debug\SmartStore.DataAccess.Migrations.fixedproductgroupparentrelation.resources
 C:\Users\spad\Desktop\Projects\SmartStore\SmartStore\SmartStore.DataAccess\obj\Debug\SmartStore.DataAccess.Migrations.Updatedproduct.resources
+C:\Users\spad\Desktop\Projects\SmartStore\SmartStore\SmartStore.DataAccess\obj\Debug\SmartStore.DataAccess.Migrations.addeduserpoint.resources
+C:\Users\spad\Desktop\Projects\SmartStore\SmartStore\SmartStore.DataAccess\obj\Debug\SmartStore.DataAccess.Migrations.addeduserpoint2.resources
+C:\Users\spad\Desktop\Projects\SmartStore\SmartStore\SmartStore.DataAccess\obj\Debug\SmartStore.DataAccess.Migrations.addeduserpoint3.resources

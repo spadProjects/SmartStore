@@ -6,7 +6,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>C:\Users\spad\Desktop\waybeste</_PublishTargetUrl>
+    <_PublishTargetUrl>C:\Users\spad\Desktop\waybestePub</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="Areas/Admin/Views/Blogs/Create.cshtml">
@@ -142,13 +142,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/05/2020 16:16:50</publishTime>
     </File>
     <File Include="Areas/Admin/Views/Products/Create.cshtml">
-      <publishTime>12/05/2020 17:36:23</publishTime>
+      <publishTime>12/08/2020 13:47:24</publishTime>
     </File>
     <File Include="Areas/Admin/Views/Products/Delete.cshtml">
       <publishTime>10/31/2020 10:49:30</publishTime>
     </File>
     <File Include="Areas/Admin/Views/Products/Edit.cshtml">
-      <publishTime>12/06/2020 10:05:12</publishTime>
+      <publishTime>12/08/2020 13:49:09</publishTime>
     </File>
     <File Include="Areas/Admin/Views/Products/Index.cshtml">
       <publishTime>12/05/2020 17:40:06</publishTime>
@@ -430,22 +430,22 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/13/2017 16:47:48</publishTime>
     </File>
     <File Include="bin/SmartStore.Core.dll">
-      <publishTime>12/07/2020 10:05:14</publishTime>
+      <publishTime>12/08/2020 14:05:37</publishTime>
     </File>
     <File Include="bin/SmartStore.Core.dll.config">
       <publishTime>12/05/2020 10:25:24</publishTime>
     </File>
     <File Include="bin/SmartStore.Core.pdb">
-      <publishTime>12/07/2020 10:05:14</publishTime>
+      <publishTime>12/08/2020 14:05:37</publishTime>
     </File>
     <File Include="bin/SmartStore.DataAccess.dll">
-      <publishTime>12/07/2020 10:05:14</publishTime>
+      <publishTime>12/08/2020 14:05:36</publishTime>
     </File>
     <File Include="bin/SmartStore.DataAccess.dll.config">
       <publishTime>10/31/2020 11:58:54</publishTime>
     </File>
     <File Include="bin/SmartStore.DataAccess.pdb">
-      <publishTime>12/07/2020 10:05:14</publishTime>
+      <publishTime>12/08/2020 14:05:36</publishTime>
     </File>
     <File Include="bin/SmartStore.DataAccessLayer.dll">
       <publishTime>10/14/2020 16:41:40</publishTime>
@@ -457,31 +457,31 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/14/2020 16:41:40</publishTime>
     </File>
     <File Include="bin/SmartStore.dll">
-      <publishTime>12/07/2020 10:05:24</publishTime>
+      <publishTime>12/08/2020 14:05:47</publishTime>
     </File>
     <File Include="bin/SmartStore.Infrastructure.dll">
-      <publishTime>12/07/2020 10:05:15</publishTime>
+      <publishTime>12/08/2020 14:05:37</publishTime>
     </File>
     <File Include="bin/SmartStore.Infrastructure.pdb">
-      <publishTime>12/07/2020 10:05:15</publishTime>
+      <publishTime>12/08/2020 14:05:37</publishTime>
     </File>
     <File Include="bin/SmartStore.Model.dll">
-      <publishTime>12/07/2020 10:05:13</publishTime>
+      <publishTime>12/08/2020 14:05:34</publishTime>
     </File>
     <File Include="bin/SmartStore.Model.pdb">
-      <publishTime>12/07/2020 10:05:13</publishTime>
+      <publishTime>12/08/2020 14:05:34</publishTime>
     </File>
     <File Include="bin/SmartStore.pdb">
-      <publishTime>12/07/2020 10:05:24</publishTime>
+      <publishTime>12/08/2020 14:05:47</publishTime>
     </File>
     <File Include="bin/SmartStore.Service.dll">
-      <publishTime>12/07/2020 10:05:15</publishTime>
+      <publishTime>12/08/2020 14:05:37</publishTime>
     </File>
     <File Include="bin/SmartStore.Service.pdb">
-      <publishTime>12/07/2020 10:05:15</publishTime>
+      <publishTime>12/08/2020 14:05:37</publishTime>
     </File>
     <File Include="bin/SmartStore.XmlSerializers.dll">
-      <publishTime>12/07/2020 10:05:25</publishTime>
+      <publishTime>12/08/2020 14:05:48</publishTime>
     </File>
     <File Include="bin/SmsIrRestful.dll">
       <publishTime>11/13/2018 16:35:06</publishTime>
@@ -7205,6 +7205,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="Content/Customer/img/User.jpg">
       <publishTime>10/24/2020 10:59:16</publishTime>
+    </File>
+    <File Include="Content/Customer/IntroducersChart.css">
+      <publishTime>12/08/2020 13:20:07</publishTime>
     </File>
     <File Include="Content/Customer/js/argon.js">
       <publishTime>09/29/2020 15:51:04</publishTime>
@@ -16449,6 +16452,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Images/User/972434-327829-avatar-8.jpg">
       <publishTime>11/04/2020 15:56:23</publishTime>
     </File>
+    <File Include="Images/User/user-avatar.png">
+      <publishTime>12/08/2020 13:20:55</publishTime>
+    </File>
     <File Include="Scripts/jquery-1.10.2.js">
       <publishTime>09/16/2020 12:59:36</publishTime>
     </File>
@@ -16557,11 +16563,14 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/Customer/Index.cshtml">
       <publishTime>09/29/2020 15:57:26</publishTime>
     </File>
+    <File Include="Views/Customer/IntroducersChart.cshtml">
+      <publishTime>12/08/2020 13:18:59</publishTime>
+    </File>
     <File Include="Views/Customer/ProfileEdit.cshtml">
       <publishTime>10/31/2020 10:49:41</publishTime>
     </File>
     <File Include="Views/Customer/SideNav.cshtml">
-      <publishTime>10/31/2020 11:55:36</publishTime>
+      <publishTime>12/08/2020 13:16:30</publishTime>
     </File>
     <File Include="Views/Customer/TopNavbar.cshtml">
       <publishTime>10/31/2020 11:55:36</publishTime>
@@ -16630,7 +16639,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/31/2020 10:49:42</publishTime>
     </File>
     <File Include="Views/Home/ShowCategory.cshtml">
-      <publishTime>12/06/2020 10:42:10</publishTime>
+      <publishTime>12/08/2020 10:48:12</publishTime>
     </File>
     <File Include="Views/Home/SliderHeader.cshtml">
       <publishTime>10/31/2020 10:49:42</publishTime>
@@ -16651,7 +16660,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/19/2020 17:50:12</publishTime>
     </File>
     <File Include="Views/Shared/_Home.cshtml">
-      <publishTime>12/06/2020 11:27:02</publishTime>
+      <publishTime>12/08/2020 12:39:20</publishTime>
     </File>
     <File Include="Views/Shared/_HomeTemp.cshtml">
       <publishTime>11/02/2020 13:57:35</publishTime>
@@ -16678,7 +16687,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/31/2020 10:49:42</publishTime>
     </File>
     <File Include="Views/Shop/ProductDetails.cshtml">
-      <publishTime>11/04/2020 18:05:05</publishTime>
+      <publishTime>12/08/2020 11:45:03</publishTime>
     </File>
     <File Include="Views/Shop/ProductFeatures.cshtml">
       <publishTime>10/31/2020 10:49:42</publishTime>
@@ -16696,7 +16705,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/29/2020 13:03:36</publishTime>
     </File>
     <File Include="Views/Shop/ShowCart.cshtml">
-      <publishTime>11/05/2020 11:16:01</publishTime>
+      <publishTime>12/08/2020 10:54:41</publishTime>
     </File>
     <File Include="Views/Shop/ShowFactor.cshtml">
       <publishTime>10/12/2020 23:07:08</publishTime>
@@ -16705,7 +16714,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/04/2020 16:08:00</publishTime>
     </File>
     <File Include="Views/Shop/ViewProducts.cshtml">
-      <publishTime>12/06/2020 15:26:33</publishTime>
+      <publishTime>12/08/2020 12:55:48</publishTime>
     </File>
     <File Include="Views/web.config">
       <publishTime>09/21/2020 11:38:00</publishTime>

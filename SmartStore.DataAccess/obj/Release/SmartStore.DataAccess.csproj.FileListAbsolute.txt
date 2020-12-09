@@ -61,3 +61,4 @@ C:\Users\spad\Desktop\Projects\SmartStore\SmartStore\SmartStore.DataAccess\obj\R
 C:\Users\spad\Desktop\Projects\SmartStore\SmartStore\SmartStore.DataAccess\obj\Release\SmartStore.DataAccess.csproj.CopyComplete
 C:\Users\spad\Desktop\Projects\SmartStore\SmartStore\SmartStore.DataAccess\obj\Release\SmartStore.DataAccess.dll
 C:\Users\spad\Desktop\Projects\SmartStore\SmartStore\SmartStore.DataAccess\obj\Release\SmartStore.DataAccess.pdb
+C:\Users\spad\Desktop\Projects\SmartStore\SmartStore\SmartStore.DataAccess\obj\Release\SmartStore.DataAccess.Migrations.addeduserpoint.resources

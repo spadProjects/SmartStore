@@ -2019,6 +2019,7 @@
     <Content Include="Content\Customer\img\theme\team-4-800x800.jpg" />
     <Content Include="Content\Customer\img\theme\vue.jpg" />
     <Content Include="Content\Customer\img\User.jpg" />
+    <Content Include="Content\Customer\IntroducersChart.css" />
     <Content Include="Content\Customer\js\argon.js" />
     <Content Include="Content\Customer\js\argon.min.js" />
     <Content Include="Content\Customer\vendor\anchor-js\anchor.min.js" />
@@ -4759,6 +4760,7 @@
     <Content Include="Images\Gallery\988051-6.jpg" />
     <Content Include="Images\Gallery\989239-3.jpg" />
     <Content Include="Images\Gallery\991666-35.jpg" />
+    <Content Include="Images\PaymentQrcode.jpeg" />
     <Content Include="Images\ProductGroup\103545-9.jpg" />
     <Content Include="Images\ProductGroup\107241-Abs ring.png" />
     <Content Include="Images\ProductGroup\108992-3.png" />
@@ -5214,6 +5216,7 @@
     <Content Include="Images\User\883015-353754-avatar.jpg" />
     <Content Include="Images\User\883992-avatar-7.jpg" />
     <Content Include="Images\User\972434-327829-avatar-8.jpg" />
+    <Content Include="Images\User\user-avatar.png" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery-1.8.0.intellisense.js" />
@@ -5302,6 +5305,7 @@
     <Content Include="Areas\Admin\Views\Features\Delete.cshtml" />
     <Content Include="Views\Shop\ProductList.cshtml" />
     <Content Include="Views\Shop\ViewProducts.cshtml" />
+    <Content Include="Views\Customer\IntroducersChart.cshtml" />
     <None Include="Web References\ShopSmsService\SendReceive.disco" />
     <Content Include="Web.config" />
     <Content Include="Views\Shared\_Home.cshtml" />
@@ -5340,6 +5344,7 @@
     <Compile Include="Models\ProductGroupViewModel.cs" />
     <Compile Include="Models\ProductGroupViewModels.cs" />
     <Compile Include="Models\ProductViewModel.cs" />
+    <Compile Include="Models\UserViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>

@@ -43,7 +43,7 @@
             </div>
         </div>
 
-        @*<div class="form-group">
+        <div class="form-group">
             @Html.LabelFor(model => model.ProductPrice, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.ProductPrice, new { htmlAttributes = new { @class = "form-control" } })
@@ -57,8 +57,14 @@
                 @Html.EditorFor(model => model.ProductDiscountPercent, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ProductDiscountPercent, "", new { @class = "text-danger" })
             </div>
-        </div>*@
-
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Point, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Point, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Point, "", new { @class = "text-danger" })
+            </div>
+        </div>
         <div class="form-group">
             @Html.LabelFor(model => model.ProductDescription, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -91,7 +97,7 @@
             </div>
         </div>*@
 
-        @*<div class="form-group">
+        <div class="form-group">
             @Html.LabelFor(model => model.ProductNotShow, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="checkbox">
@@ -99,7 +105,7 @@
                     @Html.ValidationMessageFor(model => model.ProductNotShow, "", new { @class = "text-danger" })
                 </div>
             </div>
-        </div>*@
+        </div>
         <div class="form-group">
             <label class="">Choose Product Group</label>
             <div class="col-lg-4 col-md-9 col-sm-12">
@@ -255,9 +261,9 @@
                     $("#productGroupFeatures").empty();
                     data.map(function(item, index) {
                         var mainFeature = "";
-                        if (item.Id === @Model.ProductMainFeatures.FirstOrDefault().FeatureId) {
+                        @*if (item.Id === @Model.ProductMainFeatures.FirstOrDefault().FeatureId) {
                             mainFeature = "checked='checked'";
-                        }
+                        }*@
                         var feature = '<div id="feature_' +
                             item.Id +
                             '_repeater">' +
@@ -267,11 +273,11 @@
                             '<label class="col-lg-4 col-form-label text-left"><a href="javascript:;" class="btn btn-icon btn-circle btn-sm btn-success mr-2" data-repeater-create=""><i class="la la-plus"></i></a>' +
                             item.Title +
                             '</label>' +
-                            '<label class="radio radio-lg"><input type="radio" onchange="setMainFeatureFields(this) " id="isMain_' +
-                            item.Id +
-                            '" ' +
-                            mainFeature +
-                            ' name="MainFeature"/><span style="margin-left:10px"></span>Main Feature</label>' +
+                            //'<label class="radio radio-lg"><input type="radio" onchange="setMainFeatureFields(this) " id="isMain_' +
+                            //item.Id +
+                            //'" ' +
+                            //mainFeature +
+                            //' name="MainFeature"/><span style="margin-left:10px"></span>Main Feature</label>' +
                             '<div data-repeater-list="feature_' +
                             item.Id +
                             '" class="col-lg-10">' +
@@ -366,6 +372,9 @@
             e.preventDefault();
             var ProductName = $("#ProductName").val();
             var ProductShortDescription = $("#ProductShortDescription").val();
+            var ProductDiscountPercent = $("#ProductDiscountPercent").val();
+            var ProductPrice = $("#ProductPrice").val();
+            var Point = $("#Point").val();
             var Brand = $("#Brands option:selected").val();
             var ProductDescription = $("#ProductDescription").val();
             var ProductGroup = 0;
@@ -400,7 +409,8 @@
                         } else {
                             feature.SubFeatureId = parseInt($(this).val());
                         }
-                        var isMain = $("#isMain_" + featureId).prop("checked");
+                        //var isMain = $("#isMain_" + featureId).prop("checked");
+                        var isMain = false;
                         if (isMain) {
                             feature.IsMain = true;
                             var quantity = $("[name='feature_" + featureId + "[" + index + "][Quantity]']").val();
@@ -426,6 +436,7 @@
                                 featureValidation = true;
                             }
                         }
+                        featureValidation = true;
                         ProductFeatures.push(feature);
                     }
                 });
@@ -447,12 +458,14 @@
                 var product = {
                     ProductName: ProductName,
                     ProductShortDescription: ProductShortDescription,
+                    ProductDiscountPercent: ProductDiscountPercent,
+                    Point: Point,
+                    ProductPrice:ProductPrice,
                     Brand: Brand,
                     ProductDescription: ProductDescription,
                     ProductGroup: ProductGroup,
                     ProductFeatures: ProductFeatures
                 }
-                console.log(product);
                 $.post($("#form").attr('action'),
                     product,
                     function (id) {
@@ -500,9 +513,9 @@
                 var featureContainer = $("[data-repeater-list=feature_" + item[0].FeatureId + "]");
                 item.map(function (productFeature, index) {
                     var mainFeature = "display:none";
-                    if (productFeature.IsMain === true) {
-                        mainFeature = "";
-                    }
+                    //if (productFeature.IsMain === true) {
+                    //    mainFeature = "";
+                    //}
                     var featureDetail = "";
                     featureDetail +=
                         '<div data-repeater-item="" class="" style="">' +

@@ -68,6 +68,7 @@ namespace SmartStore.DataAccess.Context
         public DbSet<ProductMainFeature> ProductMainFeatures { get; set; }
         public DbSet<SubFeature> SubFeatures { get; set; }
         public DbSet<ProductFeature> ProductFeatures { get; set; }
+        public DbSet<UserPoint> UserPoints { get; set; }
 
     }
 }

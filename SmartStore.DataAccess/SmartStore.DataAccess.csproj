@@ -77,6 +77,18 @@
     <Compile Include="Migrations\202012060618192_Updated-product.designer.cs">
       <DependentUpon>202012060618192_Updated-product.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202012081013424_added-user-point.cs" />
+    <Compile Include="Migrations\202012081013424_added-user-point.designer.cs">
+      <DependentUpon>202012081013424_added-user-point.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012081133082_added-user-point2.cs" />
+    <Compile Include="Migrations\202012081133082_added-user-point2.designer.cs">
+      <DependentUpon>202012081133082_added-user-point2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012081142426_added-user-point3.cs" />
+    <Compile Include="Migrations\202012081142426_added-user-point3.designer.cs">
+      <DependentUpon>202012081142426_added-user-point3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\SystemParameterRepository.cs" />
@@ -104,6 +116,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202012060618192_Updated-product.resx">
       <DependentUpon>202012060618192_Updated-product.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012081013424_added-user-point.resx">
+      <DependentUpon>202012081013424_added-user-point.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012081133082_added-user-point2.resx">
+      <DependentUpon>202012081133082_added-user-point2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012081142426_added-user-point3.resx">
+      <DependentUpon>202012081142426_added-user-point3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

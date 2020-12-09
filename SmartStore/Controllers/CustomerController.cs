@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.SqlServer;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -26,6 +27,10 @@ namespace SmartStore.Controllers
 
         public ActionResult SideNav()
         {
+            var user = db.Users.FirstOrDefault(u => u.UserEmail == User.Identity.Name);
+            var userPoint = db.UserPoints.Where(u => u.UserId == user.Id).Select(u=>u.Point).ToList().Sum();
+            ViewBag.User = user;
+            ViewBag.UserPoint = userPoint;
             return View();
         }
 
@@ -171,7 +176,17 @@ namespace SmartStore.Controllers
             ViewBag.RoleId = new SelectList(db.Roles, "Id", "RoleName", user.RoleId);
             return View(user);
         }
-
+        public ActionResult IntroducersChart()
+        {
+            var user = db.Users.FirstOrDefault(u => u.UserEmail == User.Identity.Name);
+            var parent = db.Users.FirstOrDefault(u => u.UserCode == user.UserIdentifierCode);
+            var children = db.Users.Where(u => u.UserIdentifierCode == user.UserCode).ToList();
+            var introducersChartVm = new IntroducersChartViewModel();
+            introducersChartVm.User = user;
+            introducersChartVm.Parent = parent;
+            introducersChartVm.Children = children;
+            return View(introducersChartVm);
+        }
         public ActionResult IdentifierCodeConfirm(int? id)
         {
             if (id == null)

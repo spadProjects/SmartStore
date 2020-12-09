@@ -27,8 +27,14 @@ namespace SmartStore.Classes
             SmtpServer.Port = 587;
             SmtpServer.Credentials = new System.Net.NetworkCredential("emailservicestests@gmail.com", "@Amin@7731@");
             SmtpServer.EnableSsl = true;
-
-            SmtpServer.Send(mail);
+            try
+            {
+                SmtpServer.Send(mail);
+            }
+            catch (Exception e)
+            {
+                return;
+            }
 
         }
     }

@@ -71,6 +71,11 @@
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" href="/Customer/Index">
+                        <i class="ni ni-badge text-success"></i><span style="font-weight:bold">User Code: @user.UserCode</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/Customer/Index">
                         <i class="ni ni-tv-2 text-primary"></i> Dashboard
                     </a>
                 </li>
@@ -93,7 +98,14 @@
                         </a>
                     </li>
                 }
-
+                else
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Customer/IntroducersChart">
+                            <i class="ni ni-pin-3 text-orange"></i> Introducers Chart
+                        </a>
+                    </li>
+                }
                 <li class="nav-item">
                     <a class="nav-link" href="/Customer/ChangePassword">
                         <i class="ni ni-key-25 text-red"></i> Change Password

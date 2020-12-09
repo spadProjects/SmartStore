@@ -85,6 +85,6 @@ namespace SmartStore.Model.Entities
 
         [ForeignKey("RoleId")]
         public virtual Role Role { get; set; }
-
+        public virtual ICollection<UserPoint> UserPoints { get; set; }
     }
 }

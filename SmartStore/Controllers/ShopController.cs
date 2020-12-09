@@ -153,7 +153,33 @@ namespace SmartStore.Controllers
 
             return cart.Sum(p => p.Count);
         }
+        public int RemoveItemFromCart(int id)
+        {
+            List<ShopCartItem> cart = new List<ShopCartItem>();
 
+            if (Session["ShopCart"] != null)
+            {
+                cart = Session["ShopCart"] as List<ShopCartItem>;
+            }
+
+            if (cart.Any(p => p.ProductId == id))
+            {
+                if (cart.FirstOrDefault(p => p.ProductId == id).Count > 1)
+                {
+                    int index = cart.FindIndex(p => p.ProductId == id);
+                    cart[index].Count -= 1;
+                }
+                else
+                {
+                    int index = cart.FindIndex(p => p.ProductId == id);
+                    cart.RemoveAt(index);
+                }
+            }
+
+            Session["ShopCart"] = cart;
+
+            return cart.Sum(p => p.Count);
+        }
         public int ShopCartCount()
         {
             int count = 0;
@@ -167,12 +193,15 @@ namespace SmartStore.Controllers
             return count;
         }
 
-        public ActionResult RemoveFromCart(int id)
+        public ActionResult RemoveFromCart(int id,string returnUrl = null)
         {
             List<ShopCartItem> cart = Session["ShopCart"] as List<ShopCartItem>;
             int remove = cart.FindIndex(p => p.ProductId == id);
             cart.RemoveAt(remove);
             Session["ShopCart"] = cart;
+            if (returnUrl != null)
+                return Redirect(returnUrl);
+
             return Redirect("/Home/Index");
         }
 
@@ -197,19 +226,27 @@ namespace SmartStore.Controllers
                 {
                     var product = db.Products.Where(p => p.Id == item.ProductId).Select(p => new
                     {
-                        p.ProductImg,
                         p.ProductName,
+                        p.ProductImg,
                         p.ProductPrice,
+                        p.ProductDiscountPercent
                     }).Single();
-                    list.Add(new SmartStore.Models.ShapCartViewModel()
+
+                    var shopCart = new ShapCartViewModel()
                     {
                         Count = item.Count,
                         ProductId = item.ProductId,
-                        ProductName = product.ProductName,
                         ProductImg = product.ProductImg,
-                        ProductPrice = product.ProductPrice,
-                        Sum = item.Count * product.ProductPrice,
-                    });
+                        ProductName = product.ProductName,
+                    };
+
+                    var price = product.ProductPrice;
+                    if (product.ProductDiscountPercent != null && product.ProductDiscountPercent > 0)
+                        price = product.ProductPrice * product.ProductDiscountPercent / 100;
+
+                    shopCart.ProductPrice = price;
+                    shopCart.Sum = item.Count * price;
+                    list.Add(shopCart);
                 }
             }
 
@@ -230,17 +267,25 @@ namespace SmartStore.Controllers
                     {
                         p.ProductName,
                         p.ProductImg,
-                        p.ProductPrice
+                        p.ProductPrice,
+                        p.ProductDiscountPercent
                     }).Single();
-                    list.Add(new SmartStore.Models.ShapCartViewModel()
+
+                    var shopCart = new ShapCartViewModel()
                     {
                         Count = item.Count,
                         ProductId = item.ProductId,
-                        ProductPrice = product.ProductPrice,
                         ProductImg = product.ProductImg,
                         ProductName = product.ProductName,
-                        Sum = item.Count * product.ProductPrice
-                    });
+                    };
+
+                    var price = product.ProductPrice;
+                    if (product.ProductDiscountPercent != null && product.ProductDiscountPercent > 0)
+                        price = product.ProductPrice * product.ProductDiscountPercent / 100;
+
+                    shopCart.ProductPrice = price;
+                    shopCart.Sum = item.Count * price;
+                    list.Add(shopCart);
                 }
             }
             return list;
@@ -274,7 +319,7 @@ namespace SmartStore.Controllers
             ViewBag.MyUserId = db.Users.Single(u => u.UserEmail == User.Identity.Name).Id;
             int userId = db.Users.Single(u => u.UserEmail == User.Identity.Name).Id;
             var user = db.Users.FirstOrDefault(u => u.UserEmail == User.Identity.Name);
-            var product = db.Products.FirstOrDefault();
+            //var product = db.Products.FirstOrDefault();
             string fn = "SFN";
             string PN = "SPN";
             Random random = new Random();
@@ -293,11 +338,12 @@ namespace SmartStore.Controllers
                     isValidCod = true;
                 }
             }
+            var listDetails = getListOrder();
 
             Factor factor = new Factor()
             {
                 UserId = userId,
-                Price=product.ProductPrice,
+                Price= listDetails.Select(l=>l.ProductPrice*l.Count).Sum(),
                 CreationDate = DateTime.Now,
                 IsPay = true,
                 FactorNumber = MyFactorNumber.ToString(),
@@ -307,7 +353,6 @@ namespace SmartStore.Controllers
             };
             db.Factors.Add(factor);
 
-            var listDetails = getListOrder();
 
             foreach (var item in listDetails)
             {
@@ -320,7 +365,26 @@ namespace SmartStore.Controllers
                 });
             }
             db.SaveChanges();
-            return View(db.Factors.Where(f => f.UserId == userId));
+
+            #region Adding User Points
+
+            foreach (var item in listDetails)
+            {
+                var product = db.Products.Find(item.ProductId);
+                var userPoint = new UserPoint()
+                {
+                    UserId = userId,
+                    Point = product.Point,
+                    RegisterDate = DateTime.Now
+                };
+                db.UserPoints.Add(userPoint);
+
+            }
+            db.SaveChanges();
+
+            #endregion
+
+            return View(factor);
         }
         public ActionResult ProductList(int? id)
         {
@@ -406,7 +470,8 @@ namespace SmartStore.Controllers
                card.Id = product.Id;
                card.ProductName = product.ProductName;
                card.ProductImg = product.ProductImg;
-               card.Price = product.ProductMainFeatures.OrderByDescending(p => p.Price).FirstOrDefault().Price;
+               card.Price = product.ProductPrice;
+               card.ProductDiscountPercent = product.ProductDiscountPercent;
                vm.Add(card);
             }
             return PartialView(vm);

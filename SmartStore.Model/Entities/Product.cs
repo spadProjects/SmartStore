@@ -49,6 +49,8 @@ namespace SmartStore.Model.Entities
         //[MaxLength(100, ErrorMessage = "Must not exceed {1} characters")]
         public int ProductCost { get; set; }
 
+        public float Point { get; set; }
+
         [ForeignKey("BrandId")]
         public virtual Brand Brand { get; set; }
 

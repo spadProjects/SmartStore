@@ -39,6 +39,9 @@ namespace SmartStore.Models
         public int? Id { get; set; }
         public string ProductName { get; set; }
         public string ProductShortDescription { get; set; }
+        public decimal ProductPrice { get; set; }
+        public int ProductDiscountPercent { get; set; }
+        public float Point { get; set; }
         public string ProductDescription { get; set; }
         public int Brand { get; set; }
         public int ProductGroup { get; set; }
@@ -71,7 +74,13 @@ namespace SmartStore.Models
     {
         public int Id { get; set; }
         public string ProductName { get; set; }
-        public long Price { get; set; }
+        public decimal Price { get; set; }
         public string ProductImg { get; set; }
+        public int ProductDiscountPercent { get; set; }
+    }
+
+    public class ShoppingCartViewModel
+    {
+
     }
 }
