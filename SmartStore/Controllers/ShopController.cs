@@ -374,7 +374,7 @@ namespace SmartStore.Controllers
                 var userPoint = new UserPoint()
                 {
                     UserId = userId,
-                    Point = product.Point,
+                    Point = product.Point*item.Count,
                     RegisterDate = DateTime.Now
                 };
                 db.UserPoints.Add(userPoint);
