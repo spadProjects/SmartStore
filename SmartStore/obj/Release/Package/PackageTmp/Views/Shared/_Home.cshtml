@@ -105,7 +105,15 @@
                 location.reload();
             });
         }
-
+        function RemoveFromCart(id) {
+            $.ajax({
+                url: "/Shop/RemoveItemFromCart/" + id,
+                type: "Get"
+            }).done(function (result) {
+                $("#shopcart").html(result);
+                location.reload();
+            });
+        }
         $(function () {
             $("#shopcart").load("/Shop/ShopCartCount");
         });

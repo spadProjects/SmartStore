@@ -48,11 +48,11 @@
                                 <div class="item-cart__row--details">
                                     <span class="per-price">£@item.ProductPrice</span>
                                     <div class="quantity">
-                                        @*<span class="quantity__minus"><i class="fas fa-minus"></i></span>
-                                            <input class="quantity__input" type="text" value="2" size="2">
-                                            <span class="quantity__plus"><i class="fas fa-plus"></i></span>*@
+                                        <a onclick="RemoveFromCart(@item.ProductId)" class="quantity__minus"><i class="fas fa-minus" style="color: #F6B10D"></i></a>
+                                             <span style="font-weight: bold;padding: 0 10px">@item.Count</span>
+                                            <a onclick="AddToCart(@item.ProductId)" class="quantity__plus"><i class="fas fa-plus" style="color: #F6B10D"></i></a>
                                         <p>
-                                            <input name="points" min="1" max="30" step="1" value="@item.Count" onchange="commandOrder(@item.ProductId,$(this).val())" type="number">
+                                            @*<input name="points" min="1" max="30" step="1" value="@item.Count" onchange="commandOrder(@item.ProductId,$(this).val())" type="number">*@
                                         </p>
                                     </div>
                                     <span class="total-price"><strong>£@item.Sum</strong></span>
