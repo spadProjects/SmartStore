@@ -135,7 +135,12 @@ namespace SmartStore.Controllers
         public ActionResult IdentifierCodeSearch(string strsearch)
         {
             ViewBag.strsearch = strsearch;
-            var us = db.Users.Where(u => u.UserCode.Contains(strsearch));
+            var us = db.Users.Where(u => u.UserCode.Equals(strsearch)).ToList();
+            ViewBag.IsFull = false;
+            if (db.Users.Where(u => u.UserIdentifierCode.Equals(strsearch)).Count() >= 2)
+            {
+                ViewBag.IsFull = true;
+            }
             return View(us);
         }
 
@@ -186,6 +191,22 @@ namespace SmartStore.Controllers
             introducersChartVm.Parent = parent;
             introducersChartVm.Children = children;
             return View(introducersChartVm);
+        }
+        public string RemoveSubset(int id)
+        {
+            try
+            {
+                var child = db.Users.Find(id);
+                child.UserIdentifierCode = null;
+                db.Entry(child).State = EntityState.Modified;
+                db.SaveChanges();
+                return "True";
+            }
+            catch (Exception)
+            {
+                return "Failed to Remove the Subset";
+            }
+
         }
         public ActionResult IdentifierCodeConfirm(int? id)
         {

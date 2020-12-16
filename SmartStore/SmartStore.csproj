@@ -5331,6 +5331,7 @@
     <Compile Include="Classes\SendEmail.cs" />
     <Compile Include="Classes\ShopProvider.cs" />
     <Compile Include="Classes\SmsService.cs" />
+    <Compile Include="Classes\SubsetHierarchy.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Areas\Admin\Controllers\FeaturesController.cs" />

@@ -96,22 +96,18 @@
                         <i class="ni ni-bullet-list-67 text-red"></i> Orders
                     </a>
                 </li>
-                @if (user.UserIdentifierCode == null)
-                {
-                    <li class="nav-item">
-                        <a class="nav-link" href="/Customer/IdentifierCodeSearch">
-                            <i class="ni ni-pin-3 text-orange"></i> Identifier Code
-                        </a>
-                    </li>
-                }
-                else
-                {
-                    <li class="nav-item">
-                        <a class="nav-link" href="/Customer/IntroducersChart">
-                            <i class="ni ni-pin-3 text-orange"></i> Introducers Chart
-                        </a>
-                    </li>
-                }
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/Customer/IdentifierCodeSearch">
+                        <i class="ni ni-pin-3 text-orange"></i> Identifier Code
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/Customer/IntroducersChart">
+                        <i class="ni ni-pin-3 text-orange"></i> Introducers Chart
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/Customer/ChangePassword">
                         <i class="ni ni-key-25 text-red"></i> Change Password

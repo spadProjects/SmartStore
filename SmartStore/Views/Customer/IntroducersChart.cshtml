@@ -1,4 +1,5 @@
 ﻿@model SmartStore.Models.IntroducersChartViewModel
+@using SmartStore.Classes
 @{
     ViewBag.Title = "IntroducersChart";
     Layout = "~/Views/Shared/_Customer.cshtml";
@@ -11,11 +12,18 @@
             <li>
                 <ul>
                     <li>
-                        <div class="user">
-                            <img src="~/Images/User/@(Model.Parent.UserImage != null? Model.Parent.UserImage : "user-avatar.png")" class="img-responsive" />
-                            <div class="name">@Model.Parent.UserFirstName @Model.Parent.UserLastName</div>
-                            <div class="role">@Model.Parent.Role.RoleTitle</div>
-                        </div>
+                        @if (Model.Parent == null)
+                        {
+                            <span class="text-white">You're not a subset of anyone</span>
+                        }
+                        else
+                        {
+                            <div class="user">
+                                <img src="~/Images/User/@(Model.Parent.UserImage != null? Model.Parent.UserImage : "user-avatar.png")" class="img-responsive" />
+                                <div class="name">@Model.Parent.UserFirstName @Model.Parent.UserLastName</div>
+                                <div class="role">@Model.Parent.Role.RoleTitle</div>
+                            </div>
+                        }
                         <ul>
                             <li>
                                 <div class="user">
@@ -26,13 +34,7 @@
                                 <ul>
                                     @foreach (var child in Model.Children)
                                     {
-                                        <li>
-                                            <div class="user">
-                                                <img src="~/Images/User/@(child.UserImage != null? child.UserImage : "user-avatar.png")" class="img-responsive" />
-                                                <div class="name">@child.UserFirstName @child.UserLastName</div>
-                                                <div class="role">@child.Role.RoleTitle</div>
-                                            </div>
-                                        </li>
+                                        @Html.Raw(SubsetHierarchy.GetChildrenChart(child, true));
                                     }
                                 </ul>
                             </li>
@@ -44,3 +46,20 @@
         </ul>
     </div>
 </div>
+@section scripts {
+    <script>
+        function btnRemoveSubset(id) {
+            if (confirm('Are you sure you want to remove this subset?')) {
+                $.ajax({
+                    url: "/Customer/RemoveSubset/" + id,
+                }).done(function (data) {
+                    if (data === "True") {
+                        location.reload();
+                    } else {
+                        alert(data);
+                    }
+                });
+            }
+        }
+    </script>
+}
