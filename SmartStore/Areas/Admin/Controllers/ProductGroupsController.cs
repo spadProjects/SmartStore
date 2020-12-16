@@ -18,11 +18,20 @@ namespace SmartStore.Areas.Admin.Controllers
         private SmartStoreContext db = new SmartStoreContext();
 
         // GET: Admin/ProductGroups
-        public ActionResult Index(int? id = null)
+        public ActionResult Index(int? parentId)
         {
-            Session.Add("GroupId", id);
-            var productgroups = db.ProductGroups.ToList();
-            return View(productgroups.ToList());
+            List<ProductGroup> productGroups;
+            if (parentId == null)
+                productGroups = db.ProductGroups.Where(p => p.ParentId == null).Include(p => p.Children).ToList();
+            else
+            {
+                productGroups = db.ProductGroups.Where(p => p.ParentId == parentId).Include(p => p.Children).ToList();
+                var parent = db.ProductGroups.Find(parentId.Value);
+                ViewBag.PrevParent = parent.ParentId;
+                ViewBag.ParentId = parentId;
+                ViewBag.ParentName = parent.GroupName;
+            }
+            return View(productGroups);
         }
 
         // GET: Admin/ProductGroups/Details/5

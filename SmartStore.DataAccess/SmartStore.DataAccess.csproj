@@ -89,6 +89,10 @@
     <Compile Include="Migrations\202012081142426_added-user-point3.designer.cs">
       <DependentUpon>202012081142426_added-user-point3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202012160929241_aaded-user-profit-payment.cs" />
+    <Compile Include="Migrations\202012160929241_aaded-user-profit-payment.designer.cs">
+      <DependentUpon>202012160929241_aaded-user-profit-payment.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\SystemParameterRepository.cs" />
@@ -125,6 +129,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202012081142426_added-user-point3.resx">
       <DependentUpon>202012081142426_added-user-point3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012160929241_aaded-user-profit-payment.resx">
+      <DependentUpon>202012160929241_aaded-user-profit-payment.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

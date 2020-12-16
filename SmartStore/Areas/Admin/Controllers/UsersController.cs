@@ -10,6 +10,8 @@ using System.Web.Security;
 using SmartStore.DataAccess.Context;
 using SmartStore.Model.Entities;
 using PagedList;
+using SmartStore.Models;
+using SmartStore.Classes;
 
 namespace SmartStore.Areas.Admin.Controllers
 {
@@ -35,9 +37,42 @@ namespace SmartStore.Areas.Admin.Controllers
 
             List<SmartStore.Model.Entities.User> users = new List<User>();
             users = db.Users.Include(u => u.Role).ToList();
-            return View(users.ToPagedList(PageNumber, pagesize));
-        }
+            var vm = new List<UserTableViewModel>();
+            foreach (var user in users)
+                vm.Add(new UserTableViewModel() { 
+                    User = user,
+                    HasTwoSubsets = db.Users.Count(u=>u.UserIdentifierCode == user.UserCode) < 2? false: true
+                });;
 
+            return View(vm.ToPagedList(PageNumber, pagesize));
+        }
+        public ActionResult ProfitPayment(int id)
+        {
+            var userProfitManager = new UserProfitManager();
+            ViewBag.UserId = id;
+            ViewBag.PreviousPayments = db.UserProfitPayments.Where(u => u.UserId == id).ToList();
+            ViewBag.UnpayedProfit = userProfitManager.CalculateUserProfit(id);
+            return View();
+        }
+        [HttpPost]
+        public ActionResult ProfitPayment(UserProfitPayment payment)
+        {
+            try
+            {
+                payment.Date = DateTime.Now;
+                db.UserProfitPayments.Add(payment);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch (Exception)
+            {
+                var userProfitManager = new UserProfitManager();
+                ViewBag.UserId = payment.UserId;
+                ViewBag.PreviousPayments = db.UserProfitPayments.Where(u => u.UserId == payment.UserId).ToList();
+                ViewBag.UnpayedProfit = userProfitManager.CalculateUserProfit(payment.UserId);
+                return View();
+            }
+        }
         // GET: Admin/Users/Details/5
         public ActionResult Details(int? id)
         {

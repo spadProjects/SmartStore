@@ -89,6 +89,7 @@
     <Compile Include="Entities\SystemParameter.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\UserPoints.cs" />
+    <Compile Include="Entities\UserProfitPayment.cs" />
     <Compile Include="Interfaces\ISearchObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SearchObjects\SystemParameterSearchObject.cs" />

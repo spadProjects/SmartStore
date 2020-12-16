@@ -130,3 +130,4 @@ D:\Spad\Projects\SmartStore\SmartStore.DataAccess\obj\Debug\SmartStore.DataAcces
 D:\Spad\Projects\SmartStore\SmartStore.DataAccess\obj\Debug\SmartStore.DataAccess.csproj.CopyComplete
 D:\Spad\Projects\SmartStore\SmartStore.DataAccess\obj\Debug\SmartStore.DataAccess.dll
 D:\Spad\Projects\SmartStore\SmartStore.DataAccess\obj\Debug\SmartStore.DataAccess.pdb
+D:\Spad\Projects\SmartStore\SmartStore.DataAccess\obj\Debug\SmartStore.DataAccess.Migrations.aadeduserprofitpayment.resources

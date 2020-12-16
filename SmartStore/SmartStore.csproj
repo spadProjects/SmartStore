@@ -4565,6 +4565,7 @@
     <Content Include="Content\Plugins\fonts\summernote\summernote.ttf" />
     <Content Include="Content\Plugins\fonts\summernote\summernote.woff" />
     <Content Include="Content\Plugins\fonts\summernote\summernote.woff2" />
+    <Content Include="Areas\Admin\Views\Users\ProfitPayment.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -5332,6 +5333,7 @@
     <Compile Include="Classes\ShopProvider.cs" />
     <Compile Include="Classes\SmsService.cs" />
     <Compile Include="Classes\SubsetHierarchy.cs" />
+    <Compile Include="Classes\UserProfitManager.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Areas\Admin\Controllers\FeaturesController.cs" />

@@ -11,6 +11,7 @@ using SmartStore.DataAccess.Context;
 using SmartStore.Model.Entities;
 using SmartStore.Models;
 using PagedList;
+using SmartStore.Classes;
 
 namespace SmartStore.Controllers
 {
@@ -28,9 +29,12 @@ namespace SmartStore.Controllers
         public ActionResult SideNav()
         {
             var user = db.Users.FirstOrDefault(u => u.UserEmail == User.Identity.Name);
-            var userPoint = db.UserPoints.Where(u => u.UserId == user.Id).Select(u=>u.Point).ToList().Sum();
+            var userProfitManager = new UserProfitManager(db);
+            var userPoint = userProfitManager.GetUserPointsAmount(user);
+            //var userProfit = userProfitManager.CalculateUserProfit(user);
             ViewBag.User = user;
             ViewBag.UserPoint = userPoint;
+            //ViewBag.UserProfit = userProfit;
             return View();
         }
 
@@ -183,13 +187,45 @@ namespace SmartStore.Controllers
         }
         public ActionResult IntroducersChart()
         {
+            var userProfitManager = new UserProfitManager(db);
             var user = db.Users.FirstOrDefault(u => u.UserEmail == User.Identity.Name);
+            var userCard = new IntroducersCardViewModel()
+            {
+                Id = user.Id,
+                UserImage = user.UserImage,
+                Name = $"{user.UserFirstName} {user.UserLastName}",
+                Role = user.Role.RoleTitle,
+                Points = userProfitManager.GetUserPointsAmount(user)
+            };
+
             var parent = db.Users.FirstOrDefault(u => u.UserCode == user.UserIdentifierCode);
+            var parentCard = new IntroducersCardViewModel()
+            {
+                Id = parent.Id,
+                UserImage = parent.UserImage,
+                Name = $"{parent.UserFirstName} {parent.UserLastName}",
+                Role = parent.Role.RoleTitle,
+            };
+
             var children = db.Users.Where(u => u.UserIdentifierCode == user.UserCode).ToList();
+            var childrenCard = new List<IntroducersCardViewModel>();
+            foreach (var child in children)
+            {
+                var childCard = new IntroducersCardViewModel()
+                {
+                    Id = child.Id,
+                    UserImage = child.UserImage,
+                    Name = $"{child.UserFirstName} {child.UserLastName}",
+                    Role = child.Role.RoleTitle,
+                    Points = userProfitManager.GetUserPointsAmount(child)
+                };
+                childrenCard.Add(childCard);
+            }
+
             var introducersChartVm = new IntroducersChartViewModel();
-            introducersChartVm.User = user;
-            introducersChartVm.Parent = parent;
-            introducersChartVm.Children = children;
+            introducersChartVm.User = userCard;
+            introducersChartVm.Parent = parentCard;
+            introducersChartVm.Children = childrenCard;
             return View(introducersChartVm);
         }
         public string RemoveSubset(int id)

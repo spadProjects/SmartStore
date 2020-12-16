@@ -20,21 +20,27 @@
                         {
                             <div class="user">
                                 <img src="~/Images/User/@(Model.Parent.UserImage != null? Model.Parent.UserImage : "user-avatar.png")" class="img-responsive" />
-                                <div class="name">@Model.Parent.UserFirstName @Model.Parent.UserLastName</div>
-                                <div class="role">@Model.Parent.Role.RoleTitle</div>
+                                <div class="name">@Model.Parent.Name</div>
+                                <div class="name"></div>
+                                <div class="role">@Model.Parent.Role</div>
                             </div>
                         }
                         <ul>
                             <li>
                                 <div class="user">
                                     <img src="~/Images/User/@(Model.User.UserImage != null? Model.User.UserImage : "user-avatar.png")" class="img-responsive" />
-                                    <div class="name">@Model.User.UserFirstName @Model.User.UserLastName</div>
-                                    <div class="role">@Model.User.Role.RoleTitle</div>
+                                    <div class="name">@Model.User.Name</div>
+                                    <div class="role">@Model.User.Role</div>
+                                    <div class="role">Points: @Model.User.Points</div>
                                 </div>
+                                @if (Model.Children.Count < 2)
+                                {
+                                    <div class="mt-2 text-white">You need 2 subsets to enter the profit program</div>
+                                }   
                                 <ul>
                                     @foreach (var child in Model.Children)
                                     {
-                                        @Html.Raw(SubsetHierarchy.GetChildrenChart(child, true));
+                                        @Html.Raw(SubsetHierarchy.GetChildrenChart(child.Id, true));
                                     }
                                 </ul>
                             </li>
