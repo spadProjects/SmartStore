@@ -75,7 +75,7 @@ namespace SmartStore.Controllers
             //}
 
             //return PartialView(list);
-            var productslider = db.Products.Where(ps => ps.ProductNotShow == false).OrderByDescending(ps => ps.ProductOrder).ToList();
+            var productslider = db.Products.Where(ps => ps.ProductNotShow == false && ps.IsDeleted != true).OrderByDescending(ps => ps.ProductOrder).ToList();
             return PartialView(productslider);
             //List<SmartStore.Model.Entities.Product> prolist = new List<Product>();
             //prolist = db.Products.Where(m => m.ProductNotShow == false).OrderBy(m => m.ProductOrder).Take(8).ToList();
@@ -84,7 +84,7 @@ namespace SmartStore.Controllers
 
         public ActionResult MainSlider()
         {
-            var mainslider = db.Products.Where(ms => ms.ProductNotShow == false).OrderByDescending(ms => ms.ProductOrder).ToList();
+            var mainslider = db.Products.Where(ms => ms.ProductNotShow == false && ms.IsDeleted != true).OrderByDescending(ms => ms.ProductOrder).ToList();
             return PartialView(mainslider);
             //var mainslider = db.Products.Where(m => m.ProductNotShow == false).OrderBy(m => m.ProductOrder).Take(4).ToList();
             //return PartialView(mainslider);
@@ -93,7 +93,7 @@ namespace SmartStore.Controllers
         public ActionResult Gallery()
         {
             List<SmartStore.Model.Entities.Product> gallerylist = new List<Product>();
-            gallerylist = db.Products.Where(m => m.ProductNotShow == false).OrderBy(m => m.ProductOrder).Take(8).ToList();
+            gallerylist = db.Products.Where(m => m.ProductNotShow == false && m.IsDeleted != true).OrderBy(m => m.ProductOrder).Take(8).ToList();
             return PartialView(gallerylist);
         }
 
@@ -158,13 +158,13 @@ namespace SmartStore.Controllers
 
         public ActionResult Categories()
         {
-            var categories = db.ProductGroups.Where(b => b.GroupNotShow == false).OrderByDescending(b => b.GroupOrder).Take(3).ToList();
+            var categories = db.ProductGroups.Where(b => b.GroupNotShow == false && b.IsDeleted != true).OrderByDescending(b => b.GroupOrder).Take(3).ToList();
             return PartialView(categories);
         }
 
         public ActionResult LatestProducts()
         {
-            var latestproducts = db.Products.Where(b => b.ProductNotShow == false).OrderByDescending(b => b.ProductOrder).Take(3).ToList();
+            var latestproducts = db.Products.Where(b => b.ProductNotShow == false && b.IsDeleted != true).OrderByDescending(b => b.ProductOrder).Take(3).ToList();
             return PartialView(latestproducts);
         }
 
@@ -229,7 +229,7 @@ namespace SmartStore.Controllers
         public ActionResult PopularCategories()
         {
             List<SmartStore.Model.Entities.ProductGroup> pc = new List<ProductGroup>();
-            pc = db.ProductGroups.Where(w => w.GroupNotShow == false).OrderByDescending(s => s.GroupOrder).Take(4).ToList();
+            pc = db.ProductGroups.Where(w => w.GroupNotShow == false && (w.IsDeleted == false || w.IsDeleted == null) && w.ParentId == null).OrderByDescending(s => s.GroupOrder).ToList();
             return PartialView(pc);
         }
 
@@ -237,7 +237,7 @@ namespace SmartStore.Controllers
         {
             var model = new List<ProductGroupViewModel>();
 
-            var groupList = db.ProductGroups.Where(w => w.ParentId == null).ToList();
+            var groupList = db.ProductGroups.Where(w => w.ParentId == null && (w.IsDeleted == false || w.IsDeleted == null)).ToList();
 
             groupList.ForEach(item =>
             {
@@ -245,7 +245,7 @@ namespace SmartStore.Controllers
                 GroupHeader.Title = item.GroupName;
                 GroupHeader.GroupId = item.Id;
 
-                var subGroupList = db.ProductGroups.Where(w => w.ParentId == item.Id).ToList();
+                var subGroupList = db.ProductGroups.Where(w => w.ParentId == item.Id && w.IsDeleted != true).ToList();
 
                 subGroupList.ForEach(subItem =>
                 {
@@ -253,7 +253,7 @@ namespace SmartStore.Controllers
                     Groups.Title = subItem.GroupName;
                     Groups.GroupId = subItem.Id;
 
-                    var subItemGroupList = db.ProductGroups.Where(w => w.ParentId == subItem.Id).ToList();
+                    var subItemGroupList = db.ProductGroups.Where(w => w.ParentId == subItem.Id && w.IsDeleted != true).ToList();
 
                     subItemGroupList.ForEach(sub =>
                     {
@@ -271,6 +271,35 @@ namespace SmartStore.Controllers
             });
             return PartialView(model);
         }
-
+        public ActionResult UploadImage(HttpPostedFileBase upload, string CKEditorFuncNum, string CKEditor, string langCode)
+        {
+            string vImagePath = String.Empty;
+            string vMessage = String.Empty;
+            string vFilePath = String.Empty;
+            string vOutput = String.Empty;
+            try
+            {
+                if (upload != null && upload.ContentLength > 0)
+                {
+                    var vFileName = DateTime.Now.ToString("yyyyMMdd-HHMMssff") +
+                                    Path.GetExtension(upload.FileName).ToLower();
+                    var vFolderPath = Server.MapPath("/Upload/");
+                    if (!Directory.Exists(vFolderPath))
+                    {
+                        Directory.CreateDirectory(vFolderPath);
+                    }
+                    vFilePath = Path.Combine(vFolderPath, vFileName);
+                    upload.SaveAs(vFilePath);
+                    vImagePath = Url.Content("/Upload/" + vFileName);
+                    vMessage = "Image was saved correctly";
+                }
+            }
+            catch
+            {
+                vMessage = "There was an issue uploading";
+            }
+            vOutput = @"<html><body><script>window.parent.CKEDITOR.tools.callFunction(" + CKEditorFuncNum + ", \"" + vImagePath + "\", \"" + vMessage + "\");</script></body></html>";
+            return Content(vOutput);
+        }
     }
 }

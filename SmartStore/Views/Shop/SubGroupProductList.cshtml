@@ -189,7 +189,7 @@
                             </div>
                             <div class="card-item__body">
                                 <div class="card-item__body--price">
-                                    <strong>£@item.ProductPrice</strong>
+                                    <strong>€@item.ProductPrice</strong>
                                 </div>
                                 <div class="card-item__body--title">
                                     <a href="#"><h4>@item.ProductName</h4></a>
@@ -216,14 +216,8 @@
                             </div>
                         </div>
                     </div>
-
                 }
             }
-
-
-
-
-
         </div>
         <!-- end product list -->
         <!-- pagination -->
@@ -232,7 +226,7 @@
                 <div class="shop-pagination">
                     <nav aria-label="Page navigation">
                         <ul class="pagination custom-pagination">
-                            @Html.PagedListPager(Model, page => "/ProductList/SubGroup/" + Model.FirstOrDefault().ProductGroup.GroupName + "/" + Model.FirstOrDefault().ProductGroup.GroupId + "/" + page)
+                            @Html.PagedListPager(Model, page => "/ProductList/SubGroup/" + Model.FirstOrDefault().ProductGroup.GroupName + "/" + Model.FirstOrDefault().ProductGroup.Id + "/" + page)
                         </ul>
                     </nav>
                     <div class="clearfix">

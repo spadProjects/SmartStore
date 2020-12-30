@@ -170,41 +170,45 @@ namespace SmartStore.Classes
 
                 // Maximum Profit Control
                 subsetPoints = subsetPoints.OrderBy(u => u.RegisterDate).ToList();
-                var oldestRegisteredPoint = subsetPoints[0];
-                var maximumProfitAllowedPerWeek = 70000;
-                long weeklyProfit = 0;
-
-                foreach (var item in subsetPoints)
+                if (subsetPoints.Any())
                 {
-                    if ((int)(item.RegisterDate - oldestRegisteredPoint.RegisterDate).TotalDays <= 7)
+                    var oldestRegisteredPoint = subsetPoints[0];
+                    var maximumProfitAllowedPerWeek = 70000;
+                    long weeklyProfit = 0;
+
+                    foreach (var item in subsetPoints)
                     {
-                        weeklyProfit += CalculatePointProfit(item.Point);
-                        if (weeklyProfit < maximumProfitAllowedPerWeek)
+                        if ((int)(item.RegisterDate - oldestRegisteredPoint.RegisterDate).TotalDays <= 7)
                         {
-                            userProfit += CalculatePointProfit(item.Point);
+                            weeklyProfit += CalculatePointProfit(item.Point);
+                            if (weeklyProfit < maximumProfitAllowedPerWeek)
+                            {
+                                userProfit += CalculatePointProfit(item.Point);
+                            }
+                            else
+                            {
+                                userProfit = maximumProfitAllowedPerWeek;
+                            }
                         }
                         else
                         {
-                            userProfit = maximumProfitAllowedPerWeek;
-                        }
-                    }
-                    else
-                    {
-                        oldestRegisteredPoint = item;
-                        weeklyProfit = 0;
-                        weeklyProfit += CalculatePointProfit(item.Point);
-                        if (weeklyProfit < maximumProfitAllowedPerWeek)
-                        {
-                            userProfit += CalculatePointProfit(item.Point);
-                        }
-                        else
-                        {
-                            userProfit = maximumProfitAllowedPerWeek;
+                            oldestRegisteredPoint = item;
+                            weeklyProfit = 0;
+                            weeklyProfit += CalculatePointProfit(item.Point);
+                            if (weeklyProfit < maximumProfitAllowedPerWeek)
+                            {
+                                userProfit += CalculatePointProfit(item.Point);
+                            }
+                            else
+                            {
+                                userProfit = maximumProfitAllowedPerWeek;
+                            }
                         }
                     }
                 }
             }
             userProfit -= totalUserPayment;
+            userProfit = RoundProfit(userProfit);
             return userProfit;
         }
         public long CalculateUserProfit(User model)
@@ -260,6 +264,7 @@ namespace SmartStore.Classes
                 }
             }
             userProfit -= totalUserPayment;
+            userProfit = RoundProfit(userProfit);
             return userProfit;
         }
         public long CalculatePointProfit(float point)
@@ -267,6 +272,12 @@ namespace SmartStore.Classes
             var exchangeRate = 300;
             var profit = (long)Math.Floor(point * exchangeRate);
             return profit;
+        }
+
+        public long RoundProfit(long profit)
+        {
+            var roundedProfit = profit - (profit % 300);
+            return roundedProfit;
         }
     }
 }

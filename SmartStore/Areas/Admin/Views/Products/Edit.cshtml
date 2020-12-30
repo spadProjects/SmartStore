@@ -65,19 +65,19 @@
                 @Html.ValidationMessageFor(model => model.Point, "", new { @class = "text-danger" })
             </div>
         </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.ProductDescription, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ProductDescription, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ProductDescription, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.ProductShortDescription, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.ProductShortDescription, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ProductShortDescription, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProductDescription, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ProductDescription, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ProductDescription, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -158,8 +158,16 @@
     <script src="/Content/Plugins/plugins.bundle.js"></script>
     <script src="/Content/jstree/jstree.bundle.js"></script>
     <script src="/Content/jstree/treeview.js"></script>
+    <script src="/ckeditor/ckeditor.js"></script>
+    <script src="/ckeditor/adapters/jquery.js"></script>
     <script>
-        function getFeatureInput(el) {
+        $(function () {
+            $('#ProductDescription').ckeditor();
+
+        });
+    </script>
+    <script>
+        function getFeatureInput(el, subFeatureId) {
             var switchBtn = $(el);
             var name = switchBtn.attr("name"); // feature_1[0][existingFeature]
             // getting feature id & index
@@ -182,7 +190,11 @@
                     async: false,
                     success: function (data) {
                         data.map(function (item) {
-                            var option = "<option value='" + item.Id + "'>" + item.Value + "</option>";
+                            if (subFeatureId != null && item.Id === subFeatureId) {
+                                var option = "<option selected value='" + item.Id + "'>" + item.Value + "</option>";
+                            } else {
+                                var option = "<option value='" + item.Id + "'>" + item.Value + "</option>";
+                            }
                             optionsStr = optionsStr + option;
                         });
                     },
@@ -460,7 +472,7 @@
                     ProductShortDescription: ProductShortDescription,
                     ProductDiscountPercent: ProductDiscountPercent,
                     Point: Point,
-                    ProductPrice:ProductPrice,
+                    ProductPrice: ProductPrice,
                     Brand: Brand,
                     ProductDescription: ProductDescription,
                     ProductGroup: ProductGroup,

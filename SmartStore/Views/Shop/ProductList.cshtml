@@ -46,23 +46,17 @@
                         <!-- categories -->
                         <div class="sidebar__item">
                             <h3 class="sidebar__item--title">
-                                Product Groups
+                                @(ViewBag.ProductGroupName != null? ViewBag.ProductGroupName : "Product Groups")
                             </h3>
                             <ul class="categories-list">
-                                <li class="categories-list__item">
-                                    <a href="/Shop/ProductList">
-                                        All
-                                        <span class="badge category-badge">@(Model.ProductCount)</span>
-                                    </a>
-                                </li>
-                                @foreach (var group in Model.ProductGroups.Where(p=>p.Products.Count != 0))
+                                @foreach (var item in Model.ProductGroups.OrderByDescending(p => p.Name == "All").ToList())
                                 {
                                     <li class="categories-list__item">
-                                        <a href="/Shop/ProductList/@group.Id">
-                                            @group.GroupName
-                                            <span class="badge category-badge">@group.Products.Count</span>
+                                        <a href="/Shop/ProductList@(item.Id != 0?$"/{item.Id}" : null)">
+                                            @item.Name
+                                            <span class="badge category-badge">@item.Count</span>
                                         </a>
-                                    </li>  
+                                    </li>
                                 }
                             </ul>
                         </div>

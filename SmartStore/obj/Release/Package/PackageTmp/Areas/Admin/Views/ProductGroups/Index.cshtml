@@ -32,9 +32,21 @@
                 <div class="col-sm-5">
                     <h2>Groups <b>Management</b></h2>
                 </div>
-                <div class="col-sm-7">
-                    <a href="/Admin/ProductGroups/Create" class="btn btn-primary"><i class="material-icons">&#xE147;</i><span>Add Group</span></a>
-                </div>
+                @if (ViewBag.ParentId != null)
+                {
+                    <div class="col-sm-7">
+                        <a href="/Admin/ProductGroups/Create" class="btn btn-primary"><i class="material-icons">&#xE147;</i><span>Add Group</span></a>
+                        <a href="/Admin/ProductGroups@(ViewBag.PrevParent != null?$"?parentId={ViewBag.PrevParent}":"")" class="btn btn-success" style="margin-left:20px">
+                            Return
+                        </a>
+                    </div>
+                }
+                else
+                {
+                    <div class="col-sm-7">
+                        <a href="/Admin/ProductGroups/Create" class="btn btn-primary"><i class="material-icons">&#xE147;</i><span>Add Group</span></a>
+                    </div>
+                }
             </div>
         </div>
 
@@ -98,6 +110,12 @@
                             <a href="#" onclick='Delete(@item.Id)' class="delete" title="Delete" data-toggle="tooltip">
                                 <i class="material-icons">&#xE5C9;</i>
                             </a>
+                            @if (item.Children.Any())
+                            {
+                                <a href="/Admin/ProductGroups?parentId=@item.Id" class="view" title="Sub groups" data-toggle="tooltip">
+                                    <i class="material-icons">&#xE5C8;</i>
+                                </a>
+                            }
                         </td>
                     </tr>
                 }

@@ -16,12 +16,12 @@
                     <div class="card-item__body--price">
                         @if (item.ProductDiscountPercent != null && item.ProductDiscountPercent <= 0)
                         {
-                            <strong>$@item.Price</strong>
+                            <strong>€@item.Price</strong>
                         }
                         else
                         {
-                            <strong>£@(item.Price * item.ProductDiscountPercent / 100)</strong>
-                            <del style="color: gray">£@item.Price</del>
+                            <strong>€@(item.Price - item.Price * item.ProductDiscountPercent / 100)</strong>
+                            <del style="color: gray">€@item.Price</del>
                         }
                     </div>
                     <div class="card-item__body--title">

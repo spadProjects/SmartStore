@@ -9,55 +9,88 @@
 <!-- end main header navbar -->
 <!-- main header slider -->
 @Html.Action("SliderHeader", "Home")
+<div style="margin-top:50px">
+    <div class="mb-70 overflow-hidden">
+        <div class="res-gallery res-gallery--horizontal">
+            <div class="res-gallery__tabs" style="margin-left:50px">
+                <h3 class="main-title">Explore Our Website</h3>
+                <div class="nav nav-pills" id="v-pills-tab" role="tablist">
+                    <a class="nav-link nav-item active" id="v-pills-cat01-tab" data-toggle="pill"
+                       href="#v-pills-cat01"
+                       role="tab"
+                       aria-controls="v-pills-cat01" aria-selected="true">Submit Your Ideas</a>
+                    <a class="nav-link nav-item" id="v-pills-cat02-tab" data-toggle="pill"
+                       href="#v-pills-cat02"
+                       role="tab"
+                       aria-controls="v-pills-cat02" aria-selected="false">Our Products</a>
+                </div>
+            </div>
+            <div class="tab-content res-gallery__content" id="v-pills-tabContent">
+                <div class="tab-pane fade show active" id="v-pills-cat01" role="tabpanel"
+                     aria-labelledby="v-pills-cat01-tab">
+                    <div class="banner banner-full mb-100 overflow-hidden"
+                         style="background-image: url('../../Content/Home/images/banners/banner-bg-05.jpg');">
+                        <div class="container">
+                            <div class="banner-full__inner">
+                                <a href="#">
+                                    <h3>Do you have an idea?</h3>
+                                    <h2>
+                                        Well done!<br><span class="text-bg">
+                                            Do you want to grow it?
+                                        </span>
+                                    </h2>
+                                </a>
+                                <a href="/ReceiveIdea/Index" class="btn">Let' Go</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="v-pills-cat02" role="tabpanel"
+                     aria-labelledby="v-pills-cat02-tab">
+                    @Html.Action("PopularCategories", "Home")
+                    <div class="main-content py-100">
+                        <div class="container">
+                            <!-- items slider light -->
+                            @Html.Action("ProductSlider", "Home")
+                            <!-- end items slider light -->
+                        </div>
+                        <!-- end items slider light blue -->
+                        <!--  banner call to action  -->
+                        <!--  end banner call to action  -->
+                        <div class="container">
+                            <!-- items slider light blue -->
+                            @Html.Action("MainSlider", "Home")
+                            <!-- end of items slider light blue -->
+                            <!-- smart shop section -->
+                            <!-- end smart shop section -->
+                        </div>
+                        <!-- gallery -->
+                        @*@Html.Action("Gallery","Home")*@
+                        <!-- end gallery -->
+                        <!-- latest blog post -->
+                        <div class="container">
+                            <div class="row overflow-hidden">
+                                <div class="col-12">
+                                    <h2 class="main-title wow fadeIn">The Latest Blog posts</h2>
+                                </div>
+                            </div>
+                            @Html.Action("LatestBlog", "Home")
+                        </div>
+                        <!-- end latest blog post -->
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .res-gallery--horizontal .res-gallery__content{
+        max-width:100%;
+    }
+</style>
 <!-- end of main header -->
-@Html.Action("PopularCategories", "Home")
 @*@Html.Action("FeaturedCollection", "Home")*@
 <!-- main content -->
-<div class="main-content py-100">
-    <div class="container">
-        <!-- items slider light -->
-        @Html.Action("ProductSlider", "Home")
-        <!-- end items slider light -->
-    </div>
-    <!-- end items slider light blue -->
-    <!--  banner call to action  -->
-    <div class="banner banner-full mb-100 overflow-hidden"
-         style="background-image: url('../../Content/Home/images/banners/banner-bg-05.jpg');">
-        <div class="container">
-            <div class="banner-full__inner">
-                <a href="#">
-                    <h3>Do you have an idea?</h3>
-                    <h2>
-                        Well done!<br><span class="text-bg">
-                            Do you want to grow it?
-                        </span>
-                    </h2>
-                </a>
-                <a href="/ReceiveIdea/Index" class="btn">Let' Go</a>
-            </div>
-        </div>
-    </div>
-    <!--  end banner call to action  -->
-    <div class="container">
-        <!-- items slider light blue -->
-        @Html.Action("MainSlider", "Home")
-        <!-- end of items slider light blue -->
-        <!-- smart shop section -->
-        <!-- end smart shop section -->
-    </div>
-    <!-- gallery -->
-    @*@Html.Action("Gallery","Home")*@
-    <!-- end gallery -->
-    <!-- latest blog post -->
-    <div class="container">
-        <div class="row overflow-hidden">
-            <div class="col-12">
-                <h2 class="main-title wow fadeIn">The Latest Blog posts</h2>
-            </div>
-        </div>
-        @Html.Action("LatestBlog", "Home")
-    </div>
-    <!-- end latest blog post -->
-
-</div>
 <!-- end main content -->

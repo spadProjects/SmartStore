@@ -1,0 +1,77 @@
+﻿@using SmartStore.Model.Entities 
+@model UserProfitPayment
+@{
+    var previousPayments = ViewBag.PreviousPayments as List<UserProfitPayment>;
+    ViewBag.Title = "ProfitPayment";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+@using (Html.BeginForm("ProfitPayment", "Users", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="col-md-6" style="background:#ffffff center;padding:50px;margin-left:50px;margin-right:50px">
+        <h4 style="text-align: center;font-weight: bold;">Submit New Payment</h4>
+        <div class="form-horizontal">
+            <hr />
+            <table class="table table-striped table-hover">
+                @*<div class="col-sm-3">
+                <div style="float: left;" class="show-entries">
+                    <span>Show</span>
+                    <select class="form-control">
+                        <option>5</option>
+                        <option>10</option>
+                        <option>15</option>
+                        <option>20</option>
+                    </select>
+                    <span>entries</span>
+                </div>
+            </div>*@
+                @*<button style="float: right;" type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
+            <div style="float: right;margin-right: 10px;margin-bottom: 10px;" class="filter-group">
+                <input type="text" class="form-control">
+            </div>*@
+                <h5>Previous Payments</h5>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Amount</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        int rowno = 0;
+                        foreach (var item in previousPayments)
+                        {
+                            <tr>
+                                <td>@(rowno += 1)</td>
+                                <td>@item.Amount €</td>
+                                <td>@item.Date.ToString("D")</td>
+                            </tr>
+                        }
+                    }
+
+                </tbody>
+            </table>
+            <h5>Unpayed profit: <span class="@(ViewBag.UnpayedProfit < 0 ? "text-danger":"text-success")">@ViewBag.UnpayedProfit €</span></h5>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <input type="hidden" name="UserId" id="UserId" value="@ViewBag.UserId" />
+            <div class="form-group">
+                @Html.LabelFor(model => model.Amount, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <hr />
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10" style="margin-bottom: -20px;">
+                    <input type="submit" value="Submit New Payment" class="btn btn-success" />
+                    <a href="/Admin/Users/" class="btn btn-default">Cancel</a>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

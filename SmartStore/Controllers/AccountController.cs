@@ -112,7 +112,7 @@ namespace SmartStore.Controllers
         public ActionResult SignOut()
         {
             FormsAuthentication.SignOut();
-            return RedirectToAction("RegisterWithEmail");
+            return RedirectToAction("AdminLogin");
         }
 
         public ActionResult RegisterWithEmail(RegisterWithEmailViewModel registerwithemail)

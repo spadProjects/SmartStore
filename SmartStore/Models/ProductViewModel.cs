@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace SmartStore.Models
 {
@@ -42,6 +43,7 @@ namespace SmartStore.Models
         public decimal ProductPrice { get; set; }
         public int ProductDiscountPercent { get; set; }
         public float Point { get; set; }
+        [AllowHtml]
         public string ProductDescription { get; set; }
         public int Brand { get; set; }
         public int ProductGroup { get; set; }
@@ -64,12 +66,26 @@ namespace SmartStore.Models
     {
         public int? SelectedGroupId { get; set; }
         public int ProductCount { get; set; }
-        public List<ProductGroup> ProductGroups { get; set; }
+        public List<ProductGroupWithCountViewModel> ProductGroups { get; set; }
         public List<Feature> Features { get; set; }
         public List<Brand> Brands { get; set; }
 
     }
-
+    public class ProductGroupWithCountViewModel
+    {
+        public ProductGroupWithCountViewModel()
+        {
+        }
+        public ProductGroupWithCountViewModel(int? id,string name,int count)
+        {
+            this.Id = id;
+            this.Name = name;
+            this.Count = count;
+        }
+        public int? Id { get; set; }
+        public string Name { get; set; }
+        public int Count { get; set; }
+    }
     public class ProductCard
     {
         public int Id { get; set; }

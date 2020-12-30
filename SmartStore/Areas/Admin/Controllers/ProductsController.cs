@@ -35,7 +35,8 @@ namespace SmartStore.Areas.Admin.Controllers
             int PageNumber = (Page ?? 1);
 
             List<SmartStore.Model.Entities.Product> prolist = new List<Product>();
-            prolist = db.Products.Include(p => p.Brand).Include(p => p.ProductGroup).OrderByDescending(p => p.ProductOrder).ToList();
+            prolist = db.Products.Where
+                (p=> p.IsDeleted != true).Include(p => p.Brand).Include(p => p.ProductGroup).OrderByDescending(p => p.ProductOrder).ToList();
             return View(prolist.ToPagedList(PageNumber, pagesize));
         }
 
@@ -56,7 +57,7 @@ namespace SmartStore.Areas.Admin.Controllers
             var prod = new Product();
             prod.ProductName = entity.ProductName;
             prod.ProductShortDescription = entity.ProductShortDescription;
-            prod.ProductDescription = entity.ProductDescription;
+            prod.ProductDescription = HttpUtility.UrlDecode(entity.ProductDescription, System.Text.Encoding.Default);
             prod.BrandId = entity.Brand;
             prod.ProductGroupId = entity.ProductGroup;
             prod.ProductPrice = entity.ProductPrice;
@@ -247,25 +248,25 @@ namespace SmartStore.Areas.Admin.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Product product = db.Products.Find(id);
-            var productMainFeatures = db.ProductMainFeatures.Where(f => f.ProductId == id).ToList();
-            var productFeatures = db.ProductFeatureValues.Where(f => f.ProductId == id).ToList();
-            foreach (var mainFeature in productMainFeatures)
-                db.ProductMainFeatures.Remove(mainFeature);
-            db.SaveChanges();
+            //var productMainFeatures = db.ProductMainFeatures.Where(f => f.ProductId == id).ToList();
+            //var productFeatures = db.ProductFeatureValues.Where(f => f.ProductId == id).ToList();
+            //foreach (var mainFeature in productMainFeatures)
+            //    db.ProductMainFeatures.Remove(mainFeature);
+            //db.SaveChanges();
 
-            foreach (var feature in productFeatures)
-                db.ProductFeatureValues.Remove(feature);
-            db.SaveChanges();
+            //foreach (var feature in productFeatures)
+            //    db.ProductFeatureValues.Remove(feature);
+            //db.SaveChanges();
 
-            #region Delete Product Image
-            if (product.ProductImg != null)
-            {
-                if (System.IO.File.Exists(Server.MapPath("/Images/Product/" + product.ProductImg)))
-                    System.IO.File.Delete(Server.MapPath("/Images/Product/" + product.ProductImg));
-            }
-            #endregion
-
-            db.Products.Remove(product);
+            //#region Delete Product Image
+            //if (product.ProductImg != null)
+            //{
+            //    if (System.IO.File.Exists(Server.MapPath("/Images/Product/" + product.ProductImg)))
+            //        System.IO.File.Delete(Server.MapPath("/Images/Product/" + product.ProductImg));
+            //}
+            //#endregion
+            product.IsDeleted = true;
+            db.Entry(product).State = EntityState.Modified;
             db.SaveChanges();
 
             return RedirectToAction("Index");

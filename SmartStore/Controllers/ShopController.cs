@@ -70,7 +70,7 @@ namespace SmartStore.Controllers
             int PageNumber = (Page ?? 1);
 
             List<SmartStore.Model.Entities.Product> prdlist = new List<Product>();
-            
+
             prdlist = db.Products.Where(m => m.ProductNotShow == false && m.ProductGroupId == groupid).ToList();
             return View(prdlist.ToPagedList(PageNumber, pagesize));
         }
@@ -193,7 +193,7 @@ namespace SmartStore.Controllers
             return count;
         }
 
-        public ActionResult RemoveFromCart(int id,string returnUrl = null)
+        public ActionResult RemoveFromCart(int id, string returnUrl = null)
         {
             List<ShopCartItem> cart = Session["ShopCart"] as List<ShopCartItem>;
             int remove = cart.FindIndex(p => p.ProductId == id);
@@ -242,7 +242,7 @@ namespace SmartStore.Controllers
 
                     var price = product.ProductPrice;
                     if (product.ProductDiscountPercent != null && product.ProductDiscountPercent > 0)
-                        price = product.ProductPrice * product.ProductDiscountPercent / 100;
+                        price = product.ProductPrice - product.ProductPrice * product.ProductDiscountPercent / 100;
 
                     shopCart.ProductPrice = price;
                     shopCart.Sum = item.Count * price;
@@ -281,7 +281,7 @@ namespace SmartStore.Controllers
 
                     var price = product.ProductPrice;
                     if (product.ProductDiscountPercent != null && product.ProductDiscountPercent > 0)
-                        price = product.ProductPrice * product.ProductDiscountPercent / 100;
+                        price = product.ProductPrice - product.ProductPrice * product.ProductDiscountPercent / 100;
 
                     shopCart.ProductPrice = price;
                     shopCart.Sum = item.Count * price;
@@ -343,13 +343,13 @@ namespace SmartStore.Controllers
             Factor factor = new Factor()
             {
                 UserId = userId,
-                Price= listDetails.Select(l=>l.ProductPrice*l.Count).Sum(),
+                Price = listDetails.Select(l => l.ProductPrice * l.Count).Sum(),
                 CreationDate = DateTime.Now,
                 IsPay = true,
                 FactorNumber = MyFactorNumber.ToString(),
                 PayNumber = MyPayNumber.ToString(),
                 PayDate = DateTime.Now.ToString("dd/MM/yyyy"),
-                PayTime=DateTime.Now.ToString("hh:mm tt"),
+                PayTime = DateTime.Now.ToString("hh:mm tt"),
             };
             db.Factors.Add(factor);
 
@@ -374,7 +374,7 @@ namespace SmartStore.Controllers
                 var userPoint = new UserPoint()
                 {
                     UserId = userId,
-                    Point = product.Point*item.Count,
+                    Point = product.Point * item.Count,
                     RegisterDate = DateTime.Now
                 };
                 db.UserPoints.Add(userPoint);
@@ -390,23 +390,58 @@ namespace SmartStore.Controllers
         {
             var vm = new ProductListViewModel();
             vm.ProductCount = db.Products.Count();
-            vm.SelectedGroupId = id??0;
-            vm.ProductGroups = db.ProductGroups.Include(p=>p.Products).ToList();
+            vm.SelectedGroupId = id ?? 0;
+            var productGroups = new List<ProductGroupWithCountViewModel>();
             if (id == null)
             {
-                vm.Features = db.Features.Include(f=>f.SubFeatures).ToList();
+                vm.Features = db.Features.Include(f => f.SubFeatures).ToList();
                 vm.Brands = db.Brands.ToList();
+                productGroups.Add(
+                    new ProductGroupWithCountViewModel(
+                        0,
+                        "All",
+                        db.Products.Where(p => p.IsDeleted != true && p.ProductNotShow == false).Count())
+                    );
+                var allParentGroups = db.ProductGroups.Where(p => p.ParentId == null);
+                foreach (var item in allParentGroups)
+                {
+                    productGroups.Add(
+                        new ProductGroupWithCountViewModel(
+                        item.Id,
+                        item.GroupName,
+                        GetGroupProductCount(item.Id)
+                        ));
+                }
             }
             else
             {
                 var pgFeatures = db.ProductGroupFeatures.Where(f => f.ProductGroupId == id).ToList();
-                var features = pgFeatures.Select(item => db.Features.Include(f => f.SubFeatures).FirstOrDefault(f=>f.Id == item.FeatureId)).ToList();
+                var features = pgFeatures.Select(item => db.Features.Include(f => f.SubFeatures).FirstOrDefault(f => f.Id == item.FeatureId)).ToList();
                 vm.Features = features;
 
                 var pgBrands = db.ProductGroupBrands.Where(f => f.ProductGroupId == id).ToList();
                 var brands = pgBrands.Select(item => db.Brands.Find(item.BrandId)).ToList();
                 vm.Brands = brands;
+                var selectedProductGroup = db.ProductGroups.Find(id);
+                productGroups.Add(
+                    new ProductGroupWithCountViewModel(
+                        id,
+                        "All",
+                        GetGroupProductCount(id.Value))
+                    );
+                var allChildGroups = db.ProductGroups.Where(p => p.ParentId == id).ToList();
+                foreach (var item in allChildGroups)
+                {
+                    productGroups.Add(
+                        new ProductGroupWithCountViewModel(
+                        item.Id,
+                        item.GroupName,
+                        GetGroupProductCount(item.Id)
+                        ));
+                }
+                ViewBag.ProductGroupName = selectedProductGroup.GroupName;
             }
+            vm.ProductGroups = productGroups;
             return View(vm);
         }
         public JsonResult GetProductGroupFeatures(List<int> productGroups)
@@ -441,15 +476,22 @@ namespace SmartStore.Controllers
         {
             var products = new List<Product>();
             if (selectedProductGroup == 0)
-                products = db.Products.Include(p=>p.ProductMainFeatures).Include(p=>p.ProductFeatureValues).ToList();
+                products = db.Products.Where(p=>p.IsDeleted != true && p.ProductNotShow == false).Include(p => p.ProductMainFeatures).Include(p => p.ProductFeatureValues).ToList();
             else
-                products = db.Products.Where(p=>p.ProductGroupId == selectedProductGroup).Include(p => p.ProductMainFeatures).Include(p => p.ProductFeatureValues).ToList();
+            {
+                products = db.Products.Where(p => p.ProductGroupId == selectedProductGroup && p.IsDeleted != true && p.ProductNotShow == false).Include(p => p.ProductMainFeatures).Include(p => p.ProductFeatureValues).ToList();
+                var childrenGroupIds = GetAllChildrenGroupIds(selectedProductGroup);
+                foreach (var item in childrenGroupIds)
+                {
+                    products.AddRange(db.Products.Where(p => p.ProductGroupId == item).Include(p => p.ProductMainFeatures).Include(p => p.ProductFeatureValues).ToList());
+                }
+            }
             if (selectedBrands.Any() && selectedBrands.All(id => id != 0))
             {
                 var productFilteredByBrand = new List<Product>();
                 foreach (var brand in selectedBrands)
                 {
-                    productFilteredByBrand.AddRange(products.Where(p=>p.BrandId == brand));
+                    productFilteredByBrand.AddRange(products.Where(p => p.BrandId == brand));
                 }
                 products = productFilteredByBrand;
             }
@@ -458,7 +500,7 @@ namespace SmartStore.Controllers
                 var productFilteredBySubFeature = new List<Product>();
                 foreach (var subFeature in selectedSubFeatures)
                 {
-                    productFilteredBySubFeature.AddRange(products.Where(p => p.ProductFeatureValues.Any(pf=>pf.SubFeatureId == subFeature) || p.ProductMainFeatures.Any(pf => pf.SubFeatureId == subFeature)));
+                    productFilteredBySubFeature.AddRange(products.Where(p => p.ProductFeatureValues.Any(pf => pf.SubFeatureId == subFeature) || p.ProductMainFeatures.Any(pf => pf.SubFeatureId == subFeature)));
                 }
                 products = productFilteredBySubFeature;
             }
@@ -466,15 +508,43 @@ namespace SmartStore.Controllers
             var vm = new List<ProductCard>();
             foreach (var product in products)
             {
-               var card = new ProductCard();
-               card.Id = product.Id;
-               card.ProductName = product.ProductName;
-               card.ProductImg = product.ProductImg;
-               card.Price = product.ProductPrice;
-               card.ProductDiscountPercent = product.ProductDiscountPercent;
-               vm.Add(card);
+                var card = new ProductCard();
+                card.Id = product.Id;
+                card.ProductName = product.ProductName;
+                card.ProductImg = product.ProductImg;
+                card.Price = product.ProductPrice;
+                card.ProductDiscountPercent = product.ProductDiscountPercent;
+                vm.Add(card);
             }
             return PartialView(vm);
+        }
+        public List<int> GetAllChildrenGroupIds(int id)
+        {
+            var ids = new List<int>();
+            ids.AddRange(db.ProductGroups.Where(p => (p.IsDeleted != true && p.GroupNotShow==false) && p.ParentId == id).Select(p => p.Id).ToList());
+            foreach (var item in ids.ToList())
+            {
+                var childIds = GetAllChildrenGroupIds(item);
+                if (childIds.Any())
+                {
+                    ids.AddRange(childIds);
+                }
+            }
+            return ids;
+        }
+        public int GetGroupProductCount(int id)
+        {
+            var count = 0;
+            using (var context = new SmartStoreContext())
+            {
+                count += context.Products.Where(p => p.ProductGroupId == id && (p.IsDeleted!= true && p.ProductNotShow == false)).Count();
+                var childrenGroupIds = context.ProductGroups.Where(p => (p.IsDeleted != true && p.GroupNotShow == false) && p.ParentId == id).Select(p => p.Id).ToList();
+                foreach (var item in childrenGroupIds.ToList())
+                {
+                    count += GetGroupProductCount(item);
+                }
+            }
+            return count;
         }
     }
 }

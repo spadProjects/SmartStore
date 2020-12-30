@@ -48,7 +48,7 @@
                 <tr>
                     <th>#</th>
                     <th>First Name</th>
-                    <th>LastName Name</th>
+                    <th>LastName</th>
                     <th>Email</th>
                     <th>Status Show</th>
                     <th>Action</th>
@@ -67,9 +67,18 @@
                             @{
                                 if (item.IsActive == true)
                                 {
-                                    <td>
-                                        <span class="status text-success">&bull;</span> Active
-                                    </td>
+                                    if (ViewBag.IsFull)
+                                    {
+                                        <td>
+                                            <span class="status text-warning">&bull;</span> Full
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td>
+                                            <span class="status text-success">&bull;</span> Active
+                                        </td>
+                                    }
                                 }
                                 else
                                 {
@@ -80,11 +89,19 @@
                             }
 
                             <td>
+                                @if (item.IsActive == false || ViewBag.IsFull)
+                                {
+                                    <a href="#" class="edit">
+                                        <i class="material-icons" style="color:grey">&#xE862;</i>
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a href="#" onclick='Confirm(@item.Id)' class="edit" title="Confirm" data-toggle="tooltip">
+                                        <i class="material-icons">&#xE862;</i>
+                                    </a>
+                                }
 
-
-                                <a href="#" onclick='Confirm(@item.Id)' class="edit" title="Confirm" data-toggle="tooltip">
-                                    <i class="material-icons">&#xE862;</i>
-                                </a>
 
 
                             </td>

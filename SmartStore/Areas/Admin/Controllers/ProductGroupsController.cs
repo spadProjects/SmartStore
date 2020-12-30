@@ -22,7 +22,7 @@ namespace SmartStore.Areas.Admin.Controllers
         {
             List<ProductGroup> productGroups;
             if (parentId == null)
-                productGroups = db.ProductGroups.Where(p => p.ParentId == null).Include(p => p.Children).ToList();
+                productGroups = db.ProductGroups.Where(p => p.ParentId == null&&(p.IsDeleted == false || p.IsDeleted == null)).Include(p => p.Children).ToList();
             else
             {
                 productGroups = db.ProductGroups.Where(p => p.ParentId == parentId).Include(p => p.Children).ToList();
@@ -235,41 +235,42 @@ namespace SmartStore.Areas.Admin.Controllers
         {
             var productGroup = db.ProductGroups.Find(id);
 
-            // Removing Group Brands
-            var productGroupBrands = db.ProductGroupBrands
-                .Where(b => b.ProductGroupId == productGroup.Id).ToList();
-            foreach (var item in productGroupBrands)
-                db.ProductGroupBrands.Remove(item);
+            //// Removing Group Brands
+            //var productGroupBrands = db.ProductGroupBrands
+            //    .Where(b => b.ProductGroupId == productGroup.Id).ToList();
+            //foreach (var item in productGroupBrands)
+            //    db.ProductGroupBrands.Remove(item);
 
-            db.SaveChanges();
+            //db.SaveChanges();
 
-            // Removing Previous Group Features
-            var productGroupFeatures = db.ProductGroupFeatures
-                .Where(b => b.ProductGroupId == productGroup.Id).ToList();
+            //// Removing Previous Group Features
+            //var productGroupFeatures = db.ProductGroupFeatures
+            //    .Where(b => b.ProductGroupId == productGroup.Id).ToList();
 
-            foreach (var item in productGroupFeatures)
-                db.ProductGroupFeatures.Remove(item);
+            //foreach (var item in productGroupFeatures)
+            //    db.ProductGroupFeatures.Remove(item);
 
-            db.SaveChanges();
+            //db.SaveChanges();
 
-            if (productGroup.Children.Any())
-            {
-                foreach (var subgroup in db.ProductGroups.Where(g => g.ParentId == id))
-                {
-                    db.ProductGroups.Remove(subgroup);
-                }
+            //if (productGroup.Children.Any())
+            //{
+            //    foreach (var subgroup in db.ProductGroups.Where(g => g.ParentId == id))
+            //    {
+            //        db.ProductGroups.Remove(subgroup);
+            //    }
 
-                db.SaveChanges();
-            }
+            //    db.SaveChanges();
+            //}
 
-            #region Delete ProductGroup Image
-            if (productGroup.GroupImage != null)
-            {
-                if (System.IO.File.Exists(Server.MapPath("/Images/ProductGroup/" + productGroup.GroupImage)))
-                    System.IO.File.Delete(Server.MapPath("/Images/ProductGroup/" + productGroup.GroupImage));
-            }
-            #endregion
-            db.ProductGroups.Remove(productGroup);
+            //#region Delete ProductGroup Image
+            //if (productGroup.GroupImage != null)
+            //{
+            //    if (System.IO.File.Exists(Server.MapPath("/Images/ProductGroup/" + productGroup.GroupImage)))
+            //        System.IO.File.Delete(Server.MapPath("/Images/ProductGroup/" + productGroup.GroupImage));
+            //}
+            //#endregion
+            productGroup.IsDeleted = true;
+            db.Entry(productGroup).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index", new { Id = productGroup.ParentId });
         }

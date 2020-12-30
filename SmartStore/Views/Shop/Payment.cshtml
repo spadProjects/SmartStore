@@ -36,7 +36,7 @@
             </tbody>
         </table>
         <div style="padding-bottom: 20px">
-            Payment Price : £ @Html.DisplayFor(modelItem => Model.Price)
+            Payment Price : € @Html.DisplayFor(modelItem => Model.Price)
         </div>
         <form action="https://test.bitpay.com/checkout" method="post" style="text-align:center">
             <input type="hidden" name="action" value="checkout" />

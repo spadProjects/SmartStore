@@ -1,4 +1,4 @@
-﻿@model PagedList.IPagedList<SmartStore.Model.Entities.User>
+﻿@model PagedList.IPagedList<SmartStore.Models.UserTableViewModel>
 
 @using PagedList.Mvc
 
@@ -66,48 +66,57 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                    <tr>
-                        <td>@(rowno += 1)</td>
-                        @if (item.UserImage != null)
+                <tr>
+                    <td>@(rowno += 1)</td>
+                    @if (item.User.UserImage != null)
+                    {
+                        <td><a href="#"><img src="~/Images/User/@item.User.UserImage" alt="Avatar" width="50" height="50" style="border-radius:50px"></a></td>
+                    }
+                    else
+                    {
+                        <td><a href="#"><img src="~/Content/Customer/img/User.jpg" alt="Avatar" width="50" height="50" style="border-radius:50px"></a></td>
+                    }
+                    <td>@Html.DisplayFor(modelItem => item.User.UserCode)</td>
+                    <td>@Html.DisplayFor(modelItem => item.User.UserFirstName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.User.UserLastName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.User.UserEmail)</td>
+                    <td>@Html.DisplayFor(modelItem => item.User.UserPhoneNumber)</td>
+
+                    @{
+                        if (item.User.IsActive == true)
                         {
-                            <td><a href="#"><img src="~/Images/User/@item.UserImage" alt="Avatar" width="50" height="50" style="border-radius:50px"></a></td>
+                            <td>
+                                <span class="status text-success">&bull;</span> Active
+                            </td>
                         }
                         else
                         {
-                            <td><a href="#"><img src="~/Content/Customer/img/User.jpg" alt="Avatar" width="50" height="50" style="border-radius:50px"></a></td>
+                            <td>
+                                <span class="status text-warning">&bull;</span> Inactive
+                            </td>
                         }
-                        <td>@Html.DisplayFor(modelItem => item.UserCode)</td>
-                        <td>@Html.DisplayFor(modelItem => item.UserFirstName)</td>
-                        <td>@Html.DisplayFor(modelItem => item.UserLastName)</td>
-                        <td>@Html.DisplayFor(modelItem => item.UserEmail)</td>
-                        <td>@Html.DisplayFor(modelItem => item.UserPhoneNumber)</td>
+                    }
+                <td>
 
-                        @{
-                            if (item.IsActive == true)
-                            {
-                                <td>
-                                    <span class="status text-success">&bull;</span> Active
-                                </td>
-                            }
-                            else
-                            {
-                                <td>
-                                    <span class="status text-warning">&bull;</span> Inactive
-                                </td>
-                            }
-                        }
-                        <td>
-                            <a href="/Admin/Users/Details/@item.Id" class="view" title="Details" data-toggle="tooltip">
-                                <i class="material-icons">&#xE417;</i>
-                            </a>
-                            <a href="/Admin/Users/Edit/@item.Id" class="edit" title="Edit" data-toggle="tooltip">
-                                <i class="material-icons">&#xE254;</i>
-                            </a>
-                            <a href="#" onclick='Delete(@item.Id)' class="delete" title="Delete" data-toggle="tooltip">
-                                <i class="material-icons">&#xE5C9;</i>
-                            </a>
-                        </td>
-                    </tr>
+                    <a href="/Admin/Users/Details/@item.User.Id" class="view" title="Details" data-toggle="tooltip">
+                        <i class="material-icons">&#xE417;</i>
+                    </a>
+                    <a href="/Admin/Users/Edit/@item.User.Id" class="edit" title="Edit" data-toggle="tooltip">
+                        <i class="material-icons">&#xE254;</i>
+                    </a>
+                    <a href="#" onclick='Delete(@item.User.Id)' class="delete" title="Delete" data-toggle="tooltip">
+                        <i class="material-icons">&#xE5C9;</i>
+                    </a>
+                    @if (item.HasTwoSubsets)
+                    {
+                        <a href="/Admin/Users/ProfitPayment/@item.User.Id" class="text-success" title="Profit Payment" data-toggle="tooltip">
+                            <span class="material-icons">
+                                payment
+                            </span>
+                        </a>
+                    }
+                </td>
+                </tr>
                 }
             </tbody>
         </table>
